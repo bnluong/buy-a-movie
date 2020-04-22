@@ -11,7 +11,6 @@ CREATE TABLE IF NOT EXISTS stars(
     id VARCHAR(10) PRIMARY KEY,
     name VARCHAR(100),
     birth_year INT,
-    director VARCHAR(100)
 );
 
 CREATE TABLE IF NOT EXISTS stars_in_movies(

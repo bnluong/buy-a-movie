@@ -23,7 +23,7 @@ function handleMovieListResult(resultData) {
     let movieListTableBodyElement = jQuery("#movie_list_table_body");
 
     // Iterate through resultData, no more than 10 entries
-    for(let i = 0; i < Math.min(20, resultData.length); i++) {
+    for(let i = 0; i < resultData.length; i++) {
         // Concatenate the html tags with resultData jsonObject
         let rowHTML = "";
         rowHTML += "<tr>";
@@ -37,10 +37,12 @@ function handleMovieListResult(resultData) {
             '<a href="single-movie.html?id=' + resultData[i]['movie_id'] + '">' + resultData[i]["movie_title"] + '</a>' + 
             "</th>";
         */
-        
+        rowHTML += "<th>" + resultData[i]["movie_rating"] + "</th>";
         rowHTML += "<th>" + resultData[i]["movie_title"] + "</th>";
         rowHTML += "<th>" + resultData[i]["movie_year"] + "</th>";
-        
+        rowHTML += "<th>" + resultData[i]["movie_director"] + "</th>";
+        rowHTML += "<th>" + resultData[i]["movie_stars"] + "</th>";
+        rowHTML += "<th>" + resultData[i]["movie_genres"] + "</th>";
         rowHTML += "</tr>";
 
         // Append the row created to the table body, which will refresh the page
