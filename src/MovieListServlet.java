@@ -68,6 +68,7 @@ public class MovieListServlet extends HttpServlet {
 
                 // Create a JsonObject based on the data we retrieve from the result set
                 JsonObject jsonObject = new JsonObject();
+                jsonObject.addProperty("movie_id", movieID);
                 jsonObject.addProperty("movie_rating", movieRating);
                 jsonObject.addProperty("movie_title", movieTitle);
                 jsonObject.addProperty("movie_year", movieYear);

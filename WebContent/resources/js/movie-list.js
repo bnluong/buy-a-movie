@@ -27,18 +27,11 @@ function handleMovieListResult(resultData) {
         // Concatenate the html tags with resultData jsonObject
         let rowHTML = "";
         rowHTML += "<tr>";
-        
-        /*
-		TODO: Implement Single Movie page (opened by clicking on a single movie on the list)
-        rowHTML +=
-            "<th>" +
-            // Add a link to movie-star.html with id passed with GET url parameter
-            // display movie's title for the link text
-            '<a href="single-movie.html?id=' + resultData[i]['movie_id'] + '">' + resultData[i]["movie_title"] + '</a>' + 
-            "</th>";
-        */
+                
         rowHTML += "<th>" + resultData[i]["movie_rating"] + "</th>";
-        rowHTML += "<th>" + resultData[i]["movie_title"] + "</th>";
+        rowHTML += "<th>";
+        	rowHTML += '<a href="movie-info.html?id=' + resultData[i]["movie_id"] + '">' + resultData[i]["movie_title"] + "</a>";
+        rowHTML += "</th>";
         rowHTML += "<th>" + resultData[i]["movie_year"] + "</th>";
         rowHTML += "<th>" + resultData[i]["movie_director"] + "</th>";
         rowHTML += "<th>" + resultData[i]["movie_stars"] + "</th>";
