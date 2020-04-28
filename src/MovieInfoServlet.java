@@ -50,8 +50,8 @@ public class MovieInfoServlet extends HttpServlet {
 			// Prepare a parameterized query represented by "?"
 			String query = 
 					"SELECT m.id, m.title, m.year, m.director, "
-						+ "GROUP_CONCAT(DISTINCT g.name SEPARATOR ', ') as genres, "
-						+ "GROUP_CONCAT(DISTINCT s.name SEPARATOR ', ') as stars, "
+						+ "GROUP_CONCAT(DISTINCT g.name ORDER BY g.name ASC SEPARATOR ', ') as genres, "
+						+ "GROUP_CONCAT(DISTINCT s.name ORDER BY s.name ASC SEPARATOR ', ') as stars, "
 						+ "r.rating\n" + 
 					"FROM movies m\n" + 
 					"INNER JOIN genres_in_movies gim ON m.id = gim.movie_id\n" + 

@@ -1,6 +1,4 @@
 /**
- * This example is following frontend and backend separation.
- *
  * Before this .js is loaded, the html skeleton is created.
  *
  * This .js performs two steps:
@@ -24,17 +22,26 @@ function handleMovieListResult(resultData) {
 
     // Iterate through resultData, no more than 10 entries
     for(let i = 0; i < resultData.length; i++) {
-        // Concatenate the html tags with resultData jsonObject
+        // Concatenate the html tags with resultData JsonObject
         let rowHTML = "";
         rowHTML += "<tr>";
                 
         rowHTML += "<th>" + resultData[i]["movie_rating"] + "</th>";
         rowHTML += "<th>";
-        	rowHTML += '<a href="movie-info.html?id=' + resultData[i]["movie_id"] + '">' + resultData[i]["movie_title"] + "</a>";
+        rowHTML += '<a href="movie-info.html?id=' + resultData[i]["movie_id"] + '">' + resultData[i]["movie_title"] + "</a>";
         rowHTML += "</th>";
         rowHTML += "<th>" + resultData[i]["movie_year"] + "</th>";
         rowHTML += "<th>" + resultData[i]["movie_director"] + "</th>";
-        rowHTML += "<th>" + resultData[i]["movie_stars"] + "</th>";
+        
+        rowHTML += "<th>";
+        // Add hyperlink to a star's name by the star's id)
+        var stars = resultData[i]["movie_stars"];				// movie_stars entry is a JSON array
+        for(let j = 0; j < stars.length; j++)
+        	rowHTML += '<a href="star-info.html?id=' + stars[j]["star_id"] + '">' + stars[j]["star_name"] + "</a>" + ", ";
+        // Regular expression to remove trailing commas and whitespaces
+        rowHTML = rowHTML.replace(/,\s*$/, "");
+        rowHTML += "</th>";
+        
         rowHTML += "<th>" + resultData[i]["movie_genres"] + "</th>";
         rowHTML += "</tr>";
 

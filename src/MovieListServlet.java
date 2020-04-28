@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -63,9 +64,9 @@ public class MovieListServlet extends HttpServlet {
                 String movieDirector = resultSet.getString("director");
                 
                 // Process query for list of stars and genres
-                String moviestars = getStarsFromMovie(movieID, dbConnection);
+                JsonArray moviestars = getStarsFromMovie(movieID, dbConnection);
                 String movieGenres = getGenresFromMovie(movieID, dbConnection);
-
+                
                 // Create a JsonObject based on the data we retrieve from the result set
                 JsonObject jsonObject = new JsonObject();
                 jsonObject.addProperty("movie_id", movieID);
@@ -73,7 +74,7 @@ public class MovieListServlet extends HttpServlet {
                 jsonObject.addProperty("movie_title", movieTitle);
                 jsonObject.addProperty("movie_year", movieYear);
                 jsonObject.addProperty("movie_director", movieDirector);
-                jsonObject.addProperty("movie_stars", moviestars);
+                jsonObject.add("movie_stars", moviestars);
                 jsonObject.addProperty("movie_genres", movieGenres);
                 jsonArray.add(jsonObject);
             }
@@ -98,28 +99,51 @@ public class MovieListServlet extends HttpServlet {
         out.close();
 	}
 	
-	private String getStarsFromMovie(String movieID, Connection dbConnection) throws SQLException {
-        String result = "";        
+	/*
+	 * Retrieve stars info (stars' names and stars' ids) from a movie identified by movieID
+	 * Return: JsonArray object that contains the stars' info
+	 */
+	private JsonArray getStarsFromMovie(String movieID, Connection dbConnection) throws SQLException {
         String query = 
-        		"SELECT GROUP_CONCAT(DISTINCT stars.name SEPARATOR ', ') as names \n" + 
-        		"FROM stars \n" + 
-        		"INNER JOIN stars_in_movies \n" + 
-        		"ON stars_in_movies.movie_id = '" + movieID + "'\n" + 
-        		"WHERE stars.id = stars_in_movies.star_id;";
+        		"SELECT s.id as star_id, s.name as star_name \n" + 
+        		"FROM stars s \n" + 
+        		"INNER JOIN stars_in_movies sim ON s.id = sim.star_id \n" + 
+        		"WHERE sim.movie_id = ? \n" + 
+        		"ORDER BY star_name ASC";
         
-        Statement statement = dbConnection.createStatement();
-        ResultSet resultSet = statement.executeQuery(query);
-        while(resultSet.next())
-        	result = resultSet.getString("names");
+        // Prepare the parameterized statement
+        PreparedStatement statement = dbConnection.prepareStatement(query);
+        // Change the parameter to movieID
+        statement.setString(1, movieID); // 1 represents the 1st "?" from the query
         
-        resultSet.close();
+        // Create an JsonArray object to hold the data
+     	JsonArray jArray = new JsonArray();
+     	
+     	// Execute the query
+        ResultSet rSet = statement.executeQuery();
+        
+        // Prepare the retrieved data
+        while(rSet.next()) {
+			JsonObject jObject = new JsonObject();
+			jObject.addProperty("star_id", rSet.getString("star_id"));
+			jObject.addProperty("star_name", rSet.getString("star_name"));
+			
+			jArray.add(jObject);
+        }
+        
+        rSet.close();
         statement.close();
-		return result;
+		return jArray;
 	}
+	
+	/*
+	 * Retrieve the genres of a movie identified by movieID
+	 * Return: String representation of the genres
+	 */
 	private String getGenresFromMovie(String movieID, Connection dbConnection) throws SQLException {
         String result = "";        
         String query = 
-        		"SELECT GROUP_CONCAT(DISTINCT genres.name SEPARATOR ', ') as names \n" + 
+        		"SELECT GROUP_CONCAT(DISTINCT genres.name ORDER BY genres.name ASC SEPARATOR ', ') as names \n" + 
         		"FROM genres \n" + 
         		"INNER JOIN genres_in_movies \n" + 
         		"ON genres_in_movies.movie_id = '" + movieID + "'\n" + 
