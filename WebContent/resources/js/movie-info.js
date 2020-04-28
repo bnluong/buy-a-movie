@@ -46,7 +46,7 @@ function handleResult(resultData) {
     let movieInfoTableBodyHTML = jQuery("#movie_info_table_body");
     let infoHTML = "";
     infoHTML += "<tr>";
-    infoHTML += "<td>ID #</td>";
+    infoHTML += "<td>ID</td>";
     infoHTML += "<td>"+ resultData[0]["movie_id"] + "</td>";
     infoHTML += "</tr>";
     
@@ -67,7 +67,14 @@ function handleResult(resultData) {
     
     infoHTML += "<tr>";
     infoHTML += "<td>Stars</td>";
-    infoHTML += "<td>"+ resultData[0]["movie_stars"] + "</td>";
+    infoHTML += "<td>";
+    // Add hyperlink to a star's name by the star's id)
+    var stars = resultData[0]["movie_stars"];				// movie_stars entry is a JSON array
+    for(let j = 0; j < stars.length; j++)
+    	infoHTML += '<a href="star-info.html?id=' + stars[j]["star_id"] + '">' + stars[j]["star_name"] + "</a>" + ", ";
+    // Regular expression to remove trailing commas and whitespaces
+    infoHTML = infoHTML.replace(/,\s*$/, "");
+    infoHTML += "</td>";
     infoHTML += "</tr>";
     
     infoHTML += "<tr>";

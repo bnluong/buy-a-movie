@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * Servlet implementation class MovieInfoServlet
@@ -51,13 +52,10 @@ public class MovieInfoServlet extends HttpServlet {
 			String query = 
 					"SELECT m.id, m.title, m.year, m.director, "
 						+ "GROUP_CONCAT(DISTINCT g.name ORDER BY g.name ASC SEPARATOR ', ') as genres, "
-						+ "GROUP_CONCAT(DISTINCT s.name ORDER BY s.name ASC SEPARATOR ', ') as stars, "
 						+ "r.rating\n" + 
 					"FROM movies m\n" + 
 					"INNER JOIN genres_in_movies gim ON m.id = gim.movie_id\n" + 
 					"INNER JOIN genres g ON gim.genre_id = g.id\n" + 
-					"INNER JOIN stars_in_movies sim ON m.id = sim.movie_id\n" + 
-					"INNER JOIN stars s ON sim.star_id = s.id\n" + 
 					"INNER JOIN ratings r ON m.id = r.movie_id\n" + 
 					"WHERE m.id = ?\n" + 
 					"GROUP BY m.id, r.rating";
@@ -68,6 +66,9 @@ public class MovieInfoServlet extends HttpServlet {
 			
 			// Execute the query and retrieve the data
 			ResultSet rSet = statement.executeQuery();
+			
+			// Retrieve stars data
+			JsonArray moviestars = getStarsFromMovie(id, dbConnection);
 			
 			// Create an JsonArray object to hold the data
 			JsonArray jArray = new JsonArray();
@@ -81,7 +82,7 @@ public class MovieInfoServlet extends HttpServlet {
 				jObject.addProperty("movie_year", rSet.getString("year"));
 				jObject.addProperty("movie_director", rSet.getString("director"));
 				jObject.addProperty("movie_genres", rSet.getString("genres"));
-				jObject.addProperty("movie_stars", rSet.getString("stars"));
+				jObject.add("movie_stars", moviestars);
 				jObject.addProperty("movie_rating", rSet.getString("rating"));
 				
 				// Add the data to the array
@@ -110,5 +111,42 @@ public class MovieInfoServlet extends HttpServlet {
 		}
 		// Close output writer
 		out.close();
+	}
+
+	/*
+	 * Retrieve stars info (stars' names and stars' ids) from a movie identified by movieID
+	 * Return: JsonArray object that contains the stars' info
+	 */
+	private JsonArray getStarsFromMovie(String movieID, Connection dbConnection) throws SQLException {
+        String query = 
+        		"SELECT s.id as star_id, s.name as star_name \n" + 
+        		"FROM stars s \n" + 
+        		"INNER JOIN stars_in_movies sim ON s.id = sim.star_id \n" + 
+        		"WHERE sim.movie_id = ? \n" + 
+        		"ORDER BY star_name ASC";
+        
+        // Prepare the parameterized statement
+        PreparedStatement statement = dbConnection.prepareStatement(query);
+        // Change the parameter to movieID
+        statement.setString(1, movieID); // 1 represents the 1st "?" from the query
+        
+        // Create an JsonArray object to hold the data
+     	JsonArray jArray = new JsonArray();
+     	
+     	// Execute the query
+        ResultSet rSet = statement.executeQuery();
+        
+        // Prepare the retrieved data
+        while(rSet.next()) {
+			JsonObject jObject = new JsonObject();
+			jObject.addProperty("star_id", rSet.getString("star_id"));
+			jObject.addProperty("star_name", rSet.getString("star_name"));
+			
+			jArray.add(jObject);
+        }
+        
+        rSet.close();
+        statement.close();
+		return jArray;
 	}
 }
