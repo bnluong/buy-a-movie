@@ -18,16 +18,22 @@
     <title id="title"></title>
 </head>
 
+<style>
+	body {
+		margin: 50px;
+	}
+</style>
+
 <body>
 	<!-- Title ID to be written by the JS script to display the movie name as heading -->
     <h1 id="movie_title"></h1>
 	<hr width="100%" align="center">
 	
     <div class="row">
-        <div class="column" style="padding: 15px;">
+        <div class="movie_box_art_column" style="padding: 15px;">
             <img src="https://i.redd.it/6xlqcgcpzv831.jpg" alt="boxart" width="300" height="400">
         </div>
-        <div class="column" style="padding: 25px;">
+        <div class="movie_info_column" style="padding: 25px;">
             <table id=movie_info_table class="table" style="border-top-style: hidden;">
                 <thead> <!-- No heading for now --> </thead>
                 <!-- Information about a single movie will be populated here by the JS Script -->

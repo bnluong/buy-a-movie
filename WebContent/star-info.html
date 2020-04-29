@@ -1,0 +1,66 @@
+<!-- 
+	A html template skeleton, with all the elements defined (some left empty) and named with ids
+    Empty elements to be populated by JS script
+-->
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title id="title_name"></title>
+</head>
+
+<style>
+	body {
+		margin: 50px;
+	}
+</style>
+
+<body>
+    <div class="row">
+        <div class="personal_info_column" style="padding-left: 20px;">
+            <div class="profile_picture" style="padding-bottom: 25px;">
+                <img src="https://www.metal-archives.com/images/2/3/5/4/2354_artist.jpg?2117" style="width: 266.5px; height: 400px;" alt="herman li is the man!" />
+            </div>
+            
+            <div class="profile_info">
+                <h3>Personal Info</h3>
+                
+                <section class="personal_info">
+                	<table class = "table" id = "personal_info_table" style="border-style:hidden">
+                		<tbody id="personal_info_table_body"></tbody>
+                	</table>
+                </section>
+            </div>
+        </div>
+        
+        <div class="filmography_column" style="padding-left: 50px;">
+            <h2 id="star_name"></h2>
+            
+            <h3>Filmography</h3>
+            
+            <div class="filmography" style="padding-top: 10px;">
+                <table class="table" id="filmography_table" style="border-top-style: hidden;">
+                    <tbody id="filmography_table_body"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load jQuery and Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- Load our own JS file -->
+    <script src="resources/js/star-info.js"></script>
+</body>
+
+</html>
