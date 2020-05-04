@@ -2,23 +2,77 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <!-- Font Awesome CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+
+    <!-- Reference CSS Stylesheet -->
+    <link rel="stylesheet" href="css/main-page-style.css">
+
     <title>Buy-a-Movie</title>
 </head>
 
-<style>
-	body {
-		margin: 50px;
-	}
-</style>
-
 <body>
-    <h1>Welcome to Buy-a-Movie!</h1>
-    <a href="login.html" title="Click here to login">Click Here!</a>
-    <a href="movie-list.html" title="Click here to see a list of top 20 rated movies">
-        <img src="resources/images/logo.png" alt="buy-a-movie-logo">
-    </a>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="./"> <img src="img/logo.png" alt=""></a>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="moviesDropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Movies</a>
+                        <div class="dropdown-menu" aria-labelledby="moviesDropdownId">
+                            <a class="dropdown-item" href="movie-list.html">Top 20 Rated Movies</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="starsDropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Stars</a>
+                        <div class="dropdown-menu" aria-labelledby="starsDropdownId">
+                            <a class="dropdown-item" href="#">Popular Stars</a>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mx-auto">
+                    <form class="form-inline">
+                        <input class="form-control mx-sm-2" type="text" placeholder="Search for a movie, star...">
+                        <button class="btn btn-dark my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Welcome and Search Box -->
+    <div class="container welcomeSection">
+        <div class="row text-left">
+            <div class="col-12 welcomeText">
+                <p class="h3">Welcome to Buy-a-Movie!</p>
+                <p class="lead">Thousands of movies and stars to discover. Explore now.</p>
+            </div>
+            <div class="col-12 searchArea">
+                <div class="input-group">
+                    <input class="form-control searchBox" type="text" placeholder="Search for a movie, star...">
+                    <button class="btn btn-dark searchButton" type="submit"><i class="fa fa-search"></i></button>
+                  </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 
