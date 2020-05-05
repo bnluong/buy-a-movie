@@ -47,7 +47,7 @@ public class IndexServlet extends HttpServlet {
 
 			// Declare the query
 			String query = 
-					"SELECT title, year\n" + 
+					"SELECT m1.id, title, year\n" + 
 					"FROM movies AS m1 \n" + 
 					"JOIN (SELECT id FROM movies ORDER BY RAND() LIMIT 10) as m2 ON m1.id = m2.id \n" + 
 					"LIMIT 3";
@@ -62,6 +62,7 @@ public class IndexServlet extends HttpServlet {
 			while(resultSet.next()) {
 				// Create a JsonObject based on the data we retrieve from the result set
 				JsonObject jsonObject = new JsonObject();
+				jsonObject.addProperty("id", resultSet.getString("id"));
 				jsonObject.addProperty("title", resultSet.getString("title"));
 				jsonObject.addProperty("year", resultSet.getString("year"));
 				jsonArray.add(jsonObject);
