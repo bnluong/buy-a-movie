@@ -1,85 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<!-- Required meta tags -->
-		<meta charset="utf-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1, shrink-to-fit=no"
-		/>
 
-		<!-- Bootstrap CSS -->
-		<link
-			rel="stylesheet"
-			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-			crossorigin="anonymous"
-		/>
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<!-- Global Stylesheet -->
-		<link rel="stylesheet" type="text/css" href="resources/css/login.css" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Our Own CSS -->
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/login.css">
 
-		<title>Login</title>
-	</head>
-	<body>
-		<div class="modal-dialog text-center">
-			<div class="col-sm-15 main-section">
-				<div class="modal-content">
-					<div class="col-12 user-img">
-						<img
-							src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRoiRFgnNxQQYiuZt2Nfiv1NlgvOIiPlLBi-573dndxup8J153V&usqp=CAU"
-							alt="G stands for Gay for Herman Li!"
-						/>
-					</div>
-					<div class="col-12 login-form text-left">
-						<form action="">
-							<div class="form-group">
-								<label for="username">Username</label>
-								<input
-									type="text"
-									class="form-control"
-									aria-describedby="email-help"
-									placeholder="Enter username"
-								/>
-								<small
-									id="email-help"
-									class="form-text text-muted"
-									>We will never share your username with
-									anyone else except Herman Li.</small
-								>
-							</div>
-							<div class="form-group">
-								<label for="password">Password</label>
-								<input
-									type="password"
-									class="form-control"
-									placeholder="Enter password"
-								/>
-							</div>
-							<button type="submit" class="btn btn-success">Login</button>
-							<a class="forgot-password" href="#">Reset Password</a>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
+    <title>Buy-a-Movie Login</title>
+</head>
 
-		<!-- Optional JavaScript -->
-		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-		<script
-			src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-			integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-			crossorigin="anonymous"
-		></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-			crossorigin="anonymous"
-		></script>
-		<script
-			src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-			crossorigin="anonymous"
-		></script>
-	</body>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="./index.html"> <img src="img/logo.png" alt=""></a>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle navItem" href="#" id="moviesDropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Movies</a>
+                        <div class="dropdown-menu" aria-labelledby="moviesDropdownId">
+                            <a class="dropdown-item" href="movie-list.html">Top 20 Rated Movies</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle navItem" href="#" id="starsDropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Stars</a>
+                        <div class="dropdown-menu" aria-labelledby="starsDropdownId">
+                            <a class="dropdown-item" href="#">Popular Stars</a>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mx-auto col-md-5">
+                    <div class="input-group">
+                        <input class="form-control" type="text" placeholder="Search for a movie, star...">
+                        <button class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link navItem" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div clas="col-12 col-sm-6 col-md-3 ">
+                <form class="formSignin" action="">
+                    <h2 class="form-signin-heading text-left my-3">Login</h2>
+                    <div class="form-group">
+						<i class="fa fa-user-circle" aria-hidden="true"></i>
+						<label for="">Username</label>
+                        <input type="text" class="form-control" name="username" id="" aria-describedby="helpId" placeholder="" required="" autofocus="">
+						<small id="helpId" class="form-text text-muted"></small>
+                    </div>
+                    <div class="form-group">
+						<i class="fa fa-lock" aria-hidden="true"></i>
+                        <label for="">Password</label>
+						<input type="password" class="form-control" name="" id="" placeholder="" required="">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+						<input type="checkbox" class="form-check-input" name="" id="" value="checkedValue" checked>
+						Remember me?
+					  </label>
+                    </div>
+                    <button type="button" name="" id="" class="btn btn-dark btn-block my-2">Login</button>
+                    <a href="#">Forgot password?</a>
+                </form>
+
+                <hr class="my-4">
+
+                <div class="container-fluid text-center">
+                    <small class="h6">New to Buy-A-Movie?</small>
+                    <button type="button" name="" id="" class="btn btn-dark btn-block my-2">Register</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JQuery, Popper, and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- Font Awesome JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+
+    <!-- Load JS Scripts -->
+    <script src="js/login.js"></script>
+
+</body>
+
 </html>

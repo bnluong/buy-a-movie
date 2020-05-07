@@ -1,45 +1,8 @@
-body {
-	background: url('http://cleancanvas.herokuapp.com/img/backgrounds/color-splash.jpg') no-repeat center center fixed;
-	background-size: cover;
+.formSignin {
+	padding: 70px;
+	box-shadow: 0px 0px 10px 0px black;
 }
 
-.main-section {
-	margin: 0 auto;
-	margin-top: 150px;
-	padding: 0;
-}
-
-.modal-content {
-	padding: 9px 9px;
-	border-radius: 18px;
-}
-
-.user-img img {
-	margin-top: -60px;
-	margin-bottom: 45px;
-}
-
-.form-group {
-	margin-bottom: 12px;
-	font-size: 18px;
-}
-
-.btn-success {
-	width: 20%;
-	margin: 12px 0 12px;
-	border-radius: 6px;
-	border: 1px solid;
-	background-color: lightseagreen;
-	font-size: 21px;
-	padding: 3px 6px;
-}
-
-.btn-success:hover {
-    background-color: rgb(24, 136, 130);
-    border: 1px solid;
-}
-
-.forgot-password {
-    padding: 3px 6px;
-    color: lightseagreen;
+.form-control:focus {
+	box-shadow: 0px 0px 5px 0px black;
 }
