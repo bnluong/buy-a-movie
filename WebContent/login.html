@@ -55,27 +55,28 @@
 
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div clas="col-12 col-sm-6 col-md-3 ">
-                <form class="formSignin" action="">
-                    <h2 class="form-signin-heading text-left my-3">Login</h2>
+            <div class="loginSection col-12 col-md-6 col-xl-3">
+                <h2 class="form-signin-heading text-left my-3">Login</h2>
+                <div id="loginAlert"></div>
+                <form id="loginForm" method="GET">
                     <div class="form-group">
-						<i class="fa fa-user-circle" aria-hidden="true"></i>
-						<label for="">Username</label>
+                        <i class="fa fa-user-circle" aria-hidden="true"></i>
+                        <label for="">Username</label>
                         <input type="text" class="form-control" name="username" id="" aria-describedby="helpId" placeholder="" required="" autofocus="">
-						<small id="helpId" class="form-text text-muted"></small>
+                        <small id="helpId" class="form-text text-muted"></small>
                     </div>
                     <div class="form-group">
-						<i class="fa fa-lock" aria-hidden="true"></i>
+                        <i class="fa fa-lock" aria-hidden="true"></i>
                         <label for="">Password</label>
-						<input type="password" class="form-control" name="" id="" placeholder="" required="">
+                        <input type="password" class="form-control" name="password" id="" placeholder="" required="">
                     </div>
                     <div class="form-check">
                         <label class="form-check-label">
-						<input type="checkbox" class="form-check-input" name="" id="" value="checkedValue" checked>
+						<input type="checkbox" class="form-check-input" name="" id="" value="checkedValue" unchecked>
 						Remember me?
 					  </label>
                     </div>
-                    <button type="button" name="" id="" class="btn btn-dark btn-block my-2">Login</button>
+                    <button type="submit" name="" id="loginSubmitBtn" class="btn btn-dark btn-block my-2">Login</button>
                     <a href="#">Forgot password?</a>
                 </form>
 
