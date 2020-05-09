@@ -45,8 +45,10 @@
                     </div>
                 </ul>
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" id="userSession">
+                    </li>
                     <li class="nav-item">
-                        <a class="nav-link navItem" href="login.html">Login</a>
+                        <a class="nav-link navItem" href="#"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true" style="margin-top: 6px"></i></a>
                     </li>
                 </ul>
             </div>
@@ -60,9 +62,9 @@
                 <div id="loginAlert"></div>
                 <form id="loginForm" method="GET">
                     <div class="form-group">
-                        <i class="fa fa-user-circle" aria-hidden="true"></i>
-                        <label for="">Username</label>
-                        <input type="text" class="form-control" name="username" id="" aria-describedby="helpId" placeholder="" required="" autofocus="">
+                        <i class="fa fa-at" aria-hidden="true"></i>
+                        <label for="">Email</label>
+                        <input type="email" class="form-control" name="email" id="" aria-describedby="helpId" placeholder="" required="" autofocus="">
                         <small id="helpId" class="form-text text-muted"></small>
                     </div>
                     <div class="form-group">
@@ -72,7 +74,7 @@
                     </div>
                     <div class="form-check">
                         <label class="form-check-label">
-						<input type="checkbox" class="form-check-input" name="" id="" value="checkedValue" unchecked>
+						<input type="checkbox" class="form-check-input" name="rememberMe" id="" value="checkedValue" unchecked>
 						Remember me?
 					  </label>
                     </div>
@@ -101,7 +103,6 @@
 
     <!-- Load JS Scripts -->
     <script src="js/login.js"></script>
-
 </body>
 
 </html>
