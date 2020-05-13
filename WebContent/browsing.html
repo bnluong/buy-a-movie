@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Our Own CSS -->
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/browsing.css">
+
+    <title>Buy-a-Movie Browsing</title>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="./index.html"> <img src="img/logo.png" alt=""></a>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle navItem" href="#" id="moviesDropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Movies</a>
+                        <div class="dropdown-menu" aria-labelledby="moviesDropdownId">
+                            <a class="dropdown-item" href="movie-list.html">Top 20 Rated Movies</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle navItem" href="#" id="starsDropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Stars</a>
+                        <div class="dropdown-menu" aria-labelledby="starsDropdownId">
+                            <a class="dropdown-item" href="#">Popular Stars</a>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mx-auto col-md-5">
+                    <div class="input-group">
+                        <input class="form-control" type="text" placeholder="Search for a movie, star...">
+                        <button class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" id="userSession">
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link navItem" href="cart.html"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true" style="margin-top: 6px;"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container browsingBody" style="padding-top: 10px;">
+        <div class="row justify-content-center browsingBody" style="border: 1px solid lightgray; border-radius: 5px;">
+            <div class="col-12 my-1">
+                <p class="h5">Browsing Movies by Genres: Action</p>
+            </div>
+
+            <div class="col-12 my-1 controlSort">
+                <span>Sort by: </span>
+                <a href="#" class="badge badge-dark">A-Z <i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+                <span> | </span>
+                <a href="#" class="badge badge-dark">Rating</a>
+                <span> | </span>
+                <a href="#" class="badge badge-dark">Year</a>
+            </div>
+
+            <div class="col-12 my-1 controlDisplay">
+                <span>Results per page: </span>
+                <a href="#" class="badge badge-dark">10</i></a>
+                <span> | </span>
+                <a href="#" class="badge badge-dark">20</a>
+                <span> | </span>
+                <a href="#" class="badge badge-dark">30</a>
+                <span> | </span>
+                <a href="#" class="badge badge-dark">40</a>
+                <span> | </span>
+                <a href="#" class="badge badge-dark">50</a>
+            </div>
+
+            <div class="col-12 my-1 paginationTable">
+                <div class="table-responsive my-2">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <td scope="row"></td>
+                                <td><img src="https://m.media-amazon.com/images/M/MV5BYTRiNDQwYzAtMzVlZS00NTI5LWJjYjUtMzkwNTUzMWMxZTllXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_SY1000_CR0,0,734,1000_AL_.jpg" alt="" style="max-width: 200px;"></td>
+                                <td>
+                                    <p class="h5"><a href="">Games of Thrones (2011)</a></p>
+                                    <p class="small"> <a href="">Action</a>, <a href="">Adventure</a>, <a href="">Drama</a></p>
+                                    <p class><i class="fa fa-star" aria-hidden="true"></i> 9.3</p>
+                                    <p><strong>Directed by: </strong>David Benioff, D.B. Weiss</p>
+                                    <p><strong>Stars: </strong><a href="">Emilia Clarke</a>, <a href="">Peter Dinklage</a>, <a href="">Kit Harington</a></p>
+                                </td>
+                                <td>
+                                    <p class="h5">$15.99</p>
+                                    <p><a href="#" role="button"><i class="fa fa-cart-plus fa-3x " aria-hidden="true" style="color: grey;"></i></a></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="row"></td>
+                                <td><img src="https://m.media-amazon.com/images/M/MV5BYTRiNDQwYzAtMzVlZS00NTI5LWJjYjUtMzkwNTUzMWMxZTllXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_SY1000_CR0,0,734,1000_AL_.jpg" alt="" style="max-width: 200px;"></td>
+                                <td>
+                                    <p class="h5"><a href="">Games of Thrones (2011)</a></p>
+                                    <p class="small"> <a href="">Action</a>, <a href="">Adventure</a>, <a href="">Drama</a></p>
+                                    <p class><i class="fa fa-star" aria-hidden="true"></i> 9.3</p>
+                                    <p><strong>Directed by: </strong>David Benioff, D.B. Weiss</p>
+                                    <p><strong>Stars: </strong><a href="">Emilia Clarke</a>, <a href="">Peter Dinklage</a>, <a href="">Kit Harington</a></p>
+                                </td>
+                                <td>
+                                    <p class="h5">$15.99</p>
+                                    <p><a href="#" role="button"><i class="fa fa-cart-plus fa-3x " aria-hidden="true" style="color: grey;"></i></a></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-9 col-xl-10 my-2">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <!-- JQuery, Popper, and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- Font Awesome JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+
+    <!-- Load JS Scripts -->
+    <script src="js/session.js"></script>
+</body>
+
+</html>
