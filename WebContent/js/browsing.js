@@ -61,7 +61,7 @@ function handleBrowsingResult(resultData) {
             $('<p>').append(
                 $('<strong>').text('Stars: '),
                 movieStars
-            ),
+            )
         ).appendTo(trHTML);
 
         $('<td>').append(
