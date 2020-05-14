@@ -83,6 +83,7 @@
                 </div>
             </div>
             <div class="row mx-auto" class="randomMovies" id="randomMoviesBody">
+            	<!-- TODO: Rework on this feature -->
                 <div class="col-sx-12 col-sm-6 col-md-4 my-2">
                     <div class="row mx-auto">
                         <img src="" alt="box-art-size-220x330" style="border-radius: 10px;" id="movie1Img" class="randomMoviesImg">
@@ -128,10 +129,9 @@
             <div class="row mx-auto">
                 <div class="row mx-auto">
                     <div class="col-12" id="browseByGenres">
-                        <!-- <a class="btn btn-outline-dark btn-sm mx-1 my-1" href="login.html" role="button" style="border-radius:10px; font-size: 15px;">Action</a>
-                        <a class="btn btn-outline-dark btn-sm mx-1 my-1" href="login.html" role="button" style="border-radius:10px; font-size: 15px;">Fantasy</a>
-                        <a class="btn btn-outline-dark btn-sm mx-1 my-1" href="login.html" role="button" style="border-radius:10px; font-size: 15px;">Adult</a>
-                        <a class="btn btn-outline-dark btn-sm mx-1 my-1" href="login.html" role="button" style="border-radius:10px; font-size: 15px;">Documentary</a> -->
+                        <!-- Entries will be populated by the JS script which asks the back-end for the list of genres -->
+                        <!-- HTML template for JS -->
+                        <!-- <a class="btn btn-outline-dark btn-sm mx-1 my-1" href="login.html" role="button" style="border-radius:10px; font-size: 15px;">genresName</a> -->
                     </div>
                 </div>
             </div>
@@ -149,19 +149,18 @@
             <div class="row mx-auto">
                 <div class="row mx-auto my-2">
                     <div class="col-12" id="browseByTitleNumeric">
-                        <!-- <a href="#" class="badge badge-dark badge-pill" style="font-size: 15px;">0</a>
-                        <a href="#" class="badge badge-dark badge-pill" style="font-size: 15px;">1</a>
-                        <a href="#" class="badge badge-dark badge-pill" style="font-size: 15px;">2</a> -->
+						<!-- Entries will be populated by the JS script which appends to this DOM with numeric values from 0-9 -->
+                        <!-- HTML template for JS -->
+                        <!-- <a href="#" class="badge badge-dark badge-pill" style="font-size: 15px;">0</a> -->
                     </div>
                 </div>
             </div>
             <div class="row mx-auto my-2">
                 <div class="row mx-auto">
                     <div class="col-12" id="browseByTitleAlpha">
-                        <!-- <a href="#" class="badge badge-dark badge-pill" style="font-size: 15px;">A</a>
-                        <a href="#" class="badge badge-dark badge-pill" style="font-size: 15px;">B</a>
-                        <a href="#" class="badge badge-dark badge-pill" style="font-size: 15px;">C</a>
-                        <a href="#" class="badge badge-dark badge-pill" style="font-size: 15px;">D</a> -->
+						<!-- Entries will be populated by the JS script which appends to this DOM with the alphabet from A-Z -->
+						<!-- HTML template for JS -->
+						<!-- <a href="#" class="badge badge-dark badge-pill" style="font-size: 15px;">A</a> -->
                     </div>
                 </div>
             </div>
@@ -178,7 +177,7 @@
     <!-- Font Awesome JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
 
-    <!-- Load JS Scripts -->
+    <!-- Load our JS Scripts -->
     <script src="js/index.js"></script>
     <script src="js/session.js"></script>
 </body>
