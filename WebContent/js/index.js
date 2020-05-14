@@ -1,9 +1,5 @@
 /**
- *  TODO:
- */
-
-/**
- * Handles the data returned by the API
+ * Handles results from API call
  * @param resultData jsonObject
  */
 function handleResult(resultData) {
@@ -14,11 +10,14 @@ function handleResult(resultData) {
 
 /**
  * Handles random movies section
+ * HTML Reference (#movie{ID}Img):
+ * 		<img src="{URL}" alt="box-art-size-220x330" style="border-radius: 10px;" id="movie1Img" class="randomMoviesImg">
+ * HTML Reference (#movie{ID}Title):
+ * 		<a class="h6" href="movie-info.html?id={ID}"></a>
  * @param randomMovies jsonObject
  */
 function handleRandomMovies(randomMovies) {
 	for (let i = 0; i < randomMovies.length; i++) {
-        // Handle random movies poster (.randomMoviesImg)
         let movieImgID = '#movie' + (i + 1) + 'Img';
 		var imdbURL = 'https://www.imdb.com/title/' + randomMovies[i]['id'];
 		$.ajax({
@@ -42,7 +41,6 @@ function handleRandomMovies(randomMovies) {
 		});
 
 		//  Handle random movie title
-		//<a class="h6" href="">asdsad</a>
 		let titleID = '#movie' + (i + 1) + 'Title';
 		let titleURLID = '.title-' + i;
 		let titleHTML = '<a class="h6 title-' + i + '" href=""></a>';
@@ -55,13 +53,14 @@ function handleRandomMovies(randomMovies) {
 
 /**
  * Handles Browse by Genres section
+ * HTML Reference (#browseByGenres):
+ * 		<a class="btn btn-outline-dark btn-sm mx-1 my-1" href="login.html" role="button" style="border-radius:10px; font-size: 15px;"></a>
  * @param listOfGenres jsonArray
  */
 function handleListOfGenres(listOfGenres) {
-	// HTML: <a class="btn btn-outline-dark btn-sm mx-1 my-1" href="login.html" role="button" style="border-radius:10px; font-size: 15px;">Action</a>
 	for (let i = 0; i < listOfGenres.length; i++) {
 		let btnHTML = '<a class="btn btn-outline-dark btn-sm mx-1 my-1 genreBtn-' + i + '" href="#" role="button" style="border-radius:15px; font-size: 18px;"></a>\n';
-		let hrefHTML = '#';
+		let hrefHTML = 'browsing.html?' + 'genre=' + listOfGenres[i]['genre_name'] + '&' + 'sortBy=rating&order=desc' + '&' + 'numResults=10';
 		let btnID = '.genreBtn-' + i;
 		$('#browseByGenres').append(btnHTML);
 		$(btnID).attr('href', hrefHTML);
@@ -71,11 +70,13 @@ function handleListOfGenres(listOfGenres) {
 
 /**
  * Handles Browse by Titles section
+ * HTML Reference (#browseByTitleNumeric):
+ * 		<a href="#" class="badge badge-dark badge-pill" style="font-size: 15px;"></a>
+ * HTML Reference (#browseByTitleAlpha):
+ * 		<a href="#" class="badge badge-dark badge-pill" style="font-size: 15px;"></a>
  * @param None
  */
 function handleBrowseByTitles() {
-	// Handle browse by numeric (#browseByTitleNumeric)
-	// <a href="#" class="badge badge-dark badge-pill" style="font-size: 15px;">1</a>
 	const numArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 	for (let i = 0; i < numArray.length; i++) {
 		let bdgHTML = '<a href="#" class="badge badge-dark badge-pill mx-1 my-1 numBdg-' + i + '" style="font-size: 18px;"></a>\n';
@@ -86,8 +87,6 @@ function handleBrowseByTitles() {
 		$(bdgID).text(numArray[i]);
 	}
 
-	// Handle browse by alphabet (#browseByTitleAlpha)
-	// <a href="#" class="badge badge-dark badge-pill" style="font-size: 15px;">B</a>
 	const alphaArray = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 	for (let i = 0; i < alphaArray.length; i++) {
 		let bdgHTML = '<a href="#" class="badge badge-dark badge-pill mx-1 my-1 alpBdg-' + i + '" style="font-size: 18px;"></a>\n';
@@ -99,10 +98,6 @@ function handleBrowseByTitles() {
 	}
 }
 
-/**
- * Once this .js is loaded, following scripts will be executed by the browser
- */
-// Makes the HTTP GET request and registers on success callback function handleResult
 $.ajax('api/index', {
 	method: 'GET',
 	success: handleResult,
