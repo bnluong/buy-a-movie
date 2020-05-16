@@ -1,3 +1,5 @@
+import * as utils from './utilities.js';
+
 // HTML Reference (#paginationTable)
 /* 
     <tr>
@@ -18,6 +20,59 @@
 */
 
 function handleBrowsingResult(resultData) {
+	if(genreParam != 'None') {
+		$('#browsingTitle').text('Buy-a-Movie Browsing by Genre: ' + genreParam);
+		$('#browsingHeading').text('Browsing by Genre: ' + genreParam);
+	}
+	if(titleParam != 'None') {
+		$('#browsingTitle').text('Buy-a-Movie Browsing by Title: ' + titleParam);
+		$('#browsingHeading').text('Browsing by Title: ' + titleParam);
+	}
+ 
+	if(sortParam == 'rating') {
+		
+		if(orderParam == 'asc') {
+			// <a href="#" class="badge badge-primary" id="sortRating">Rating <i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+			$('#sortRating').replaceWith('<a href="#" class="badge badge-primary" id="sortRating">Rating <i class="fa fa-arrow-up" aria-hidden="true"></i></a>')
+		} else {
+			// <a href="#" class="badge badge-primary" id="sortRating">Rating <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+			$('#sortRating').replaceWith('<a href="#" class="badge badge-primary" id="sortRating">Rating <i class="fa fa-arrow-down" aria-hidden="true"></i></a>')
+		}
+	} else if(sortParam == 'alpha') {
+		if(orderParam == 'asc') {
+			$('#sortAZ').replaceWith('<a href="#" class="badge badge-primary" id="sortRating">A-Z <i class="fa fa-arrow-up" aria-hidden="true"></i></a>')
+		} else {
+			$('#sortAZ').replaceWith('<a href="#" class="badge badge-primary" id="sortRating">A-Z <i class="fa fa-arrow-down" aria-hidden="true"></i></a>')
+		}
+	} else {
+		if(orderParam == 'asc') {
+			$('#sortYear').replaceWith('<a href="#" class="badge badge-primary" id="sortAZ">Year <i class="fa fa-arrow-up" aria-hidden="true"></i></a>')
+		} else {
+			$('#sortYear').replaceWith('<a href="#" class="badge badge-primary" id="sortAZ">Year <i class="fa fa-arrow-down" aria-hidden="true"></i></a>')
+		}	
+	}
+	
+	switch(numResultsParam) {
+		// <a href="#" class="badge badge-primary" id="display10">10</i></a>
+		case ('10'):
+			$('#display10').replaceWith('<a href="#" class="badge badge-primary" id="display10">10</i></a>')
+			break;
+		case ('20'):
+			$('#display10').replaceWith('<a href="#" class="badge badge-primary" id="display20">20</i></a>')
+			break;
+		case ('30'):
+			$('#display10').replaceWith('<a href="#" class="badge badge-primary" id="display30">30</i></a>')
+			break;
+		case ('40'):
+			$('#display10').replaceWith('<a href="#" class="badge badge-primary" id="display40">40</i></a>')
+			break;
+		case ('50'):
+			$('#display10').replaceWith('<a href="#" class="badge badge-primary" id="display50">50</i></a>')
+			break;
+		default:
+			break;
+	}
+
     var paginationTableHTML = $('#paginationTable').html('');
 
     for(let i = 0; i < resultData.length; i++) {
@@ -31,6 +86,8 @@ function handleBrowsingResult(resultData) {
 
         let moviePrice = '$69.69';
 
+        let moviePosterURL = utils.getIMDBPoster(movieID);
+        console.log(moviePosterURL)
         let trHTML = document.createElement('tr');
         
         $('<td>', {
@@ -39,8 +96,8 @@ function handleBrowsingResult(resultData) {
 
         $('<td>').append(
             $('<img />', {
-                src: 'img/empty-poster.png',
-                alt: 'Empty Poster',
+                src: moviePosterURL,
+                alt: movieTitle + ' Poster',
                 style: 'max-width: 200px;'
             })
         ).appendTo(trHTML);
@@ -52,6 +109,7 @@ function handleBrowsingResult(resultData) {
             $('<p>', { class: 'small' }).append(movieGenres),
             $('<p>').append(
                 $('<i>', { class: 'fa fa-star', 'aria-hidden': 'true' }),
+                ' ',
                 movieRating
             ),
             $('<p>').append(
@@ -76,10 +134,10 @@ function handleBrowsingResult(resultData) {
 }
 
 function parseGenres(movieGenres) {
-    let genresHTML = '';
+    var genresHTML = '';
     for(let i = 0; i < movieGenres.length; i++) {
-        let genreName = movieGenres[i];
-        genresHTML += '<a href="browsing.html?' + 'genre=' + genreName + '&' + 'sortBy=rating&order=desc' + '&' + 'numResults=10' + '">' + genreName + '</a>'
+        let genreName = movieGenres[i]['genre_name'];
+        genresHTML += '<a href="browsing.html?' + 'title=None' + '&genre=' + genreName + '&sortBy=rating&order=desc&numResults=10&offset=0' + '">' + genreName + '</a>'
         if(i != movieGenres.length - 1)
             genresHTML += ', ';
     }
@@ -87,7 +145,7 @@ function parseGenres(movieGenres) {
 }
 
 function parseStars(movieStars) {
-    let starsHTML = '';
+    var starsHTML = '';
     for(let i = 0; i < movieStars.length; i++) {
         let starID = movieStars[i]['star_id'];
         let starName = movieStars[i]['star_name'];
@@ -98,9 +156,16 @@ function parseStars(movieStars) {
     return starsHTML;
 }
 
+const titleParam = utils.getParameterByName('title');
+const genreParam = utils.getParameterByName('genre');
+const sortParam = utils.getParameterByName('sortBy');
+const orderParam = utils.getParameterByName('order');
+const numResultsParam = utils.getParameterByName('numResults');
+const offsetParam = utils.getParameterByName('offset');
+
 $.ajax({
     method: 'GET',
-    url: 'api/browsing',
+    url: 'api/browsing?' + 'title=' + titleParam + '&genre=' + genreParam + '&sortBy=' + sortParam + '&order=' + orderParam + '&numResults=' + numResultsParam + '&offset=' + offsetParam, 
     dataType: 'json',
     success: handleBrowsingResult,
 });

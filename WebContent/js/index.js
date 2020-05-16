@@ -60,7 +60,7 @@ function handleRandomMovies(randomMovies) {
 function handleListOfGenres(listOfGenres) {
 	for (let i = 0; i < listOfGenres.length; i++) {
 		let btnHTML = '<a class="btn btn-outline-dark btn-sm mx-1 my-1 genreBtn-' + i + '" href="#" role="button" style="border-radius:15px; font-size: 18px;"></a>\n';
-		let hrefHTML = 'browsing.html?' + 'genre=' + listOfGenres[i]['genre_name'] + '&' + 'sortBy=rating&order=desc' + '&' + 'numResults=10';
+		let hrefHTML = 'browsing.html?' + 'title=None&genre=' + listOfGenres[i]['genre_name'] + '&sortBy=rating&order=desc&numResults=10&offset=0';
 		let btnID = '.genreBtn-' + i;
 		$('#browseByGenres').append(btnHTML);
 		$(btnID).attr('href', hrefHTML);
