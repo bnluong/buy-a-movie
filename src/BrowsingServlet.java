@@ -18,6 +18,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import com.buyamovie.utilities.PosterScrapper;
+
 /**
  * Servlet implementation class BrowsingServlet
  */
@@ -46,17 +48,26 @@ public class BrowsingServlet extends HttpServlet {
 		try {
 			// Get a connection from dataSource
 			Connection dbConnection = dataSource.getConnection();
-
+			
+			String totalMovies = getTotalMovies(dbConnection, titleParam, genreParam);
+			
 			JsonArray resultData = getMoviesList(dbConnection, titleParam, genreParam, sortParam, orderParam, numResultsParam, offsetParam);
-
+			
+			PosterScrapper posterScraper = new PosterScrapper(); // Too slow T_T
+			
 			for(int i = 0; i < resultData.size(); i++) {
 				String movieID = resultData.get(i).getAsJsonObject().get("movie_id").getAsString();
 				JsonArray movieGenres = getMovieGenres(dbConnection, (String) movieID);
 				JsonArray movieStars = getMovieStars(dbConnection, (String) movieID);
 				resultData.get(i).getAsJsonObject().add("movie_genres", movieGenres);
 				resultData.get(i).getAsJsonObject().add("movie_stars", movieStars);
+				//String moviePoster = posterScraper.getIMDBPoster("https://www.imdb.com/title/" + movieID);
+				String moviePoster = "";
+				resultData.get(i).getAsJsonObject().addProperty("movie_poster", moviePoster);
 			}
 
+			resultData.add(totalMovies);
+			
 			// Write JSON string to output
 			out.write(resultData.toString());
 			// Set response status to 200 (OK)
@@ -73,6 +84,40 @@ public class BrowsingServlet extends HttpServlet {
 			response.setStatus(500);
 		}
 		out.close();
+	}
+
+	private String getTotalMovies(Connection dbConnection, String titleParam, String genreParam) throws SQLException {
+		String totalMovies = "";
+		String query = "";
+		PreparedStatement statement = null;
+
+		if(!titleParam.equalsIgnoreCase("None")) {
+			// TODO: Implement "Browse by Title"
+		}
+		if(!genreParam.equalsIgnoreCase("None")) {
+			query = "SELECT COUNT(*) as total_movies\n" + 
+					"FROM movies m, ratings r\n" + 
+					"WHERE m.id IN ( SELECT gim.movie_id\n" + 
+					"				FROM genres g, genres_in_movies gim\n" + 
+					"				WHERE g.name = ? AND g.id = gim.genre_id )\n" + 
+					"			AND m.id = r.movie_id";
+
+			// Prepare the statement
+			statement = dbConnection.prepareStatement(query);
+			statement.setString(1, genreParam);
+		}
+
+		// Execute the query
+		ResultSet rSet = statement.executeQuery();
+
+		while(rSet.next())	
+			totalMovies = rSet.getString("total_movies");
+		
+		
+		rSet.close();
+		statement.close();
+		
+		return totalMovies;
 	}
 
 	private JsonArray getMovieStars(Connection dbConnection, String movieID) throws SQLException {

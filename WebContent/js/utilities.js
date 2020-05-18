@@ -12,10 +12,3 @@ export function getParameterByName(target) {
     // Return the decoded parameter value
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
-
-export function getIMDBPoster(movieID) {
-	var imdbURL = 'https://www.imdb.com/title/' + movieID;
-	var posterURL = '';
-	posterURL = 'img/empty-poster.png';
-	return posterURL;
-}

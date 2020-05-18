@@ -20,62 +20,88 @@ import * as utils from './utilities.js';
 */
 
 function handleBrowsingResult(resultData) {
-	if(genreParam != 'None') {
-		$('#browsingTitle').text('Buy-a-Movie Browsing by Genre: ' + genreParam);
-		$('#browsingHeading').text('Browsing by Genre: ' + genreParam);
-	}
-	if(titleParam != 'None') {
-		$('#browsingTitle').text('Buy-a-Movie Browsing by Title: ' + titleParam);
-		$('#browsingHeading').text('Browsing by Title: ' + titleParam);
-	}
- 
-	if(sortParam == 'rating') {
-		
-		if(orderParam == 'asc') {
-			// <a href="#" class="badge badge-primary" id="sortRating">Rating <i class="fa fa-arrow-up" aria-hidden="true"></i></a>
-			$('#sortRating').replaceWith('<a href="#" class="badge badge-primary" id="sortRating">Rating <i class="fa fa-arrow-up" aria-hidden="true"></i></a>')
-		} else {
-			// <a href="#" class="badge badge-primary" id="sortRating">Rating <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
-			$('#sortRating').replaceWith('<a href="#" class="badge badge-primary" id="sortRating">Rating <i class="fa fa-arrow-down" aria-hidden="true"></i></a>')
-		}
-	} else if(sortParam == 'alpha') {
-		if(orderParam == 'asc') {
-			$('#sortAZ').replaceWith('<a href="#" class="badge badge-primary" id="sortRating">A-Z <i class="fa fa-arrow-up" aria-hidden="true"></i></a>')
-		} else {
-			$('#sortAZ').replaceWith('<a href="#" class="badge badge-primary" id="sortRating">A-Z <i class="fa fa-arrow-down" aria-hidden="true"></i></a>')
-		}
-	} else {
-		if(orderParam == 'asc') {
-			$('#sortYear').replaceWith('<a href="#" class="badge badge-primary" id="sortAZ">Year <i class="fa fa-arrow-up" aria-hidden="true"></i></a>')
-		} else {
-			$('#sortYear').replaceWith('<a href="#" class="badge badge-primary" id="sortAZ">Year <i class="fa fa-arrow-down" aria-hidden="true"></i></a>')
-		}	
-	}
-	
-	switch(numResultsParam) {
-		// <a href="#" class="badge badge-primary" id="display10">10</i></a>
-		case ('10'):
-			$('#display10').replaceWith('<a href="#" class="badge badge-primary" id="display10">10</i></a>')
-			break;
-		case ('20'):
-			$('#display10').replaceWith('<a href="#" class="badge badge-primary" id="display20">20</i></a>')
-			break;
-		case ('30'):
-			$('#display10').replaceWith('<a href="#" class="badge badge-primary" id="display30">30</i></a>')
-			break;
-		case ('40'):
-			$('#display10').replaceWith('<a href="#" class="badge badge-primary" id="display40">40</i></a>')
-			break;
-		case ('50'):
-			$('#display10').replaceWith('<a href="#" class="badge badge-primary" id="display50">50</i></a>')
-			break;
-		default:
-			break;
-	}
+    if(genreParam != 'None') {
+        $('#browsingTitle').text('Buy-a-Movie Browsing by Genre: ' + genreParam);
+        $('#browsingHeading').text('Browsing by Genre: ' + genreParam);
+    }
+    if(titleParam != 'None') {
+        $('#browsingTitle').text('Buy-a-Movie Browsing by Title: ' + titleParam);
+        $('#browsingHeading').text('Browsing by Title: ' + titleParam);
+    }
 
+    if(sortParam == 'rating') {
+        if(orderParam == 'asc') {
+            // <a href="#" class="badge badge-primary" id="sortRating">Rating <i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+            $('#sortRating').replaceWith('<a href="#" class="badge badge-primary" id="sortRating">Rating <i class="fa fa-arrow-up" aria-hidden="true"></i></a>')
+        } else {
+            // <a href="#" class="badge badge-primary" id="sortRating">Rating <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+            $('#sortRating').replaceWith('<a href="#" class="badge badge-primary" id="sortRating">Rating <i class="fa fa-arrow-down" aria-hidden="true"></i></a>')
+        }
+    } else if(sortParam == 'alpha') {
+        if(orderParam == 'asc') {
+            $('#sortAZ').replaceWith('<a href="#" class="badge badge-primary" id="sortRating">A-Z <i class="fa fa-arrow-up" aria-hidden="true"></i></a>')
+        } else {
+            $('#sortAZ').replaceWith('<a href="#" class="badge badge-primary" id="sortRating">A-Z <i class="fa fa-arrow-down" aria-hidden="true"></i></a>')
+        }
+    } else {
+        if(orderParam == 'asc') {
+            $('#sortYear').replaceWith('<a href="#" class="badge badge-primary" id="sortAZ">Year <i class="fa fa-arrow-up" aria-hidden="true"></i></a>')
+        } else {
+            $('#sortYear').replaceWith('<a href="#" class="badge badge-primary" id="sortAZ">Year <i class="fa fa-arrow-down" aria-hidden="true"></i></a>')
+        }
+    }
+
+    switch(numResultsParam) {
+        // <a href="#" class="badge badge-primary" id="display10">10</i></a>
+        case('10'):
+            $('#display10').replaceWith('<a href="#" class="badge badge-primary" id="display10">10</i></a>')
+            break;
+        case('20'):
+            $('#display10').replaceWith('<a href="#" class="badge badge-primary" id="display20">20</i></a>')
+            break;
+        case('30'):
+            $('#display10').replaceWith('<a href="#" class="badge badge-primary" id="display30">30</i></a>')
+            break;
+        case('40'):
+            $('#display10').replaceWith('<a href="#" class="badge badge-primary" id="display40">40</i></a>')
+            break;
+        case('50'):
+            $('#display10').replaceWith('<a href="#" class="badge badge-primary" id="display50">50</i></a>')
+            break;
+        default:
+            break;
+    }
+
+    var currentRange = Number(resultData.length-1) + Number(offsetParam);
+    var pageRange = offsetParam + ' - ' + currentRange;
+    var currentPage = 'Displaying ' + pageRange + ' of ' + resultData[resultData.length-1] + ' titles';
+    $('.controlCurrentPage').text(currentPage);
+
+    if(Number(offsetParam) == 0) {
+    	$('ul.pagination li.previous').addClass('disabled');
+    } else {
+	    var previousOffset = Number(offsetParam) - Number(numResultsParam);
+	    var previousPage = 'browsing.html?' + 'title=' + titleParam +
+		    '&genre=' + genreParam + '&sortBy=' + sortParam +
+		    '&order=' + orderParam + '&numResults=' + numResultsParam +
+		    '&offset=' + previousOffset;
+	    $('#paginationPrevious').attr('href', previousPage);
+    }
+    
+    if(resultData.length < numResultsParam) {
+    	$('ul.pagination li.next').addClass('disabled');
+    } else {
+	    var nextOffset = Number(offsetParam) + Number(numResultsParam);
+	    var nextPage = 'browsing.html?' + 'title=' + titleParam +
+		    '&genre=' + genreParam + '&sortBy=' + sortParam +
+		    '&order=' + orderParam + '&numResults=' + numResultsParam +
+		    '&offset=' + nextOffset;
+	    $('#paginationNext').attr('href', nextPage);
+    }
+    
     var paginationTableHTML = $('#paginationTable').html('');
 
-    for(let i = 0; i < resultData.length; i++) {
+    for(let i = 0; i < resultData.length-1; i++) {
         let movieID = resultData[i]['movie_id'];
         let movieTitle = resultData[i]['movie_title'];
         let movieYear = resultData[i]['movie_year'];
@@ -84,19 +110,22 @@ function handleBrowsingResult(resultData) {
         let movieGenres = parseGenres(resultData[i]['movie_genres']);
         let movieStars = parseStars(resultData[i]['movie_stars']);
 
+        let moviePoster = resultData[i]['movie_poster'];
+        if(moviePoster == '') {
+            moviePoster = 'img/empty-poster.png';
+        }
+
         let moviePrice = '$69.69';
 
-        let moviePosterURL = utils.getIMDBPoster(movieID);
-        console.log(moviePosterURL)
         let trHTML = document.createElement('tr');
-        
+
         $('<td>', {
             scope: 'row'
         }).appendTo(trHTML);
 
         $('<td>').append(
             $('<img />', {
-                src: moviePosterURL,
+                src: moviePoster,
                 alt: movieTitle + ' Poster',
                 style: 'max-width: 200px;'
             })
@@ -165,7 +194,7 @@ const offsetParam = utils.getParameterByName('offset');
 
 $.ajax({
     method: 'GET',
-    url: 'api/browsing?' + 'title=' + titleParam + '&genre=' + genreParam + '&sortBy=' + sortParam + '&order=' + orderParam + '&numResults=' + numResultsParam + '&offset=' + offsetParam, 
+    url: 'api/browsing?' + 'title=' + titleParam + '&genre=' + genreParam + '&sortBy=' + sortParam + '&order=' + orderParam + '&numResults=' + numResultsParam + '&offset=' + offsetParam,
     dataType: 'json',
     success: handleBrowsingResult,
 });
