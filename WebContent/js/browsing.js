@@ -32,23 +32,70 @@ function handleBrowsingResult(resultData) {
     if(sortParam == 'rating') {
         if(orderParam == 'asc') {
             // <a href="#" class="badge badge-primary" id="sortRating">Rating <i class="fa fa-arrow-up" aria-hidden="true"></i></a>
-            $('#sortRating').replaceWith('<a href="#" class="badge badge-primary" id="sortRating">Rating <i class="fa fa-arrow-up" aria-hidden="true"></i></a>')
+            let sortOrder = 'desc';
+            let sortRatingURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+                '&sortBy=' + sortParam + '&order=' + sortOrder +
+                '&numResults=' + numResultsParam + '&offset=' + '0';
+            $('#sortRating').replaceWith('<a href="' + sortRatingURL + '" class="badge badge-primary" id="sortRating">Rating <i class="fa fa-arrow-up" aria-hidden="true"></i></a>')
         } else {
             // <a href="#" class="badge badge-primary" id="sortRating">Rating <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
-            $('#sortRating').replaceWith('<a href="#" class="badge badge-primary" id="sortRating">Rating <i class="fa fa-arrow-down" aria-hidden="true"></i></a>')
+            let sortOrder = 'asc';
+            let sortRatingURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+                '&sortBy=' + sortParam + '&order=' + sortOrder +
+                '&numResults=' + numResultsParam + '&offset=' + '0';
+            $('#sortRating').replaceWith('<a href="' + sortRatingURL + '" class="badge badge-primary" id="sortRating">Rating <i class="fa fa-arrow-down" aria-hidden="true"></i></a>')
         }
-    } else if(sortParam == 'alpha') {
+
+        let sortTitleURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+            '&sortBy=' + 'title' + '&order=' + 'asc' +
+            '&numResults=' + numResultsParam + '&offset=' + '0';
+        $('#sortAZ').attr('href', sortTitleURL);
+        let sortYearURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+            '&sortBy=' + 'year' + '&order=' + 'desc' +
+            '&numResults=' + numResultsParam + '&offset=' + '0';
+        $('#sortYear').attr('href', sortYearURL);
+    } else if(sortParam == 'title') {
         if(orderParam == 'asc') {
-            $('#sortAZ').replaceWith('<a href="#" class="badge badge-primary" id="sortRating">A-Z <i class="fa fa-arrow-up" aria-hidden="true"></i></a>')
+            let sortTitleURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+                '&sortBy=' + sortParam + '&order=' + 'desc' +
+                '&numResults=' + numResultsParam + '&offset=' + '0';
+            $('#sortAZ').replaceWith('<a href="' + sortTitleURL + '" class="badge badge-primary" id="sortRating">A-Z <i class="fa fa-arrow-up" aria-hidden="true"></i></a>')
         } else {
-            $('#sortAZ').replaceWith('<a href="#" class="badge badge-primary" id="sortRating">A-Z <i class="fa fa-arrow-down" aria-hidden="true"></i></a>')
+            let sortTitleURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+                '&sortBy=' + sortParam + '&order=' + 'asc' +
+                '&numResults=' + numResultsParam + '&offset=' + '0';
+            $('#sortAZ').replaceWith('<a href="' + sortTitleURL + '" class="badge badge-primary" id="sortRating">A-Z <i class="fa fa-arrow-down" aria-hidden="true"></i></a>')
         }
-    } else {
+
+        let sortRatingURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+            '&sortBy=' + 'rating' + '&order=' + 'desc' +
+            '&numResults=' + numResultsParam + '&offset=' + '0';
+        $('#sortRating').attr('href', sortRatingURL);
+        let sortYearURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+            '&sortBy=' + 'year' + '&order=' + 'desc' +
+            '&numResults=' + numResultsParam + '&offset=' + '0';
+        $('#sortYear').attr('href', sortYearURL);
+    } else if(sortParam == 'year') {
         if(orderParam == 'asc') {
-            $('#sortYear').replaceWith('<a href="#" class="badge badge-primary" id="sortAZ">Year <i class="fa fa-arrow-up" aria-hidden="true"></i></a>')
+            let sortYearURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+                '&sortBy=' + sortParam + '&order=' + 'desc' +
+                '&numResults=' + numResultsParam + '&offset=' + '0';
+            $('#sortYear').replaceWith('<a href="' + sortYearURL + '" class="badge badge-primary" id="sortAZ">Year <i class="fa fa-arrow-up" aria-hidden="true"></i></a>')
         } else {
-            $('#sortYear').replaceWith('<a href="#" class="badge badge-primary" id="sortAZ">Year <i class="fa fa-arrow-down" aria-hidden="true"></i></a>')
+            let sortYearURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+                '&sortBy=' + sortParam + '&order=' + 'asc' +
+                '&numResults=' + numResultsParam + '&offset=' + '0';
+            $('#sortYear').replaceWith('<a href="' + sortYearURL + '" class="badge badge-primary" id="sortAZ">Year <i class="fa fa-arrow-down" aria-hidden="true"></i></a>')
         }
+
+        let sortRatingURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+            '&sortBy=' + 'rating' + '&order=' + 'desc' +
+            '&numResults=' + numResultsParam + '&offset=' + '0';
+        $('#sortRating').attr('href', sortRatingURL);
+        let sortTitleURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+            '&sortBy=' + 'title' + '&order=' + 'asc' +
+            '&numResults=' + numResultsParam + '&offset=' + '0';
+        $('#sortAZ').attr('href', sortTitleURL);
     }
 
     switch(numResultsParam) {
@@ -57,51 +104,110 @@ function handleBrowsingResult(resultData) {
             $('#display10').replaceWith('<a href="#" class="badge badge-primary" id="display10">10</i></a>')
             break;
         case('20'):
-            $('#display10').replaceWith('<a href="#" class="badge badge-primary" id="display20">20</i></a>')
+            $('#display20').replaceWith('<a href="#" class="badge badge-primary" id="display20">20</i></a>')
             break;
         case('30'):
-            $('#display10').replaceWith('<a href="#" class="badge badge-primary" id="display30">30</i></a>')
+            $('#display30').replaceWith('<a href="#" class="badge badge-primary" id="display30">30</i></a>')
             break;
         case('40'):
-            $('#display10').replaceWith('<a href="#" class="badge badge-primary" id="display40">40</i></a>')
+            $('#display40').replaceWith('<a href="#" class="badge badge-primary" id="display40">40</i></a>')
             break;
         case('50'):
-            $('#display10').replaceWith('<a href="#" class="badge badge-primary" id="display50">50</i></a>')
+            $('#display50').replaceWith('<a href="#" class="badge badge-primary" id="display50">50</i></a>')
             break;
         default:
             break;
     }
 
-    var currentRange = Number(resultData.length-1) + Number(offsetParam);
+    $('#display10').click(function(event) {
+        if(numResultsParam == '10') {
+            event.preventDefault();
+        } else {
+            let display10URL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+                '&sortBy=' + sortParam + '&order=' + orderParam +
+                '&numResults=' + '10' + '&offset=' + offsetParam;
+            window.location.href = display10URL;
+            return false;
+        }
+
+    });
+    $('#display20').click(function(event) {
+        if(numResultsParam == '20') {
+            event.preventDefault();
+        } else {
+            let display20URL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+                '&sortBy=' + sortParam + '&order=' + orderParam +
+                '&numResults=' + '20' + '&offset=' + offsetParam;
+            window.location.href = display20URL;
+            return false;
+        }
+
+    });
+    $('#display30').click(function(event) {
+        if(numResultsParam == '30') {
+            event.preventDefault();
+        } else {
+            let display30URL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+                '&sortBy=' + sortParam + '&order=' + orderParam +
+                '&numResults=' + '30' + '&offset=' + offsetParam;
+            window.location.href = display30URL;
+            return false;
+        }
+
+    });
+    $('#display40').click(function(event) {
+        if(numResultsParam == '40') {
+            event.preventDefault();
+        } else {
+            let display40URL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+                '&sortBy=' + sortParam + '&order=' + orderParam +
+                '&numResults=' + '40' + '&offset=' + offsetParam;
+            window.location.href = display40URL;
+            return false;
+        }
+    });
+    $('#display50').click(function(event) {
+        if(numResultsParam == '50') {
+            event.preventDefault();
+        } else {
+            let display50URL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+                '&sortBy=' + sortParam + '&order=' + orderParam +
+                '&numResults=' + '50' + '&offset=' + offsetParam;
+            window.location.href = display50URL;
+            return false;
+        }
+    });
+
+    var currentRange = Number(resultData.length - 1) + Number(offsetParam);
     var pageRange = offsetParam + ' - ' + currentRange;
-    var currentPage = 'Displaying ' + pageRange + ' of ' + resultData[resultData.length-1] + ' titles';
+    var currentPage = 'Displaying ' + pageRange + ' of ' + resultData[resultData.length - 1] + ' titles';
     $('.controlCurrentPage').text(currentPage);
 
     if(Number(offsetParam) == 0) {
-    	$('ul.pagination li.previous').addClass('disabled');
+        $('ul.pagination li.previous').addClass('disabled');
     } else {
-	    var previousOffset = Number(offsetParam) - Number(numResultsParam);
-	    var previousPage = 'browsing.html?' + 'title=' + titleParam +
-		    '&genre=' + genreParam + '&sortBy=' + sortParam +
-		    '&order=' + orderParam + '&numResults=' + numResultsParam +
-		    '&offset=' + previousOffset;
-	    $('#paginationPrevious').attr('href', previousPage);
+        var previousOffset = Number(offsetParam) - Number(numResultsParam);
+        var previousPage = 'browsing.html?' + 'title=' + titleParam +
+            '&genre=' + genreParam + '&sortBy=' + sortParam +
+            '&order=' + orderParam + '&numResults=' + numResultsParam +
+            '&offset=' + previousOffset;
+        $('#paginationPrevious').attr('href', previousPage);
     }
-    
+
     if(resultData.length < numResultsParam) {
-    	$('ul.pagination li.next').addClass('disabled');
+        $('ul.pagination li.next').addClass('disabled');
     } else {
-	    var nextOffset = Number(offsetParam) + Number(numResultsParam);
-	    var nextPage = 'browsing.html?' + 'title=' + titleParam +
-		    '&genre=' + genreParam + '&sortBy=' + sortParam +
-		    '&order=' + orderParam + '&numResults=' + numResultsParam +
-		    '&offset=' + nextOffset;
-	    $('#paginationNext').attr('href', nextPage);
+        var nextOffset = Number(offsetParam) + Number(numResultsParam);
+        var nextPage = 'browsing.html?' + 'title=' + titleParam +
+            '&genre=' + genreParam + '&sortBy=' + sortParam +
+            '&order=' + orderParam + '&numResults=' + numResultsParam +
+            '&offset=' + nextOffset;
+        $('#paginationNext').attr('href', nextPage);
     }
-    
+
     var paginationTableHTML = $('#paginationTable').html('');
 
-    for(let i = 0; i < resultData.length-1; i++) {
+    for(let i = 0; i < resultData.length - 1; i++) {
         let movieID = resultData[i]['movie_id'];
         let movieTitle = resultData[i]['movie_title'];
         let movieYear = resultData[i]['movie_year'];
