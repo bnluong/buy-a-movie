@@ -60,7 +60,7 @@ function handleRandomMovies(randomMovies) {
 function handleListOfGenres(listOfGenres) {
 	for (let i = 0; i < listOfGenres.length; i++) {
 		let btnHTML = '<a class="btn btn-outline-dark btn-sm mx-1 my-1 genreBtn-' + i + '" href="#" role="button" style="border-radius:15px; font-size: 18px;"></a>\n';
-		let hrefHTML = 'browsing.html?' + 'title=none&genre=' + listOfGenres[i]['genre_name'] + '&sortBy=rating&order=desc&numResults=10&offset=0';
+		let hrefHTML = 'browsing.html?' + 'genre=' + listOfGenres[i]['genre_name'] + '&sortBy=rating&order=desc&numResults=10&offset=0';
 		let btnID = '.genreBtn-' + i;
 		$('#browseByGenres').append(btnHTML);
 		$(btnID).attr('href', hrefHTML);
@@ -80,7 +80,7 @@ function handleBrowseByTitles() {
 	const numArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 	for (let i = 0; i < numArray.length; i++) {
 		let bdgHTML = '<a href="#" class="badge badge-dark badge-pill mx-1 my-1 numBdg-' + i + '" style="font-size: 18px;"></a>\n';
-		let hrefHTML = 'browsing.html?' + 'title='+ numArray[i] + '&genre=none' + '&sortBy=rating&order=desc&numResults=10&offset=0';
+		let hrefHTML = 'browsing.html?' + 'title='+ numArray[i] + '&sortBy=rating&order=desc&numResults=10&offset=0';
 		let bdgID = '.numBdg-' + i;
 		$('#browseByTitleNumeric').append(bdgHTML);
 		$(bdgID).attr('href', hrefHTML);
@@ -90,7 +90,7 @@ function handleBrowseByTitles() {
 	const alphaArray = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 	for (let i = 0; i < alphaArray.length; i++) {
 		let bdgHTML = '<a href="#" class="badge badge-dark badge-pill mx-1 my-1 alpBdg-' + i + '" style="font-size: 18px;"></a>\n';
-		let hrefHTML = 'browsing.html?' + 'title='+ alphaArray[i] + '&genre=none' + '&sortBy=rating&order=desc&numResults=10&offset=0';
+		let hrefHTML = 'browsing.html?' + 'title='+ alphaArray[i] + '&sortBy=rating&order=desc&numResults=10&offset=0';
 		let bdgID = '.alpBdg-' + i;
 		$('#browseByTitleAlpha').append(bdgHTML);
 		$(bdgID).attr('href', hrefHTML);
@@ -98,7 +98,16 @@ function handleBrowseByTitles() {
 	}
 }
 
+function handleSearch(searchFormSubmitEvent) {
+    searchFormSubmitEvent.preventDefault();
+    var searchForm = $('#homepageSearch').serialize();
+    //var browsingHTML = 'browsing.html?' + 'search=' + $('input[name="search"]').val() + '&sortBy=title&order=asc&numResults=10&offset=0';
+    //window.location.replace(browsingHTML);
+}
+
 $.ajax('api/index', {
 	method: 'GET',
 	success: handleResult,
 });
+
+$('#homepageSearch').submit(handleSearch);

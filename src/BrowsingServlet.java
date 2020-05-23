@@ -91,7 +91,7 @@ public class BrowsingServlet extends HttpServlet {
 		String query = "";
 		PreparedStatement statement = null;
 
-		if(!titleParam.equalsIgnoreCase("None")) {
+		if(!titleParam.equalsIgnoreCase("null")) {
 			query = "SELECT COUNT(*) as total_movies\n" + 
 					"FROM movies m, ratings r\n" + 
 					"WHERE m.title LIKE ? AND m.id = r.movie_id";
@@ -100,7 +100,7 @@ public class BrowsingServlet extends HttpServlet {
 			statement = dbConnection.prepareStatement(query);
 			statement.setString(1, titleParam + "%");
 		}
-		if(!genreParam.equalsIgnoreCase("None")) {
+		if(!genreParam.equalsIgnoreCase("null")) {
 			query = "SELECT COUNT(*) as total_movies\n" + 
 					"FROM movies m, ratings r\n" + 
 					"WHERE m.id IN ( SELECT gim.movie_id\n" + 
@@ -194,8 +194,8 @@ public class BrowsingServlet extends HttpServlet {
 
 		String query = "";
 		PreparedStatement statement = null;
-
-		if(!titleParam.equalsIgnoreCase("none")) {
+		
+		if(!titleParam.equalsIgnoreCase("null")) {
 			query = "SELECT m.*, rating\n" + 
 					"FROM movies m, ratings r\n" + 
 					"WHERE m.title LIKE ? AND m.id = r.movie_id\n" + 
@@ -208,7 +208,7 @@ public class BrowsingServlet extends HttpServlet {
 			statement.setInt(2, Integer.parseInt(numResultsParam));
 			statement.setInt(3, Integer.parseInt(offsetParam));
 		}
-		if(!genreParam.equalsIgnoreCase("none")) {
+		if(!genreParam.equalsIgnoreCase("null")) {
 			query = 
 					"SELECT m.*, r.rating\n" + 
 							"FROM movies m, ratings r\n" + 

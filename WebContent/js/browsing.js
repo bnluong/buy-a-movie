@@ -20,11 +20,11 @@ import * as utils from './utilities.js';
 */
 
 function handleBrowsingResult(resultData) {
-    if(genreParam != 'None') {
+    if(genreParam != null) {
         $('#browsingTitle').text('Buy-a-Movie Browsing by Genre: ' + genreParam);
         $('#browsingHeading').text('Browsing by Genre: ' + genreParam);
     }
-    if(titleParam != 'None') {
+    if(titleParam != null) {
         $('#browsingTitle').text('Buy-a-Movie Browsing by Title: ' + titleParam);
         $('#browsingHeading').text('Browsing by Title: ' + titleParam);
     }
@@ -125,7 +125,7 @@ function handleBrowsingResult(resultData) {
         } else {
             let display10URL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
                 '&sortBy=' + sortParam + '&order=' + orderParam +
-                '&numResults=' + '10' + '&offset=' + offsetParam;
+                '&numResults=' + '10' + '&offset=' + '0';
             window.location.href = display10URL;
             return false;
         }
@@ -137,7 +137,7 @@ function handleBrowsingResult(resultData) {
         } else {
             let display20URL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
                 '&sortBy=' + sortParam + '&order=' + orderParam +
-                '&numResults=' + '20' + '&offset=' + offsetParam;
+                '&numResults=' + '20' + '&offset=' + '0';
             window.location.href = display20URL;
             return false;
         }
@@ -149,7 +149,7 @@ function handleBrowsingResult(resultData) {
         } else {
             let display30URL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
                 '&sortBy=' + sortParam + '&order=' + orderParam +
-                '&numResults=' + '30' + '&offset=' + offsetParam;
+                '&numResults=' + '30' + '&offset=' + '0';
             window.location.href = display30URL;
             return false;
         }
@@ -161,7 +161,7 @@ function handleBrowsingResult(resultData) {
         } else {
             let display40URL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
                 '&sortBy=' + sortParam + '&order=' + orderParam +
-                '&numResults=' + '40' + '&offset=' + offsetParam;
+                '&numResults=' + '40' + '&offset=' + '0';
             window.location.href = display40URL;
             return false;
         }
@@ -172,7 +172,7 @@ function handleBrowsingResult(resultData) {
         } else {
             let display50URL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
                 '&sortBy=' + sortParam + '&order=' + orderParam +
-                '&numResults=' + '50' + '&offset=' + offsetParam;
+                '&numResults=' + '50' + '&offset=' + '0';
             window.location.href = display50URL;
             return false;
         }
@@ -191,7 +191,7 @@ function handleBrowsingResult(resultData) {
             '&genre=' + genreParam + '&sortBy=' + sortParam +
             '&order=' + orderParam + '&numResults=' + numResultsParam +
             '&offset=' + previousOffset;
-        $('#paginationPrevious').attr('href', previousPage);
+        $('.paginationPrevious').attr('href', previousPage);
     }
 
     if(resultData.length < numResultsParam) {
@@ -202,7 +202,7 @@ function handleBrowsingResult(resultData) {
             '&genre=' + genreParam + '&sortBy=' + sortParam +
             '&order=' + orderParam + '&numResults=' + numResultsParam +
             '&offset=' + nextOffset;
-        $('#paginationNext').attr('href', nextPage);
+        $('.paginationNext').attr('href', nextPage);
     }
 
     var paginationTableHTML = $('#paginationTable').html('');
@@ -272,7 +272,7 @@ function parseGenres(movieGenres) {
     var genresHTML = '';
     for(let i = 0; i < movieGenres.length; i++) {
         let genreName = movieGenres[i]['genre_name'];
-        genresHTML += '<a href="browsing.html?' + 'title=None' + '&genre=' + genreName + '&sortBy=rating&order=desc&numResults=10&offset=0' + '">' + genreName + '</a>'
+        genresHTML += '<a href="browsing.html?' + '&genre=' + genreName + '&sortBy=rating&order=desc&numResults=10&offset=0' + '">' + genreName + '</a>'
         if(i != movieGenres.length - 1)
             genresHTML += ', ';
     }
@@ -291,6 +291,7 @@ function parseStars(movieStars) {
     return starsHTML;
 }
 
+const searchParam = utils.getParameterByName('search');
 const titleParam = utils.getParameterByName('title');
 const genreParam = utils.getParameterByName('genre');
 const sortParam = utils.getParameterByName('sortBy');
@@ -300,7 +301,10 @@ const offsetParam = utils.getParameterByName('offset');
 
 $.ajax({
     method: 'GET',
-    url: 'api/browsing?' + 'title=' + titleParam + '&genre=' + genreParam + '&sortBy=' + sortParam + '&order=' + orderParam + '&numResults=' + numResultsParam + '&offset=' + offsetParam,
+    url: 'api/browsing?' + 'search=' + searchParam + '&title=' + titleParam +
+        '&genre=' + genreParam + '&sortBy=' + sortParam +
+        '&order=' + orderParam + '&numResults=' + numResultsParam +
+        '&offset=' + offsetParam,
     dataType: 'json',
     success: handleBrowsingResult,
 });

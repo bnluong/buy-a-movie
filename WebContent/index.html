@@ -28,7 +28,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle navItem" href="#" id="moviesDropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Movies</a>
                         <div class="dropdown-menu" aria-labelledby="moviesDropdownId">
-                            <a class="dropdown-item" href="movie-list.html">Top 20 Rated Movies</a>
+                            <a class="dropdown-item" href="#">Top 20 Rated Movies</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -39,17 +39,16 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav mx-auto col-md-5">
-                    <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Search for a movie, star...">
+					<form class="input-group" id="navBarSearch">
+                        <input class="form-control" name="search" type="text" required autocomplete="off" placeholder="Search for a movie, star...">
                         <button class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
-                    </div>
+                    </form>
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item" id="userSession">
+                        <!-- JS script: Display Login/Logout message accordingly -->
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link navItem" href="cart.html"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true" style="margin-top: 6px;"></i></a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link navItem" href="cart.html"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true" style="margin-top: 6px;"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -62,13 +61,13 @@
             <div class="row text-left">
                 <div class="col-12 welcomeText">
                     <p class="h3">Welcome to Buy-a-Movie!</p>
-                    <p class="lead">Thousands of movies and stars to discover. Explore now.</p>
+                    <p class="lead">Thousands of movies and stars to discover. Explore now!</p>
                 </div>
                 <div class="col-12 searchArea">
-                    <div class="input-group">
-                        <input class="form-control searchBox" type="text" placeholder="Search for a movie, star...">
-                        <button class="btn btn-dark searchButton" type="submit"><i class="fa fa-search"></i></button>
-                    </div>
+                    <form class="input-group" id="homepageSearch">
+                        <input class="form-control" name="search" type="text" required autocomplete="off" placeholder="Search for a movie, star...">
+                        <button class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -83,7 +82,7 @@
                 </div>
             </div>
             <div class="row mx-auto" class="randomMovies" id="randomMoviesBody">
-            	<!-- TODO: Rework on this feature -->
+                <!-- TODO: Rework on this feature -->
                 <div class="col-sx-12 col-sm-6 col-md-4 my-2">
                     <div class="row mx-auto">
                         <img src="" alt="box-art-size-220x330" style="border-radius: 10px;" id="movie1Img" class="randomMoviesImg">
@@ -149,7 +148,7 @@
             <div class="row mx-auto">
                 <div class="row mx-auto my-2">
                     <div class="col-12" id="browseByTitleNumeric">
-						<!-- Entries will be populated by the JS script which appends to this DOM with numeric values from 0-9 -->
+                        <!-- Entries will be populated by the JS script which appends to this DOM with numeric values from 0-9 -->
                         <!-- HTML template for JS -->
                         <!-- <a href="#" class="badge badge-dark badge-pill" style="font-size: 15px;">0</a> -->
                     </div>
@@ -158,9 +157,9 @@
             <div class="row mx-auto my-2">
                 <div class="row mx-auto">
                     <div class="col-12" id="browseByTitleAlpha">
-						<!-- Entries will be populated by the JS script which appends to this DOM with the alphabet from A-Z -->
-						<!-- HTML template for JS -->
-						<!-- <a href="#" class="badge badge-dark badge-pill" style="font-size: 15px;">A</a> -->
+                        <!-- Entries will be populated by the JS script which appends to this DOM with the alphabet from A-Z -->
+                        <!-- HTML template for JS -->
+                        <!-- <a href="#" class="badge badge-dark badge-pill" style="font-size: 15px;">A</a> -->
                     </div>
                 </div>
             </div>
@@ -179,7 +178,7 @@
 
     <!-- Load our JS Scripts -->
     <script src="js/index.js"></script>
-    <script src="js/session.js"></script>
+    <script src="js/nav-bar.js"></script>
 </body>
 
 </html>
