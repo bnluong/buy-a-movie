@@ -98,11 +98,16 @@ function handleBrowseByTitles() {
 	}
 }
 
+/**
+ * Handles Searching
+ * @param searchFormSubmitEvent submit event
+ */
 function handleSearch(searchFormSubmitEvent) {
-    searchFormSubmitEvent.preventDefault();
+	searchFormSubmitEvent.preventDefault();
+	
     var searchForm = $('#homepageSearch').serialize();
-    //var browsingHTML = 'browsing.html?' + 'search=' + $('input[name="search"]').val() + '&sortBy=title&order=asc&numResults=10&offset=0';
-    //window.location.replace(browsingHTML);
+    var browsingHTML = 'browsing.html?' + searchForm + '&sortBy=title&order=asc&numResults=10&offset=0';
+    window.location.replace(browsingHTML);
 }
 
 $.ajax('api/index', {

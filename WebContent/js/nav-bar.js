@@ -11,11 +11,12 @@ function handleSession(sessionResult) {
     }
 }
 
-function handleSearch(searchFormSubmitEvent) {
+function handleNavBarSearch(searchFormSubmitEvent) {
     searchFormSubmitEvent.preventDefault();
+    
     var searchForm = $("#navBarSearch").serialize();
-    //var browsingHTML = 'browsing.html?' + 'search=' + $('input[name="search"]').val() + '&sortBy=title&order=asc&numResults=10&offset=0';
-    //window.location.replace(browsingHTML);
+    var browsingHTML = 'browsing.html?' + searchForm + '&sortBy=title&order=asc&numResults=10&offset=0';
+    window.location.replace(browsingHTML);
 }
 
 $.ajax({
@@ -26,4 +27,4 @@ $.ajax({
 });
 
 
-$('#navBarSearch').submit(handleSearch);
+$('#navBarSearch').submit(handleNavBarSearch);

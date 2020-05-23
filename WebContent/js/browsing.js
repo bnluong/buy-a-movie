@@ -20,79 +20,92 @@ import * as utils from './utilities.js';
 */
 
 function handleBrowsingResult(resultData) {
-    if(genreParam != null) {
+    if(topRated != 'null' && topRated != null) {
+        $('#browsingTitle').text('Buy-a-Movie Search Top Rated Movies');
+        $('#browsingHeading').text('Top Rated Movies');
+    }
+    if(searchParam != 'null' && searchParam != null) {
+        $('#browsingTitle').text('Buy-a-Movie Search result for: ' + searchParam);
+        $('#browsingHeading').text('Search result for: ' + searchParam);
+    }
+    if(genreParam != 'null' && genreParam != null) {
         $('#browsingTitle').text('Buy-a-Movie Browsing by Genre: ' + genreParam);
         $('#browsingHeading').text('Browsing by Genre: ' + genreParam);
     }
-    if(titleParam != null) {
+    if(titleParam != 'null' && titleParam != null) {
         $('#browsingTitle').text('Buy-a-Movie Browsing by Title: ' + titleParam);
         $('#browsingHeading').text('Browsing by Title: ' + titleParam);
+    }
+
+    if(resultData[resultData.length-1] == '0') {
+        $('#paginationTable').html('<p>Nothing found...</p>');
+        return false;
     }
 
     if(sortParam == 'rating') {
         if(orderParam == 'asc') {
             // <a href="#" class="badge badge-primary" id="sortRating">Rating <i class="fa fa-arrow-up" aria-hidden="true"></i></a>
             let sortOrder = 'desc';
-            let sortRatingURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+            let sortRatingURL = 'browsing.html?' + 'topRated=' + topRated + '&search=' + searchParam + '&title=' + titleParam + '&genre=' + genreParam +
                 '&sortBy=' + sortParam + '&order=' + sortOrder +
                 '&numResults=' + numResultsParam + '&offset=' + '0';
             $('#sortRating').replaceWith('<a href="' + sortRatingURL + '" class="badge badge-primary" id="sortRating">Rating <i class="fa fa-arrow-up" aria-hidden="true"></i></a>')
         } else {
             // <a href="#" class="badge badge-primary" id="sortRating">Rating <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
             let sortOrder = 'asc';
-            let sortRatingURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+            let sortRatingURL = 'browsing.html?' + 'topRated=' + topRated + '&search=' + searchParam + '&title=' + searchParam + '&title=' + titleParam + '&genre=' + genreParam +
                 '&sortBy=' + sortParam + '&order=' + sortOrder +
                 '&numResults=' + numResultsParam + '&offset=' + '0';
             $('#sortRating').replaceWith('<a href="' + sortRatingURL + '" class="badge badge-primary" id="sortRating">Rating <i class="fa fa-arrow-down" aria-hidden="true"></i></a>')
         }
 
-        let sortTitleURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+        let sortTitleURL = 'browsing.html?' + 'topRated=' + topRated + '&search=' + searchParam + '&title=' + titleParam + '&genre=' + genreParam +
             '&sortBy=' + 'title' + '&order=' + 'asc' +
             '&numResults=' + numResultsParam + '&offset=' + '0';
         $('#sortAZ').attr('href', sortTitleURL);
-        let sortYearURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+        let sortYearURL = 'browsing.html?' + 'topRated=' + topRated + '&search=' + searchParam + '&title=' + titleParam + '&genre=' + genreParam +
             '&sortBy=' + 'year' + '&order=' + 'desc' +
             '&numResults=' + numResultsParam + '&offset=' + '0';
         $('#sortYear').attr('href', sortYearURL);
     } else if(sortParam == 'title') {
         if(orderParam == 'asc') {
-            let sortTitleURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+            let sortTitleURL = 'browsing.html?' + 'topRated=' + topRated + '&search=' + searchParam + '&title=' + titleParam + '&genre=' + genreParam +
                 '&sortBy=' + sortParam + '&order=' + 'desc' +
                 '&numResults=' + numResultsParam + '&offset=' + '0';
             $('#sortAZ').replaceWith('<a href="' + sortTitleURL + '" class="badge badge-primary" id="sortRating">A-Z <i class="fa fa-arrow-up" aria-hidden="true"></i></a>')
         } else {
-            let sortTitleURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+            let sortTitleURL = 'browsing.html?' + 'topRated=' + topRated + '&search=' + searchParam + '&title=' + titleParam + '&genre=' + genreParam +
                 '&sortBy=' + sortParam + '&order=' + 'asc' +
                 '&numResults=' + numResultsParam + '&offset=' + '0';
             $('#sortAZ').replaceWith('<a href="' + sortTitleURL + '" class="badge badge-primary" id="sortRating">A-Z <i class="fa fa-arrow-down" aria-hidden="true"></i></a>')
         }
 
-        let sortRatingURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+        let sortRatingURL = 'browsing.html?' + 'topRated=' + topRated + '&search=' + searchParam + '&title=' + titleParam + '&genre=' + genreParam +
             '&sortBy=' + 'rating' + '&order=' + 'desc' +
             '&numResults=' + numResultsParam + '&offset=' + '0';
         $('#sortRating').attr('href', sortRatingURL);
-        let sortYearURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+        let sortYearURL = 'browsing.html?' + 'topRated=' + topRated + '&search=' + searchParam + '&title=' + titleParam + '&genre=' + genreParam +
             '&sortBy=' + 'year' + '&order=' + 'desc' +
             '&numResults=' + numResultsParam + '&offset=' + '0';
         $('#sortYear').attr('href', sortYearURL);
     } else if(sortParam == 'year') {
         if(orderParam == 'asc') {
-            let sortYearURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+            let sortYearURL = 'browsing.html?' + 'topRated=' + topRated + '&search=' + searchParam + '&title=' + titleParam + '&genre=' + genreParam +
                 '&sortBy=' + sortParam + '&order=' + 'desc' +
                 '&numResults=' + numResultsParam + '&offset=' + '0';
             $('#sortYear').replaceWith('<a href="' + sortYearURL + '" class="badge badge-primary" id="sortAZ">Year <i class="fa fa-arrow-up" aria-hidden="true"></i></a>')
         } else {
-            let sortYearURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+            let sortYearURL = 'browsing.html?' + 'topRated=' + topRated + '&search=' + searchParam + '&title=' + titleParam + '&genre=' + genreParam +
                 '&sortBy=' + sortParam + '&order=' + 'asc' +
                 '&numResults=' + numResultsParam + '&offset=' + '0';
             $('#sortYear').replaceWith('<a href="' + sortYearURL + '" class="badge badge-primary" id="sortAZ">Year <i class="fa fa-arrow-down" aria-hidden="true"></i></a>')
         }
 
-        let sortRatingURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+        let sortRatingURL = 'browsing.html?' + 'topRated=' + topRated + '&search=' + searchParam + '&title=' + titleParam + '&genre=' + genreParam +
             '&sortBy=' + 'rating' + '&order=' + 'desc' +
             '&numResults=' + numResultsParam + '&offset=' + '0';
         $('#sortRating').attr('href', sortRatingURL);
-        let sortTitleURL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+        let sortTitleURL = 'browsing.html?' + 'topRated=' + topRated + '&search=' + searchParam + '&title=' + titleParam + '&genre=' + genreParam +
             '&sortBy=' + 'title' + '&order=' + 'asc' +
             '&numResults=' + numResultsParam + '&offset=' + '0';
         $('#sortAZ').attr('href', sortTitleURL);
@@ -123,7 +136,7 @@ function handleBrowsingResult(resultData) {
         if(numResultsParam == '10') {
             event.preventDefault();
         } else {
-            let display10URL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+            let display10URL = 'browsing.html?' + 'topRated=' + topRated + '&search=' + searchParam + '&title=' + titleParam + '&genre=' + genreParam +
                 '&sortBy=' + sortParam + '&order=' + orderParam +
                 '&numResults=' + '10' + '&offset=' + '0';
             window.location.href = display10URL;
@@ -135,7 +148,7 @@ function handleBrowsingResult(resultData) {
         if(numResultsParam == '20') {
             event.preventDefault();
         } else {
-            let display20URL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+            let display20URL = 'browsing.html?' + 'topRated=' + topRated + '&search=' + searchParam + '&title=' + titleParam + '&genre=' + genreParam +
                 '&sortBy=' + sortParam + '&order=' + orderParam +
                 '&numResults=' + '20' + '&offset=' + '0';
             window.location.href = display20URL;
@@ -147,7 +160,7 @@ function handleBrowsingResult(resultData) {
         if(numResultsParam == '30') {
             event.preventDefault();
         } else {
-            let display30URL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+            let display30URL = 'browsing.html?' + 'topRated=' + topRated + '&search=' + searchParam + '&title=' + titleParam + '&genre=' + genreParam +
                 '&sortBy=' + sortParam + '&order=' + orderParam +
                 '&numResults=' + '30' + '&offset=' + '0';
             window.location.href = display30URL;
@@ -159,7 +172,7 @@ function handleBrowsingResult(resultData) {
         if(numResultsParam == '40') {
             event.preventDefault();
         } else {
-            let display40URL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+            let display40URL = 'browsing.html?' + 'topRated=' + topRated + '&search=' + searchParam + '&title=' + titleParam + '&genre=' + genreParam +
                 '&sortBy=' + sortParam + '&order=' + orderParam +
                 '&numResults=' + '40' + '&offset=' + '0';
             window.location.href = display40URL;
@@ -170,7 +183,7 @@ function handleBrowsingResult(resultData) {
         if(numResultsParam == '50') {
             event.preventDefault();
         } else {
-            let display50URL = 'browsing.html?' + 'title=' + titleParam + '&genre=' + genreParam +
+            let display50URL = 'browsing.html?' + 'topRated=' + topRated + '&search=' + searchParam + '&title=' + titleParam + '&genre=' + genreParam +
                 '&sortBy=' + sortParam + '&order=' + orderParam +
                 '&numResults=' + '50' + '&offset=' + '0';
             window.location.href = display50URL;
@@ -187,18 +200,18 @@ function handleBrowsingResult(resultData) {
         $('ul.pagination li.previous').addClass('disabled');
     } else {
         var previousOffset = Number(offsetParam) - Number(numResultsParam);
-        var previousPage = 'browsing.html?' + 'title=' + titleParam +
+        var previousPage = 'browsing.html?' + 'topRated=' + topRated + '&search=' + searchParam + '&title=' + titleParam +
             '&genre=' + genreParam + '&sortBy=' + sortParam +
             '&order=' + orderParam + '&numResults=' + numResultsParam +
             '&offset=' + previousOffset;
         $('.paginationPrevious').attr('href', previousPage);
     }
 
-    if(resultData.length < numResultsParam) {
+    if(currentRange >= resultData[resultData.length-1]) {
         $('ul.pagination li.next').addClass('disabled');
     } else {
         var nextOffset = Number(offsetParam) + Number(numResultsParam);
-        var nextPage = 'browsing.html?' + 'title=' + titleParam +
+        var nextPage = 'browsing.html?' + 'topRated=' + topRated + '&search=' + searchParam + '&title=' + titleParam +
             '&genre=' + genreParam + '&sortBy=' + sortParam +
             '&order=' + orderParam + '&numResults=' + numResultsParam +
             '&offset=' + nextOffset;
@@ -291,6 +304,7 @@ function parseStars(movieStars) {
     return starsHTML;
 }
 
+const topRated = utils.getParameterByName('topRated');
 const searchParam = utils.getParameterByName('search');
 const titleParam = utils.getParameterByName('title');
 const genreParam = utils.getParameterByName('genre');
@@ -301,7 +315,7 @@ const offsetParam = utils.getParameterByName('offset');
 
 $.ajax({
     method: 'GET',
-    url: 'api/browsing?' + 'search=' + searchParam + '&title=' + titleParam +
+    url: 'api/browsing?' + 'topRated=' + topRated +'&search=' + searchParam + '&title=' + titleParam +
         '&genre=' + genreParam + '&sortBy=' + sortParam +
         '&order=' + orderParam + '&numResults=' + numResultsParam +
         '&offset=' + offsetParam,

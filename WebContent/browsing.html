@@ -19,7 +19,7 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-md navbar-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="./index.html"> <img src="img/logo.png" alt=""></a>
+            <a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt=""></a>
             <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -28,7 +28,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle navItem" href="#" id="moviesDropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Movies</a>
                         <div class="dropdown-menu" aria-labelledby="moviesDropdownId">
-                            <a class="dropdown-item" href="movie-list.html">Top 20 Rated Movies</a>
+                            <a class="dropdown-item" href="browsing.html?topRated=true&sortBy=rating&order=desc&numResults=50&offset=0">Top Rated Movies</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -39,17 +39,16 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav mx-auto col-md-5">
-                    <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Search for a movie, star...">
+					<form class="input-group" id="navBarSearch">
+                        <input class="form-control" name="search" type="text" required autocomplete="off" placeholder="Search for a movie">
                         <button class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
-                    </div>
+                    </form>
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item" id="userSession">
+                        <!-- JS script: Display Login/Logout message accordingly -->
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link navItem" href="cart.html"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true" style="margin-top: 6px;"></i></a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link navItem" href="cart.html"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true" style="margin-top: 6px;"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -170,7 +169,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
 
     <!-- Load JS Scripts -->
-    <script src="js/session.js"></script>
+    <script src="js/nav-bar.js"></script>
     <script src="js/browsing.js" type="module"></script>
 </body>
 
