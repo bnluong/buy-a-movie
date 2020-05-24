@@ -55,7 +55,7 @@ public class BrowsingServlet extends HttpServlet {
 
 			JsonArray resultData = getMoviesList(dbConnection, topRatedParam, searchParam, titleParam, genreParam, sortParam, orderParam, numResultsParam, offsetParam);
 
-			PosterScrapper posterScraper = new PosterScrapper(); // Too slow T_T
+			//PosterScrapper posterScraper = new PosterScrapper(); // Too slow T_T
 
 			for(int i = 0; i < resultData.size(); i++) {
 				String movieID = resultData.get(i).getAsJsonObject().get("movie_id").getAsString();

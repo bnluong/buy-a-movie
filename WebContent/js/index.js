@@ -18,36 +18,18 @@ function handleResult(resultData) {
  */
 function handleRandomMovies(randomMovies) {
 	for (let i = 0; i < randomMovies.length; i++) {
-        let movieImgID = '#movie' + (i + 1) + 'Img';
-		var imdbURL = 'https://www.imdb.com/title/' + randomMovies[i]['id'];
-		$.ajax({
-			url: 'http://www.whateverorigin.org/get?url=' + encodeURIComponent(imdbURL) + '&callback=?',
-			dataType: 'json',
-			async: false,
-			success: function (data) {
-				var tempDOM = document.createElement('div');
-				tempDOM.innerHTML = data.contents;
+        // Handle random movie poster
+		let movieImgID = '#movie' + (i + 1) + 'Img';
+		$(movieImgID).attr('src', randomMovies[i]['movie_poster']);
 
-				var poster = tempDOM.getElementsByClassName('poster');
-				if (poster[0] != null) {
-					let tempDOM = document.createElement('div');
-					tempDOM.innerHTML = poster[0].innerHTML;
-					let posterURL = tempDOM.querySelector('img').getAttribute('src');
-					$(movieImgID).attr('src', posterURL);
-				} else {
-					$(movieImgID).attr('src', 'img/empty-box-art.png');
-				}
-			},
-		});
-
-		//  Handle random movie title
+		// Handle random movie title
 		let titleID = '#movie' + (i + 1) + 'Title';
 		let titleURLID = '.title-' + i;
 		let titleHTML = '<a class="h6 title-' + i + '" href=""></a>';
-		let titleURLHTML = 'movie-info.html?id=' + randomMovies[i]['id'];
+		let titleURLHTML = 'movie-info.html?id=' + randomMovies[i]['movie_id'];
 		$(titleID).append(titleHTML);
 		$(titleURLID).attr('href', titleURLHTML);
-		$(titleURLID).text(randomMovies[i]['title'] + ' (' + randomMovies[i]['year'] + ')');
+		$(titleURLID).text(randomMovies[i]['movie_title'] + ' (' + randomMovies[i]['movie_year'] + ')');
 	}
 }
 
@@ -110,9 +92,11 @@ function handleSearch(searchFormSubmitEvent) {
     window.location.replace(browsingHTML);
 }
 
+// AJAX call to API to generate random movies and browsing list
 $.ajax('api/index', {
 	method: 'GET',
 	success: handleResult,
 });
 
+// Bind submit search form to handelSearch function
 $('#homepageSearch').submit(handleSearch);

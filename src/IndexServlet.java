@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.buyamovie.utilities.PosterScrapper;
+
 /**
  * Servlet implementation class IndexServlet
  */
@@ -48,6 +50,13 @@ public class IndexServlet extends HttpServlet {
 			
 			JsonArray listOfGenres = getListOfGenres(dbConnection);
 			JsonArray randomMovies = getRandomMovies(dbConnection, 3);
+			
+			PosterScrapper posterScraper = new PosterScrapper();
+			for(int i = 0; i <randomMovies.size(); i++) {
+				String movieID = randomMovies.get(i).getAsJsonObject().get("movie_id").getAsString();
+				String moviePoster = posterScraper.getIMDBPoster("https://www.imdb.com/title/" + movieID);
+				randomMovies.get(i).getAsJsonObject().addProperty("movie_poster", moviePoster);
+			}
 			
 			resultData.add("randomMovies", randomMovies);
 			resultData.add("listOfGenres", listOfGenres);
@@ -81,8 +90,9 @@ public class IndexServlet extends HttpServlet {
 	private JsonArray getRandomMovies(Connection dbConnection, Integer numMovies) throws SQLException {
 		String query = 
 				"SELECT m1.id, title, year\n" + 
-				"FROM movies AS m1 \n" + 
-				"JOIN (SELECT id FROM movies ORDER BY RAND() LIMIT 10) as m2 ON m1.id = m2.id \n" + 
+				"FROM movies AS m1\n" + 
+				"JOIN (SELECT id FROM movies\n" + 
+				"ORDER BY RAND() LIMIT 10) as m2 ON m1.id = m2.id\n" + 
 				"LIMIT ?";
 
 		// Prepare the statement
@@ -99,9 +109,9 @@ public class IndexServlet extends HttpServlet {
 		while(rSet.next()) {			
 			// Create a JsonObject based on the data we retrieve from the result set
 			JsonObject jObject = new JsonObject();
-			jObject.addProperty("id", rSet.getString("id"));
-			jObject.addProperty("title", rSet.getString("title"));
-			jObject.addProperty("year", rSet.getString("year"));
+			jObject.addProperty("movie_id", rSet.getString("id"));
+			jObject.addProperty("movie_title", rSet.getString("title"));
+			jObject.addProperty("movie_year", rSet.getString("year"));
 			
 			jArray.add(jObject);
 		}
