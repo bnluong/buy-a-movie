@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Our Own CSS -->
+    <link rel="stylesheet" href="css/global.css">
+
+    <title id="movieTitle"></title>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt=""></a>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle navItem" href="#" id="moviesDropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Movies</a>
+                        <div class="dropdown-menu" aria-labelledby="moviesDropdownId">
+                            <a class="dropdown-item" href="browsing.html?topRated=true&sortBy=rating&order=desc&numResults=50&offset=0">Top Rated Movies</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle navItem" href="#" id="starsDropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Stars</a>
+                        <div class="dropdown-menu" aria-labelledby="starsDropdownId">
+                            <a class="dropdown-item" href="#">Popular Stars</a>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mx-auto col-md-5">
+                    <form class="input-group" id="navBarSearch">
+                        <input class="form-control" name="search" type="text" required autocomplete="off" placeholder="Search for a movie">
+                        <button class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" id="userSession">
+                        <!-- JS script: Display Login/Logout message accordingly -->
+                    </li>
+                    <li class="nav-item"><a class="nav-link navItem" href="cart.html"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true" style="margin-top: 6px;"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Body -->
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row justify-content-center mx-auto py-5">
+                <div class="col-md-3 text-center" id="moviePoster" style="max-width: 100%;">
+                    <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/vgpXmVaVyUL7GGiDeiK1mKEKzcX.jpg" alt="" style="width: 300px; border-radius: 10px;">
+                </div>
+                <div class="col-md-6 mx-3 text-center" id="movieInfo">
+                    <div class="row-auto text-center text-md-left">
+                        <p class="h4">Jumanji (1995)</p>
+                    </div>
+                    <div class="row-auto text-center text-md-left" style="margin-top: -5px;">
+                        <span class="small">1h 44m</span>
+                        <span> | </span>
+                        <span class="small"> <a href="">Adventure</a>, <a href="">Fantasy</a>, <a href="">Family</a></span>
+                    </div>
+                    <div class="row-auto text-center text-md-left my-3">
+                        <p><i class="fa fa-star" aria-hidden="true"></i> 7.0</p>
+                    </div>
+                    <div class="row-auto text-center text-md-left my-3">
+                        
+                        <p><strong>Overview: </strong>When siblings Judy and Peter discover an enchanted board game that opens the door to a magical world, 
+                            they unwittingly invite Alan -- an adult who's been trapped inside the game for 26 years -- into their living room. 
+                            Alan's only hope for freedom is to finish the game, which proves risky as all three find themselves running from giant rhinoceroses, 
+                            evil monkeys and other terrifying creatures. 
+                        </p>
+                    </div>
+                    <div class="row-auto text-center text-md-left my-3">
+                        <p><strong>Directed by: </strong>Joe Johnston</p>
+                    </div>
+                    <div class="row-auto text-center text-md-left my-3">
+                        <p><strong>Stars: </strong><a href=""> Robin Williams</a>, <a href="">Kirsten Dunst</a>, <a href="">Bonnie Hunt</a></p>
+                    </div>
+                    <div class="row-auto text-center text-md-left my-3 py-1">
+                        <p class="lead">Price: $15.99</p>
+                        <p><a href="#" role="button"><i class="fa fa-cart-plus fa-3x " aria-hidden="true" style="color: grey;"></i></a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JQuery, Popper, and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- Font Awesome JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+
+    <!-- Load our JS Scripts -->
+    <script src="js/nav-bar.js"></script>
+</body>
+
+</html>
