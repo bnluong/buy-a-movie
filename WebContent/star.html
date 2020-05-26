@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Our Own CSS -->
+    <link rel="stylesheet" href="css/global.css">
+
+    <title id="starName"></title>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt=""></a>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle navItem" href="#" id="moviesDropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Movies</a>
+                        <div class="dropdown-menu" aria-labelledby="moviesDropdownId">
+                            <a class="dropdown-item" href="browsing.html?topRated=true&sortBy=rating&order=desc&numResults=50&offset=0">Top Rated Movies</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle navItem" href="#" id="starsDropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Stars</a>
+                        <div class="dropdown-menu" aria-labelledby="starsDropdownId">
+                            <a class="dropdown-item" href="#">Popular Stars</a>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mx-auto col-md-5">
+                    <form class="input-group" id="navBarSearch">
+                        <input class="form-control" name="search" type="text" required autocomplete="off" placeholder="Search for a movie">
+                        <button class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" id="userSession">
+                        <!-- JS script: Display Login/Logout message accordingly -->
+                    </li>
+                    <li class="nav-item"><a class="nav-link navItem" href="cart.html"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true" style="margin-top: 6px;"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Body -->
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row justify-content-center mx-auto py-5">
+                <div class="col-md-3 text-left" style="max-width: 100%;">
+                    <div class="row text-left my">
+                        <p class="h2">Kirsten Dunst</p>
+                    </div>
+                    <div class="row my">
+                        <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/5dI5s8Oq2Ook5PFzTWMW6DCXVjm.jpg" alt="" style="width: 300px; border-radius: 10px;">
+                    </div>
+                    <div class="row my-2">
+                        <p class="h5">Personal Info</p>
+                    </div>
+                    <div class="row">
+                        <p>
+                            <strong>Profession: </strong> Actress, Producer, Soundtrack
+                        </p>
+                    </div>
+                    <div class="row">
+                        <p>
+                            <strong>Gender: </strong> Female
+                        </p>
+                    </div>
+                    <div class="row">
+                        <p>
+                            <strong>Birthyear: </strong> 1982 (38 years old)
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-8 mx-md-4">
+                    <div class="row my-3">
+                        <p class="h5">Biography</p>
+                    </div>
+                    <div class="row text-left">
+                        <p> Kirsten Caroline Dunst (born April 30, 1982) is an American actress, singer and model. She made her film debut in Oedipus Wrecks, a short film directed by Woody Allen for the anthology New York Stories (1989). At the age of 12,
+                            Dunst gained widespread recognition playing the role of vampire Claudia in Interview with the Vampire (1994), a performance for which she was nominated for a Golden Globe Award for Best Supporting Actress. The same year she
+                            appeared in Little Women, to further acclaim. Dunst achieved international fame as a result of her portrayal of Mary Jane Watson in the Spider-Man trilogy (2002–07). Since then her films have included the romantic comedy Wimbledon
+                            (2004), the romantic science fiction Eternal Sunshine of the Spotless Mind (2004) and Cameron Crowe's tragicomedy Elizabethtown (2005). She played the title role in Sofia Coppola's Marie Antoinette (2006) and starred in the
+                            comedy How to Lose Friends & Alienate People (2008). She won the Best Actress Award at the Cannes Film Festival in 2011 for her performance in Lars von Trier's Melancholia.
+                        </p>
+                    </div>
+                    <div class="row my-3">
+                        <p class="h5">Known For</p>
+                    </div>
+                    <div class="row text-center" style="overflow-x: auto; overflow-y: hidden; flex-wrap: nowrap; max-width: 100%;">
+                        <div class="col-xs-4 mr-3">
+                            <a href="#"><img src="https://image.tmdb.org/t/p/w150_and_h225_bestv2/cqyN8Kt10wCrIUUZX7l5uDJIY0C.jpg" alt="" style="width: 120px; border-radius: 10px;"></a>
+                            <p><a class="title" href="/movie/557">Spider-Man</a></p>
+                        </div>
+                        <div class="col-xs-4 mr-3">
+                            <a href="#"><img src="https://image.tmdb.org/t/p/w150_and_h225_bestv2/olxpyq9kJAZ2NU1siLshhhXEPR7.jpg" alt="" style="width: 120px; border-radius: 10px;"></a>
+                            <p><a class="title" href="/movie/557">Spider-Man 2</a></p>
+                        </div>
+                        <div class="col-xs-4 mr-3">
+                            <a href="#"><img src="https://image.tmdb.org/t/p/w150_and_h225_bestv2/5MwkWH9tYHv3mV9OdYTMR5qreIz.jpg" alt="" style="width: 120px; border-radius: 10px;"></a>
+                            <p><a class="title" href="/movie/557">Eternal Sunshine of the Spotless Mind</a></p>
+                        </div>
+                        <div class="col-xs-4 mr-3">
+                            <a href="#"><img src="https://image.tmdb.org/t/p/w150_and_h225_bestv2/sqZKCRYGovZ8aN99VVJSdL8Ja9k.jpg" alt="" style="width: 120px; border-radius: 10px;"></a>
+                            <p><a class="title" href="/movie/557">Spider-Man 3</a></p>
+                        </div>
+                        <div class="col-xs-4 mr-3">
+                            <a href="#"><img src="https://image.tmdb.org/t/p/w150_and_h225_bestv2/vgpXmVaVyUL7GGiDeiK1mKEKzcX.jpg" alt="" style="width: 120px; border-radius: 10px;"></a>
+                            <p><a class="title" href="/movie/557">Jumanji</a></p>
+                        </div>
+                        <div class="col-xs-4 mr-3">
+                            <a href="#"><img src="https://image.tmdb.org/t/p/w150_and_h225_bestv2/9lfz2W2uGjyow3am00rsPJ8iOyq.jpg" alt="" style="width: 120px; border-radius: 10px;"></a>
+                            <p><a class="title" href="/movie/557">Hidden Figures</a></p>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <p class="h5">Filmography</p>
+                    </div>
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">2002</th>
+                                        <td>
+                                            <a href="#">Spider-Man</a>
+                                        </td>
+                                        <td>
+                                            Mary Jane Watson
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2004</th>
+                                        <td>
+                                            <a href="#">Spider-Man 2</a>
+                                        </td>
+                                        <td>
+                                            Mary Jane Watson
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2004</th>
+                                        <td>
+                                            <a href="#">Eternal Sunshine of the Spotless Mind</a>
+                                        </td>
+                                        <td>
+                                            Mary Svevo
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2007</th>
+                                        <td>
+                                            <a href="#">Spider-Man 3</a>
+                                        </td>
+                                        <td>
+                                            Mary Jane Watson
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2016</th>
+                                        <td>
+                                            <a href="#">Hidden Figures</a>
+                                        </td>
+                                        <td>
+                                            Vivian Mitchell
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JQuery, Popper, and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- Font Awesome JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+
+    <!-- Load our JS Scripts -->
+    <script src="js/nav-bar.js"></script>
+</body>
+
+</html>
