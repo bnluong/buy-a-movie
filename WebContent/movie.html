@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- Our Own CSS -->
     <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/movie.css">
 
     <title id="movieTitle"></title>
 </head>
@@ -52,43 +53,42 @@
             </div>
         </div>
     </nav>
-
+    
     <!-- Body -->
     <div class="container-fluid">
         <div class="container">
             <div class="row justify-content-center mx-auto py-5">
-                <div class="col-md-3 text-center" id="moviePoster" style="max-width: 100%;">
-                    <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/vgpXmVaVyUL7GGiDeiK1mKEKzcX.jpg" alt="" style="width: 300px; border-radius: 10px;">
+                <div class="col-md-3 text-center" id="moviePoster">
+                    <!-- <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/vgpXmVaVyUL7GGiDeiK1mKEKzcX.jpg" alt="" style="width: 300px; border-radius: 10px;"> -->
                 </div>
-                <div class="col-md-6 mx-3 text-center" id="movieInfo">
-                    <div class="row-auto text-center text-md-left">
-                        <p class="h4">Jumanji (1995)</p>
+                <div class="col-md-6 mx-3 text-center">
+                    <div class="row-auto text-center text-md-left" id="movieTitleHeading">
+                        <!-- <p class="h4">Jumanji (1995)</p> -->
                     </div>
-                    <div class="row-auto text-center text-md-left" style="margin-top: -5px;">
-                        <span class="small">1h 44m</span>
+                    <div class="row-auto text-center text-md-left" id="movieSubText">
+                        <!-- <span class="small">1h 44m</span>
                         <span> | </span>
-                        <span class="small"> <a href="">Adventure</a>, <a href="">Fantasy</a>, <a href="">Family</a></span>
+                        <span class="small"> <a href="">Adventure</a>, <a href="">Fantasy</a>, <a href="">Family</a></span> -->
                     </div>
-                    <div class="row-auto text-center text-md-left my-3">
-                        <p><i class="fa fa-star" aria-hidden="true"></i> 7.0</p>
+                    <div class="row-auto text-center text-md-left my-3" id="movieRating">
+                        <!-- <p><i class="fa fa-star" aria-hidden="true"></i> 7.0</p> -->
                     </div>
-                    <div class="row-auto text-center text-md-left my-3">
-                        
-                        <p><strong>Overview: </strong>When siblings Judy and Peter discover an enchanted board game that opens the door to a magical world, 
+                    <div class="row-auto text-center text-md-left my-3" id="movieOverview">
+                        <!-- <p>When siblings Judy and Peter discover an enchanted board game that opens the door to a magical world, 
                             they unwittingly invite Alan -- an adult who's been trapped inside the game for 26 years -- into their living room. 
                             Alan's only hope for freedom is to finish the game, which proves risky as all three find themselves running from giant rhinoceroses, 
                             evil monkeys and other terrifying creatures. 
-                        </p>
+                        </p> -->
                     </div>
-                    <div class="row-auto text-center text-md-left my-3">
-                        <p><strong>Directed by: </strong>Joe Johnston</p>
+                    <div class="row-auto text-center text-md-left my-3" id="movieDirector">
+                        <!-- <p><strong>Directed by: </strong>Joe Johnston</p> -->
                     </div>
-                    <div class="row-auto text-center text-md-left my-3">
-                        <p><strong>Stars: </strong><a href=""> Robin Williams</a>, <a href="">Kirsten Dunst</a>, <a href="">Bonnie Hunt</a></p>
+                    <div class="row-auto text-center text-md-left my-3" id="movieStars">
+                        <!-- <p><strong>Stars: </strong><a href=""> Robin Williams</a>, <a href="">Kirsten Dunst</a>, <a href="">Bonnie Hunt</a></p> -->
                     </div>
-                    <div class="row-auto text-center text-md-left my-3 py-1">
-                        <p class="lead">Price: $15.99</p>
-                        <p><a href="#" role="button"><i class="fa fa-cart-plus fa-3x " aria-hidden="true" style="color: grey;"></i></a></p>
+                    <div class="row-auto text-center text-md-left my-3 py-1" id="moviePrice">
+                        <!-- <p class="lead">Price: $15.99</p>
+                        <p><a href="#" role="button"><i class="fa fa-cart-plus fa-3x " aria-hidden="true" style="color: grey;"></i></a></p> -->
                     </div>
                 </div>
             </div>
@@ -105,6 +105,7 @@
 
     <!-- Load our JS Scripts -->
     <script src="js/nav-bar.js"></script>
+    <script src="js/movie.js" type="module"></script>
 </body>
 
 </html>

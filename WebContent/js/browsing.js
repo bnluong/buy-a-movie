@@ -234,7 +234,7 @@ function handleBrowsingResult(resultData) {
             moviePoster = 'img/empty-poster.png';
         }
 
-        let moviePrice = '$69.69';
+        let moviePrice = '$15.99';
 
         let trHTML = document.createElement('tr');
 
@@ -252,7 +252,7 @@ function handleBrowsingResult(resultData) {
 
         $('<td>').append(
             $('<p>', { class: 'h5' }).append(
-                $('<a>', { href: 'movie-info.html?id=' + movieID }).text(movieTitle + ' ' + '(' + movieYear + ')')
+                $('<a>', { href: 'movie.html?id=' + movieID }).text(movieTitle + ' ' + '(' + movieYear + ')')
             ),
             $('<p>', { class: 'small' }).append(movieGenres),
             $('<p>').append(

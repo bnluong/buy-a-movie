@@ -26,7 +26,7 @@ function handleRandomMovies(randomMovies) {
 		let titleID = '#movie' + (i + 1) + 'Title';
 		let titleURLID = '.title-' + i;
 		let titleHTML = '<a class="h6 title-' + i + '" href=""></a>';
-		let titleURLHTML = 'movie-info.html?id=' + randomMovies[i]['movie_id'];
+		let titleURLHTML = 'movie.html?id=' + randomMovies[i]['movie_id'];
 		$(titleID).append(titleHTML);
 		$(titleURLID).attr('href', titleURLHTML);
 		$(titleURLID).text(randomMovies[i]['movie_title'] + ' (' + randomMovies[i]['movie_year'] + ')');

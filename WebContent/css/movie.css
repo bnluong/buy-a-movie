@@ -1,0 +1,11 @@
+#moviePoster {
+    max-width: 100%;
+}
+#moviePoster img {
+    width: 300px; 
+    border-radius: 10px;
+}
+
+#movieSubText {
+    margin-top: -5px;
+}
