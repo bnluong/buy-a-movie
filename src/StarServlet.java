@@ -73,16 +73,17 @@ public class StarServlet extends HttpServlet {
 		statement.setString(1, starID);
 
 		ResultSet rSet = statement.executeQuery();
-		WebScraper portraitScraper = new WebScraper();
 		
 		while(rSet.next()) {
+			IMDBScraper imdbScraper = new IMDBScraper("https://www.imdb.com/name/" + rSet.getString("id"));
+
 			starInfo.addProperty("star_id", rSet.getString("id"));
 			starInfo.addProperty("star_name", rSet.getString("name"));
-			starInfo.addProperty("star_portrait", portraitScraper.getIMDBPortrait("https://www.imdb.com/name/" + rSet.getString("id"))); // TODO: Update database
-			starInfo.addProperty("star_profession", "Placeholder");							// TODO: Update database
-			starInfo.addProperty("star_gender", "Placeholder");
+			starInfo.addProperty("star_portrait", imdbScraper.getStarPortrait()); 			// TODO: Update database
+			starInfo.addProperty("star_profession", imdbScraper.getStarProfession());		// TODO: Update database
+			starInfo.addProperty("star_gender", "Placeholder");								// TODO: Update database
 			starInfo.addProperty("star_birthyear", rSet.getString("birth_year"));		
-			starInfo.addProperty("star_bio", "Placeholder");								// TODO: Update database
+			starInfo.addProperty("star_bio", imdbScraper.getStarBio());						// TODO: Update database
 			starInfo.add("star_known_for", getStarKnownFor(starID, dbConnection));			// TODO: Update database
 			starInfo.add("star_filmography", getStarFilmography(starID, dbConnection));
 		}
@@ -109,15 +110,14 @@ public class StarServlet extends HttpServlet {
 
 		ResultSet rSet = statement.executeQuery();
 
-		WebScraper posterScraper = new WebScraper(); // Too slow T_T
-
+		IMDBScraper posterScraper = new IMDBScraper(); // Too slow T_T
 		
 		while(rSet.next()) {     
 			JsonObject jObject = new JsonObject();
 
 			jObject.addProperty("movie_id", rSet.getString("id"));
 			jObject.addProperty("movie_title", rSet.getString("title"));
-			jObject.addProperty("movie_poster", posterScraper.getIMDBPoster("https://www.imdb.com/title/" + rSet.getString("id")));
+			jObject.addProperty("movie_poster", posterScraper.getMoviePoster("https://www.imdb.com/title/" + rSet.getString("id")));
 
 			knownFor.add(jObject);
 		}

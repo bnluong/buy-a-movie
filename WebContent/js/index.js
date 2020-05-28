@@ -20,7 +20,11 @@ function handleRandomMovies(randomMovies) {
 	for (let i = 0; i < randomMovies.length; i++) {
         // Handle random movie poster
 		let movieImgID = '#movie' + (i + 1) + 'Img';
-		$(movieImgID).attr('src', randomMovies[i]['movie_poster']);
+		let moviePoster = randomMovies[i]['movie_poster'];
+		if(moviePoster == '')
+			moviePoster = 'img/empty-poster.png'
+		
+		$(movieImgID).attr('src', moviePoster);
 
 		// Handle random movie title
 		let titleID = '#movie' + (i + 1) + 'Title';

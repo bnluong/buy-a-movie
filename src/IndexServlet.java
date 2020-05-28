@@ -51,10 +51,10 @@ public class IndexServlet extends HttpServlet {
 			JsonArray listOfGenres = getListOfGenres(dbConnection);
 			JsonArray randomMovies = getRandomMovies(dbConnection, 3);
 			
-			WebScraper posterScraper = new WebScraper();
+			IMDBScraper posterScraper = new IMDBScraper();
 			for(int i = 0; i <randomMovies.size(); i++) {
 				String movieID = randomMovies.get(i).getAsJsonObject().get("movie_id").getAsString();
-				String moviePoster = posterScraper.getIMDBPoster("https://www.imdb.com/title/" + movieID);
+				String moviePoster = posterScraper.getMoviePoster("https://www.imdb.com/title/" + movieID);
 				randomMovies.get(i).getAsJsonObject().addProperty("movie_poster", moviePoster);
 			}
 			

@@ -15,10 +15,11 @@ function handleStarResult(resultData) {
         starBirthYear = 'Unknown'
 
     var starBio = resultData['star_bio'];
+    if(starBio == '')
+    	starBio = 'No information';
+    
     var starKnownFor = resultData['star_known_for'];
     var starFilmography = resultData['star_filmography'];
-
-
 
     $('#starTitle').text('Buy-a-Movie - ' + starName);
 

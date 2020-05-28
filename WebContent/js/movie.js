@@ -9,6 +9,9 @@ function handleMovieResult(resultData) {
         moviePoster = 'img/empty-poster.png';
 
     var movieRuntime = resultData['movie_runtime'];
+    if(movieRuntime == '')
+    	movieRuntime = 'Unknown'
+    
     var movieGenres = utils.parseGenresAsHTML(resultData['movie_genres']);
     
     var movieRating = resultData['movie_rating'];
@@ -16,6 +19,9 @@ function handleMovieResult(resultData) {
     	movieRating = 'Not yet rated';
     
     var movieOverview = resultData['movie_overview'];
+    if(movieOverview == 'Add a Plot »')
+    	movieOverview = 'No information';
+    
     var movieDirector = resultData['movie_director'];
     var movieStars = utils.parseStarsAsHTML(resultData['movie_stars']);
     var moviePrice = resultData['movie_price'];

@@ -49,17 +49,19 @@ public class BrowsingServlet extends HttpServlet {
 			// Get a connection from dataSource
 			Connection dbConnection = dataSource.getConnection();
 
-			String totalMovies = totalMovies = getTotalMovies(dbConnection, topRatedParam, searchParam, titleParam, genreParam);
+			String totalMovies = getTotalMovies(dbConnection, topRatedParam, searchParam, titleParam, genreParam);
 
 			JsonArray resultData = getMoviesList(dbConnection, topRatedParam, searchParam, titleParam, genreParam, sortParam, orderParam, numResultsParam, offsetParam);
 
+			IMDBScraper imdbScraper = new IMDBScraper();
+			
 			for(int i = 0; i < resultData.size(); i++) {
 				String movieID = resultData.get(i).getAsJsonObject().get("movie_id").getAsString();
 				JsonArray movieGenres = getMovieGenres(dbConnection, (String) movieID);
 				JsonArray movieStars = getMovieStars(dbConnection, (String) movieID);
 				resultData.get(i).getAsJsonObject().add("movie_genres", movieGenres);
 				resultData.get(i).getAsJsonObject().add("movie_stars", movieStars);
-				String moviePoster = "";
+				String moviePoster = imdbScraper.getMoviePoster("https://www.imdb.com/title/"+ movieID);	// TODO: Update the database
 				resultData.get(i).getAsJsonObject().addProperty("movie_poster", moviePoster);
 			}
 
