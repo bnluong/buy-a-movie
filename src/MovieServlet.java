@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import com.buyamovie.utilities.PosterScrapper;
+import com.buyamovie.utilities.*;
 
 /**
  * Servlet implementation class BrowsingServlet
@@ -86,12 +86,12 @@ public class MovieServlet extends HttpServlet {
 		resultData.add("movie_genres", getMovieGenres(dbConnection, movieID));
 		resultData.add("movie_stars", getMovieStars(dbConnection, movieID));
 
-		PosterScrapper posterScraper = new PosterScrapper(); // Too slow T_T
+		WebScraper posterScraper = new WebScraper();
 		resultData.addProperty("movie_poster", posterScraper.getIMDBPoster("https://www.imdb.com/title/" + movieID));
 		
-		resultData.addProperty("movie_runtime", "2h 22min");
-		resultData.addProperty("movie_overview", "In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego: the Joker. ");
-		resultData.addProperty("movie_price", "15.99");
+		resultData.addProperty("movie_runtime", "Placeholder");		// TODO: Update database
+		resultData.addProperty("movie_overview", "Placeholder");	// TODO: Update database
+		resultData.addProperty("movie_price", "15.99");				// TODO: Update database
 		
 		rSet.close();
 		statement.close();

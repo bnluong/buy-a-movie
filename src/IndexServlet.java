@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.buyamovie.utilities.PosterScrapper;
+import com.buyamovie.utilities.*;
 
 /**
  * Servlet implementation class IndexServlet
@@ -51,7 +51,7 @@ public class IndexServlet extends HttpServlet {
 			JsonArray listOfGenres = getListOfGenres(dbConnection);
 			JsonArray randomMovies = getRandomMovies(dbConnection, 3);
 			
-			PosterScrapper posterScraper = new PosterScrapper();
+			WebScraper posterScraper = new WebScraper();
 			for(int i = 0; i <randomMovies.size(); i++) {
 				String movieID = randomMovies.get(i).getAsJsonObject().get("movie_id").getAsString();
 				String moviePoster = posterScraper.getIMDBPoster("https://www.imdb.com/title/" + movieID);

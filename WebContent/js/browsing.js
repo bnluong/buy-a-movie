@@ -226,8 +226,8 @@ function handleBrowsingResult(resultData) {
         let movieYear = resultData[i]['movie_year'];
         let movieDirector = resultData[i]['movie_director'];
         let movieRating = resultData[i]['movie_rating'];
-        let movieGenres = parseGenres(resultData[i]['movie_genres']);
-        let movieStars = parseStars(resultData[i]['movie_stars']);
+        let movieGenres = utils.parseGenresAsHTML(resultData[i]['movie_genres']);
+        let movieStars = utils.parseStarsAsHTML(resultData[i]['movie_stars']);
 
         let moviePoster = resultData[i]['movie_poster'];
         if(moviePoster == '') {
@@ -279,29 +279,6 @@ function handleBrowsingResult(resultData) {
 
         paginationTableHTML.append(trHTML);
     }
-}
-
-function parseGenres(movieGenres) {
-    var genresHTML = '';
-    for(let i = 0; i < movieGenres.length; i++) {
-        let genreName = movieGenres[i]['genre_name'];
-        genresHTML += '<a href="browsing.html?' + '&genre=' + genreName + '&sortBy=rating&order=desc&numResults=10&offset=0' + '">' + genreName + '</a>'
-        if(i != movieGenres.length - 1)
-            genresHTML += ', ';
-    }
-    return genresHTML;
-}
-
-function parseStars(movieStars) {
-    var starsHTML = '';
-    for(let i = 0; i < movieStars.length; i++) {
-        let starID = movieStars[i]['star_id'];
-        let starName = movieStars[i]['star_name'];
-        starsHTML += '<a href="star-info.html?' + 'id=' + starID + '">' + starName + '</a>'
-        if(i != movieStars.length - 1)
-            starsHTML += ', ';
-    }
-    return starsHTML;
 }
 
 const topRated = utils.getParameterByName('topRated');

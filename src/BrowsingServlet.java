@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Enumeration;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -15,10 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import com.buyamovie.utilities.PosterScrapper;
+import com.buyamovie.utilities.*;
 
 /**
  * Servlet implementation class BrowsingServlet
@@ -55,15 +53,12 @@ public class BrowsingServlet extends HttpServlet {
 
 			JsonArray resultData = getMoviesList(dbConnection, topRatedParam, searchParam, titleParam, genreParam, sortParam, orderParam, numResultsParam, offsetParam);
 
-			//PosterScrapper posterScraper = new PosterScrapper(); // Too slow T_T
-
 			for(int i = 0; i < resultData.size(); i++) {
 				String movieID = resultData.get(i).getAsJsonObject().get("movie_id").getAsString();
 				JsonArray movieGenres = getMovieGenres(dbConnection, (String) movieID);
 				JsonArray movieStars = getMovieStars(dbConnection, (String) movieID);
 				resultData.get(i).getAsJsonObject().add("movie_genres", movieGenres);
 				resultData.get(i).getAsJsonObject().add("movie_stars", movieStars);
-				//String moviePoster = posterScraper.getIMDBPoster("https://www.imdb.com/title/" + movieID);
 				String moviePoster = "";
 				resultData.get(i).getAsJsonObject().addProperty("movie_poster", moviePoster);
 			}

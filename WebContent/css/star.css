@@ -1,0 +1,19 @@
+.starLeftColumn {
+    max-width: 100%;
+}
+
+#starPortrait img {
+  width: 300px; 
+  border-radius: 10px;
+}
+
+#starKnownFor {
+  overflow-x: auto; 
+  overflow-y: hidden; 
+  flex-wrap: nowrap; 
+  max-width: 100%;
+}
+#starKnownFor img {
+  width: 120px; 
+  border-radius: 10px;
+}

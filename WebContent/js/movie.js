@@ -20,7 +20,7 @@ function handleMovieResult(resultData) {
     var movieStars = utils.parseStarsAsHTML(resultData['movie_stars']);
     var moviePrice = resultData['movie_price'];
     
-    $('#movieTitle').text(movieTitle + ' (' + movieYear + ')');
+    $('#movieTitle').text('Buy-a-Movie - ' + movieTitle + '(' + movieYear + ')');
     $('#moviePoster').append(
         $('<img>', {
             src: moviePoster,

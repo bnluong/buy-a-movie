@@ -29,7 +29,7 @@ export function parseStarsAsHTML(movieStars) {
     for(let i = 0; i < movieStars.length; i++) {
         let starID = movieStars[i]['star_id'];
         let starName = movieStars[i]['star_name'];
-        starsHTML += '<a href="star-info.html?' + 'id=' + starID + '">' + starName + '</a>'
+        starsHTML += '<a href="star.html?' + 'id=' + starID + '">' + starName + '</a>'
         if(i != movieStars.length - 1)
             starsHTML += ', ';
     }
