@@ -1,4 +1,5 @@
 package com.buyamovie.apis;
+import com.buyamovie.usersession.UserSession;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -20,6 +21,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -75,11 +77,20 @@ public class LoginServlet extends HttpServlet {
 					resultData.addProperty("status", "fail");
 					resultData.addProperty("message", "Incorect password");
 				} else {
-		            request.getSession().setAttribute("user", rSet.getString("first_name"));
-		            resultData.addProperty("status", "success");
+					HttpSession newSession = request.getSession();
+					
+					if(rememberMe != null)
+						newSession.setMaxInactiveInterval(0);
+
+					String sessionID = newSession.getId();
+					String userName = rSet.getString("first_name");
+		            
+					request.getSession().setAttribute("user_session", new UserSession(sessionID, userName));
+		            
+					resultData.addProperty("status", "success");
 		            resultData.addProperty("message", "success");
 				}
-			}	
+			}
 
 			// Write JSON string to output
 			out.write(resultData.toString());

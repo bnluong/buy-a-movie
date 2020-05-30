@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.buyamovie.usersession.UserSession;
 import com.google.gson.JsonObject;
 
 /**
@@ -29,11 +30,10 @@ public class SessionServlet extends HttpServlet {
 			JsonObject resultData = new JsonObject();
 
 			HttpSession session = request.getSession();
+			UserSession currentUser = (UserSession) session.getAttribute("user_session");
 
-			String sessionUser = (String) session.getAttribute("user");
-
-			if(sessionUser != null) {
-				resultData.addProperty("user_name", sessionUser);
+			if(currentUser != null) {
+				resultData.addProperty("user_name", currentUser.getUserName());
 			} else {
 				resultData.add("user_name", null);
 			}

@@ -3,7 +3,7 @@ function handleSession(sessionResult) {
     // <a class="nav-link navItem" href="login.html">Hello, Bao<br>Logout?</br></a>
     var userName = sessionResult['user_name'];
     if(userName != null) {
-        var userSessionHTML = '<a class="nav-link navItem" href="login.html">Hello, ' + userName + '<br>Logout?</br></a>';
+        var userSessionHTML = '<a class="nav-link navItem" href="#">Hello, ' + userName + '<br>Logout?</br></a>';
         $('#userSession').html(userSessionHTML);
         
         $("#userSession").on("click", function(event) {

@@ -9,6 +9,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.buyamovie.usersession.UserSession;
 
 /**
  * Servlet Filter implementation class LoginFilter
@@ -40,14 +43,17 @@ public class LoginFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
         // Check if this URL is allowed to access without logging in
-        if (this.isUrlAllowedWithoutLogin(httpRequest.getRequestURI())) {
+        if(this.isUrlAllowedWithoutLogin(httpRequest.getRequestURI())) {
             // Keep default action: pass along the filter chain
             chain.doFilter(request, response);
             return;
         }
 		
+        HttpSession session = httpRequest.getSession();
+		UserSession currentUser = (UserSession) session.getAttribute("user_session");
+
         // Redirect to login page if the "user" attribute doesn't exist in session
-        if (httpRequest.getSession().getAttribute("user") == null) {
+        if(currentUser == null) {
             httpResponse.sendRedirect("login.html");
         } else {
     		// pass the request along the filter chain
