@@ -5,6 +5,18 @@ function handleSession(sessionResult) {
     if(userName != null) {
         var userSessionHTML = '<a class="nav-link navItem" href="login.html">Hello, ' + userName + '<br>Logout?</br></a>';
         $('#userSession').html(userSessionHTML);
+        
+        $("#userSession").on("click", function(event) {
+        	event.preventDefault();
+        	
+        	$.ajax({
+        	    method: 'POST',
+        	    url: 'api/logout',
+        	}).done(function() {
+        		alert('Logging out');
+        		window.location.replace("index.html");        	
+        	});
+        });
     } else {
         var userSessionHTML = '<a class="nav-link navItem" href="login.html">Hello<br>Login?</br></a>\n';
         $('#userSession').html(userSessionHTML);
