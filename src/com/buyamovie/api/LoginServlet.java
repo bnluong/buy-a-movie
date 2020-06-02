@@ -1,4 +1,4 @@
-package com.buyamovie.apis;
+package com.buyamovie.api;
 import com.buyamovie.usersession.UserSession;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
 		
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        String rememberMe = request.getParameter("rememberMe");		// TODO: Implement remember me when we learn more about it
+        String rememberMe = request.getParameter("rememberMe");
         
 		try {
 			// Get a connection from dataSource

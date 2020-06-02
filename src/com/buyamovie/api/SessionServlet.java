@@ -1,4 +1,4 @@
-package com.buyamovie.apis;
+package com.buyamovie.api;
 import java.io.IOException;
 import java.io.PrintWriter;
 

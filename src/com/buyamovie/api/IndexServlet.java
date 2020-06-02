@@ -1,4 +1,4 @@
-package com.buyamovie.apis;
+package com.buyamovie.api;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 

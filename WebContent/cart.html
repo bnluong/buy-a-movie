@@ -53,7 +53,70 @@
         </div>
     </nav>
 
-	<div><h1>THIS IS A DUMMY SHOPPING CART!</h1></div>
+    <div class="container p-5">
+        <div class="row">
+            <div class="col-12">
+                <p class="h5">Your Shopping Cart</p>
+            </div>
+        </div>
+
+        <hr class="my-3">
+
+        <div class="form-row">
+            <div class="col-sm-3 col-5">
+                <img src="https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SY1000_CR0,0,674,1000_AL_.jpg" alt="" style="max-width: 100%;">
+            </div>
+            <div class="col-6 mx-auto">
+                <div class="row mx-auto">
+                    <p class="h5"><a href="">Joker (2019)</a></p>
+                </div>
+
+                <div class="form-group my-3"><div class="form-group">
+                      <label class="small" for="">Quantity</label>
+                      
+                      <input type="number" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" style="max-width: 65px;">
+                    </div>
+                    <button type="reset" class="btn btn-dark">Delete</button>
+                </div>
+            </div>
+            <div class="col-1">
+                <p class="h6">$15.99</p>
+            </div>
+        </div>
+
+        <hr class="my-3">
+
+        <div class="form-row">
+            <div class="col-sm-3 col-5">
+                <img src="https://m.media-amazon.com/images/M/MV5BMDJiNzUwYzEtNmQ2Yy00NWE4LWEwNzctM2M0MjE0OGUxZTA3XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SY1000_CR0,0,675,1000_AL_.jpg" alt="" style="max-width: 100%;">
+            </div>
+            <div class="col-6 mx-auto">
+                <div class="row mx-auto">
+                    <p class="h5"><a href="">Extraction (2020)</a></p>
+                </div>
+                <div class="form-group my-3">
+                    <div class="form-group">
+                      <label class="small" for="">Quantity</label>
+                      <input type="number" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" style="max-width: 65px;">
+                    </div>
+                    <button type="reset" class="btn btn-dark">Delete</button>
+                </div>
+            </div>
+            <div class="col-1">
+                <p class="h6">$15.99</p>
+            </div>
+        </div>
+
+        <hr class="my-3">
+
+        <div class="form-row justify-content-end">
+            <p>Subtotal (2 items): $31.98</p>
+        </div>
+        <div class="form-row justify-content-end ">
+            <button type="reset" class="btn btn-dark mx-1">Clear Cart</button>
+            <button type="submit" class="btn btn-dark">Checkout</button>
+        </div>
+    </div>
 
     <!-- JQuery, Popper, and Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -65,6 +128,7 @@
 
     <!-- Load JS Scripts -->
     <script src="js/nav-bar.js"></script>
+    <script src="js/cart.js" type='module'></script>
 </body>
 
 </html>
