@@ -2,10 +2,12 @@ package com.buyamovie.usersession;
 
 public class UserSession {
 	private String sessionID;
+	private String userEmail;
 	private String userName;
 	
-	public UserSession(String sessionID, String userName) {
+	public UserSession(String sessionID, String userEmail, String userName) {
 		this.sessionID = sessionID;
+		this.setUserEmail(userEmail);
 		this.userName = userName;
 	}
 
@@ -17,6 +19,14 @@ public class UserSession {
 		this.sessionID = sessionID;
 	}
 
+	public String getUserEmail() {
+		return userEmail;
+	}
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+	
 	public String getUserName() {
 		return userName;
 	}

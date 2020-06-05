@@ -12,7 +12,7 @@ function handleLogin(loginFormSubmitEvent) {
 
 function handleLoginResult(loginResult) {
     if(loginResult['status'] == 'success') {
-        window.location.replace("index.html");
+    	window.location = document.referrer;
     } else {
         let alertMsg = loginResult['message'];
         let alertHTML = '<div class="alert alert-danger alert-dismissible fade show" id="loginAlert" role="alert">';

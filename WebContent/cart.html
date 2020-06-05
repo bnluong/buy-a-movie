@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- Our Own CSS -->
     <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/cart.css">
 
     <title>Buy-a-Movie Shopping Cart</title>
 </head>
@@ -38,7 +39,7 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav mx-auto col-md-5">
-					<form class="input-group" id="navBarSearch">
+                    <form class="input-group" id="navBarSearch">
                         <input class="form-control" name="search" type="text" required autocomplete="off" placeholder="Search for a movie">
                         <button class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
                     </form>
@@ -62,59 +63,39 @@
 
         <hr class="my-3">
 
-        <div class="form-row">
-            <div class="col-sm-3 col-5">
-                <img src="https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SY1000_CR0,0,674,1000_AL_.jpg" alt="" style="max-width: 100%;">
-            </div>
-            <div class="col-6 mx-auto">
-                <div class="row mx-auto">
-                    <p class="h5"><a href="">Joker (2019)</a></p>
+        <div id="cartContent">
+            <!-- <div class="form-row" id="item1">
+                <div class="col-sm-3 col-3">
+                    <img src="https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SY1000_CR0,0,674,1000_AL_.jpg" alt="">
                 </div>
-
-                <div class="form-group my-3"><div class="form-group">
-                      <label class="small" for="">Quantity</label>
-                      
-                      <input type="number" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" style="max-width: 65px;">
+                <div class="col-6 mx-auto">
+                    <div class="row mx-auto">
+                        <p class="h5"><a href="">Joker (2019)</a></p>
                     </div>
-                    <button type="reset" class="btn btn-dark">Delete</button>
-                </div>
-            </div>
-            <div class="col-1">
-                <p class="h6">$15.99</p>
-            </div>
-        </div>
-
-        <hr class="my-3">
-
-        <div class="form-row">
-            <div class="col-sm-3 col-5">
-                <img src="https://m.media-amazon.com/images/M/MV5BMDJiNzUwYzEtNmQ2Yy00NWE4LWEwNzctM2M0MjE0OGUxZTA3XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SY1000_CR0,0,675,1000_AL_.jpg" alt="" style="max-width: 100%;">
-            </div>
-            <div class="col-6 mx-auto">
-                <div class="row mx-auto">
-                    <p class="h5"><a href="">Extraction (2020)</a></p>
-                </div>
-                <div class="form-group my-3">
-                    <div class="form-group">
-                      <label class="small" for="">Quantity</label>
-                      <input type="number" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" style="max-width: 65px;">
+    
+                    <div class="form-group my-3">
+                        <div class="form-group">
+                            <label class="small" for="">Quantity</label>
+                            <input type="number" class="form-control" name="quantity" id="" aria-describedby="helpId" placeholder="">
+                        </div>
+                        <button type="submit" class="btn btn-dark btn-sm mr-1 cartItemUpdate">Update</button>
+                        <button type="submit" class="btn btn-dark btn-sm mr-1 cartItemRemove">Remove</button>
                     </div>
-                    <button type="reset" class="btn btn-dark">Delete</button>
+                </div>
+                <div class="col-1 unitPrice">
+                    <p class="h6" name="unitPrice">$15.99</p>
                 </div>
             </div>
-            <div class="col-1">
-                <p class="h6">$15.99</p>
-            </div>
+    
+            <hr class="my-3"> -->
         </div>
-
-        <hr class="my-3">
-
+        
+        <div class="form-row justify-content-end" id="cartSubTotal">
+            <!-- <p class="h6">Subtotal (2 items): $31.98</p> -->
+        </div>
         <div class="form-row justify-content-end">
-            <p>Subtotal (2 items): $31.98</p>
-        </div>
-        <div class="form-row justify-content-end ">
-            <button type="reset" class="btn btn-dark mx-1">Clear Cart</button>
-            <button type="submit" class="btn btn-dark">Checkout</button>
+            <button type="reset" class="btn btn-dark mx-1" id="cartClear">Clear Cart</button>
+            <button type="submit" class="btn btn-dark" id="cartCheckout">Checkout</button>
         </div>
     </div>
 
@@ -128,7 +109,7 @@
 
     <!-- Load JS Scripts -->
     <script src="js/nav-bar.js"></script>
-    <script src="js/cart.js" type='module'></script>
+    <script src="js/cart.js" type="module"></script>
 </body>
 
 </html>

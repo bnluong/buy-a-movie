@@ -34,6 +34,7 @@ public class SessionServlet extends HttpServlet {
 
 			if(currentUser != null) {
 				resultData.addProperty("user_name", currentUser.getUserName());
+				resultData.addProperty("user_email", currentUser.getUserEmail());
 			} else {
 				resultData.add("user_name", null);
 			}

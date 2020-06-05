@@ -13,8 +13,7 @@ function handleSession(sessionResult) {
         	    method: 'POST',
         	    url: 'api/logout',
         	}).done(function() {
-        		alert('Logging out');
-        		window.location.replace("index.html");        	
+        		window.location.replace("login.html");
         	});
         });
     } else {

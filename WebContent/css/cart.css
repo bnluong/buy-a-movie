@@ -1,0 +1,7 @@
+#cartContent img {
+    width: 150px;
+    max-width: 100%;
+}
+#cartContent input {
+    max-width: 65px;
+}

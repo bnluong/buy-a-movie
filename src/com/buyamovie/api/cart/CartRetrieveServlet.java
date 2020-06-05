@@ -14,76 +14,41 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import com.buyamovie.usersession.UserSession;
+import com.buyamovie.utilities.IMDBScraper;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 /**
- * Servlet implementation class CartAddServlet
+ * Servlet implementation class CartRetrieveServlet
  */
-@WebServlet(name = "/CartAddServlet", urlPatterns = "/api/cart/add")
-public class CartAddServlet extends HttpServlet {
-	private static final long serialVersionUID = 14L;
-
+@WebServlet(name = "/CartRetrieveServlet", urlPatterns = "/api/cart/retrieve")
+public class CartRetrieveServlet extends HttpServlet {
+	private static final long serialVersionUID = 15L;
+    
 	// Create a dataSource which registered in web.xml
 	@Resource(name = "jdbc/moviedb")
 	private DataSource dataSource;
-
+	
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
-
-		String movieID = request.getParameter("id");
-		String movieTitle = request.getParameter("title");
-		String price = request.getParameter("price");
-		String quantity = request.getParameter("quantity");
+		
 		String userEmail = request.getParameter("user");
-
-		HttpSession session = request.getSession();
-		UserSession currentUser = (UserSession) session.getAttribute("user_session");
-		if(!currentUser.getUserEmail().equalsIgnoreCase(userEmail)) {
-			JsonObject resultData = new JsonObject();
-
-			resultData.addProperty("status", "fail");
-			resultData.addProperty("message", "User not found");
-
-			// Write JSON string to output
-			out.write(resultData.toString());
-			// Set response status to 200 (OK)
-			response.setStatus(200);
-			out.close();
-			return;
-		}
-
+		
 		try {
 			// Get a connection from dataSource
 			Connection dbConnection = dataSource.getConnection();
 
-			JsonObject resultData = new JsonObject();
+			JsonArray resultData;
 
 			String cartID = getCartID(dbConnection, userEmail);
 			
-			String query = "INSERT INTO cart_items\n" + 
-					"VALUES (NULL,?,?,?,?)\n" + 
-					"ON DUPLICATE KEY UPDATE\n" + 
-					"	cart_items.quantity = cart_items.quantity + 1";
-			
-			PreparedStatement statement = dbConnection.prepareStatement(query);
-			statement.setString(1, cartID);
-			statement.setString(2, movieID);
-			statement.setInt(3, Integer.parseInt(quantity));
-			statement.setFloat(4, Float.parseFloat(price));
-
-			if (statement.executeUpdate() == 0)
-				throw new SQLException("Failed to add movie to cart");
-			
-			resultData.addProperty("status", "success");
-			resultData.addProperty("message", movieTitle + " added to cart.");
+			resultData = getCartContent(dbConnection, cartID);
 
 			// Write JSON string to output
 			out.write(resultData.toString());
@@ -102,7 +67,33 @@ public class CartAddServlet extends HttpServlet {
 			// Set reponse status to 500 (Internal Server Error)
 			response.setStatus(500);
 		}
+		
 		out.close();
+	}
+	
+	private JsonArray getCartContent(Connection dbConnection, String cartID) throws SQLException {
+		JsonArray cartContent = new JsonArray();
+		String query = "SELECT cart_items.movie_id, cart_items.quantity, cart_items.price, movies.title, movies.year\n" + 
+				"FROM cart_items\n" + 
+				"INNER JOIN movies ON movies.id = cart_items.movie_id\n" + 
+				"WHERE cart_items.cart_id = ?";
+		PreparedStatement statement = dbConnection.prepareStatement(query);
+		statement.setString(1, cartID);
+		
+		ResultSet rSet = statement.executeQuery();
+		while(rSet.next()) {
+			JsonObject jObject = new JsonObject();
+			jObject.addProperty("movie_id", rSet.getString(1));
+			jObject.addProperty("movie_quantity", rSet.getString(2));
+			jObject.addProperty("movie_price", rSet.getString(3));
+			jObject.addProperty("movie_title", rSet.getString(4));
+			jObject.addProperty("movie_year", rSet.getString(5));
+			//jObject.addProperty("movie_poster", rSet.getString(6));
+			IMDBScraper imdbScraper = new IMDBScraper("https://www.imdb.com/title/" + rSet.getString(1));
+			jObject.addProperty("movie_poster", imdbScraper.getMoviePoster());
+			cartContent.add(jObject);
+		}
+		return cartContent;
 	}
 
 	private String getCartID(Connection dbConnection, String userEmail) throws SQLException {

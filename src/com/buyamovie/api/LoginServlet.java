@@ -83,9 +83,10 @@ public class LoginServlet extends HttpServlet {
 						newSession.setMaxInactiveInterval(0);
 
 					String sessionID = newSession.getId();
+					String userEmail = email;
 					String userName = rSet.getString("first_name");
 		            
-					request.getSession().setAttribute("user_session", new UserSession(sessionID, userName));
+					request.getSession().setAttribute("user_session", new UserSession(sessionID, userEmail, userName));
 		            
 					resultData.addProperty("status", "success");
 		            resultData.addProperty("message", "success");

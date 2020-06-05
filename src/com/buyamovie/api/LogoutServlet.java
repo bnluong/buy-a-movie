@@ -1,6 +1,5 @@
 package com.buyamovie.api;
 
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +20,7 @@ public class LogoutServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false); 
-		session.invalidate();
+		if (session != null)
+			session.removeAttribute("user_session");
 	}
-
 }
