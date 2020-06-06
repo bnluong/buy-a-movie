@@ -41,7 +41,7 @@ function displayCart() {
                                     $('<input>', { class: 'form-control cartItemQuantity', type: 'number', name: 'quantity' })
                                 ),
                                 $('<button>', { class: 'btn btn-dark btn-sm mr-1 cartItemUpdate', type: 'submit' }).text('Update'),
-                                $('<button>', { class: 'btn btn-dark btn-sm mr-1 cartItemRemove', type: 'submit' }).text('Remove')
+                                $('<button>', { class: 'btn btn-dark btn-sm mr-1 cartItemRemove', type: 'submit' }).text('Delete')
                             )
                         ),
                         $('<div>', { class: 'col-1 unitPrice' }).append(
@@ -78,27 +78,28 @@ function getCurrentUser() {
     });
 }
 
-function handleAddToCartResult(response) {
-    if(response['status'] == 'success') {
-        alert(response['message'])
-        window.location = 'cart.html';
-    } else {
-        alert(response['message'])
-        window.location = 'cart.html';
-    }
+function deleteCartItem(event) {
+	event.preventDefault();
+	
+	var cartID = $(this).parent().parent().parent().attr('id');
+	
+    $.ajax({
+        type: 'POST',
+        url: 'api/cart/delete',
+        data: 'id=' + cartID + '&' + 'user=' + user,
+        success: function(response) {
+            if(response['status'] == 'success') {
+                alert(response['message'])
+                window.location = 'cart.html';
+            } else {
+                alert(response['message'])
+                window.location = 'cart.html';
+            }
+        }
+    });
 }
 
-function handleUpdateCartResult(response) {
-    if(response['status'] == 'success') {
-        alert(response['message'])
-        window.location = 'cart.html';
-    } else {
-        alert(response['message'])
-        window.location = 'cart.html';
-    }
-}
-
-function updateCart(event) {
+function updateCartItem(event) {
 	event.preventDefault();
 	
 	var cartID = $(this).parent().parent().parent().attr('id');
@@ -108,7 +109,15 @@ function updateCart(event) {
         type: 'POST',
         url: 'api/cart/update',
         data: 'id=' + cartID + '&' + 'quantity=' + quantity + '&' + 'user=' + user,
-        success: handleUpdateCartResult
+        success: function(response) {
+            if(response['status'] == 'success') {
+                alert(response['message'])
+                window.location = 'cart.html';
+            } else {
+                alert(response['message'])
+                window.location = 'cart.html';
+            }
+        }
     });
 }
 
@@ -129,10 +138,19 @@ if(addToCart == 'true') {
         type: 'POST',
         url: 'api/cart/add',
         data: 'id=' + movieID + '&title=' + movieTitle + '&price=' + moviePrice + '&quantity=' + movieQuantity + '&user=' + user,
-        success: handleAddToCartResult
+        success: function(response) {
+            if(response['status'] == 'success') {
+                alert(response['message'])
+                window.location = document.referrer;
+            } else {
+                alert(response['message'])
+                window.location = 'cart.html';
+            }
+        }
     });
 } else {
     displayCart();
 }
 
-$('#cartContent').on('click', '.cartItemUpdate', updateCart)
+$('#cartContent').on('click', '.cartItemUpdate', updateCartItem)
+$('#cartContent').on('click', '.cartItemRemove', deleteCartItem)
