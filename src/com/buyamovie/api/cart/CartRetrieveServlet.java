@@ -14,8 +14,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import com.buyamovie.usersession.UserSession;
 import com.buyamovie.utilities.IMDBScraper;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -23,7 +25,7 @@ import com.google.gson.JsonObject;
 /**
  * Servlet implementation class CartRetrieveServlet
  */
-@WebServlet(name = "/CartRetrieveServlet", urlPatterns = "/api/cart/retrieve")
+@WebServlet(name = "CartRetrieveServlet", urlPatterns = "/api/cart/retrieve")
 public class CartRetrieveServlet extends HttpServlet {
 	private static final long serialVersionUID = 15L;
     
@@ -39,6 +41,22 @@ public class CartRetrieveServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		String userEmail = request.getParameter("user");
+		
+		HttpSession session = request.getSession();
+		UserSession currentUser = (UserSession) session.getAttribute("user_session");
+		if(!currentUser.getUserEmail().equalsIgnoreCase(userEmail)) {
+			JsonObject resultData = new JsonObject();
+
+			resultData.addProperty("status", "fail");
+			resultData.addProperty("message", "User not found");
+
+			// Write JSON string to output
+			out.write(resultData.toString());
+			// Set response status to 200 (OK)
+			response.setStatus(200);
+			out.close();
+			return;
+		}
 		
 		try {
 			// Get a connection from dataSource
@@ -73,7 +91,7 @@ public class CartRetrieveServlet extends HttpServlet {
 	
 	private JsonArray getCartContent(Connection dbConnection, String cartID) throws SQLException {
 		JsonArray cartContent = new JsonArray();
-		String query = "SELECT cart_items.movie_id, cart_items.quantity, cart_items.price, movies.title, movies.year\n" + 
+		String query = "SELECT cart_items.id, cart_items.movie_id, cart_items.quantity, cart_items.price, movies.title, movies.year\n" + 
 				"FROM cart_items\n" + 
 				"INNER JOIN movies ON movies.id = cart_items.movie_id\n" + 
 				"WHERE cart_items.cart_id = ?";
@@ -83,14 +101,17 @@ public class CartRetrieveServlet extends HttpServlet {
 		ResultSet rSet = statement.executeQuery();
 		while(rSet.next()) {
 			JsonObject jObject = new JsonObject();
-			jObject.addProperty("movie_id", rSet.getString(1));
-			jObject.addProperty("movie_quantity", rSet.getString(2));
-			jObject.addProperty("movie_price", rSet.getString(3));
-			jObject.addProperty("movie_title", rSet.getString(4));
-			jObject.addProperty("movie_year", rSet.getString(5));
-			//jObject.addProperty("movie_poster", rSet.getString(6));
-			IMDBScraper imdbScraper = new IMDBScraper("https://www.imdb.com/title/" + rSet.getString(1));
-			jObject.addProperty("movie_poster", imdbScraper.getMoviePoster());
+			jObject.addProperty("cart_id", rSet.getString(1));
+			jObject.addProperty("movie_id", rSet.getString(2));
+			jObject.addProperty("movie_quantity", rSet.getString(3));
+			jObject.addProperty("movie_price", rSet.getString(4));
+			jObject.addProperty("movie_title", rSet.getString(5));
+			jObject.addProperty("movie_year", rSet.getString(6));
+			//jObject.addProperty("movie_poster", rSet.getString(7));
+			//IMDBScraper imdbScraper = new IMDBScraper("https://www.imdb.com/title/" + rSet.getString(2));
+			//jObject.addProperty("movie_poster", imdbScraper.getMoviePoster());
+			jObject.addProperty("movie_poster", "");
+
 			cartContent.add(jObject);
 		}
 		return cartContent;

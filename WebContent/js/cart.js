@@ -10,13 +10,17 @@ function displayCart() {
             var totalItemsInt = 0;
 
             for(let i = 0; i < responseData.length; i++) {
-                let cartID = 'cart' + (i + 1);
+                let cartID = responseData[i]['cart_id'];
                 let movieID = responseData[i]['movie_id'];
                 let movieTitle = responseData[i]['movie_title'] + ' (' + responseData[i]['movie_year'] + ')';
                 let movieQuantity = responseData[i]['movie_quantity'];
                 let moviePrice = responseData[i]['movie_price'];
+                
                 let moviePoster = responseData[i]['movie_poster'];
-
+                if(moviePoster == '') {
+                    moviePoster = 'img/empty-poster.png';
+                }
+                
                 subTotalFloat += Number(moviePrice) * Number(movieQuantity);
                 totalItemsInt += Number(movieQuantity);
                 
@@ -34,7 +38,7 @@ function displayCart() {
                             $('<div>', { class: 'form-group my-3' }).append(
                                 $('<div>', { class: 'form-group' }).append(
                                     $('<label>', { class: 'small' }).text('Quantity'),
-                                    $('<input>', { class: 'form-control', type: 'number', name: 'quantity' })
+                                    $('<input>', { class: 'form-control cartItemQuantity', type: 'number', name: 'quantity' })
                                 ),
                                 $('<button>', { class: 'btn btn-dark btn-sm mr-1 cartItemUpdate', type: 'submit' }).text('Update'),
                                 $('<button>', { class: 'btn btn-dark btn-sm mr-1 cartItemRemove', type: 'submit' }).text('Remove')
@@ -65,7 +69,7 @@ function getCurrentUser() {
         url: 'api/session',
         success: function(responseData) {
             if(responseData['user_name'] == null) {
-            	alert('Please login before accessing to cart.');
+            	alert('Please login before accessing to cart');
                 window.location.replace("login.html");
             }
             else
@@ -77,25 +81,38 @@ function getCurrentUser() {
 function handleAddToCartResult(response) {
     if(response['status'] == 'success') {
         alert(response['message'])
-        displayCart();
+        window.location = 'cart.html';
     } else {
         alert(response['message'])
-        window.location = document.referrer;
+        window.location = 'cart.html';
     }
 }
 
-// function handleUpate() {
-//     var data = $('#item1 input').serialize();
-//     console.log( $('#item1 input').serialize());
-//     console.log( $('#item1 .unitPrice').val());
-// }
+function handleUpdateCartResult(response) {
+    if(response['status'] == 'success') {
+        alert(response['message'])
+        window.location = 'cart.html';
+    } else {
+        alert(response['message'])
+        window.location = 'cart.html';
+    }
+}
 
-// function displayCart() {
-//     var item1 = $('#item1 #item1UpdateBtn');
-//     $( item1 ).click(handleUpate);
+function updateCart(event) {
+	event.preventDefault();
+	
+	var cartID = $(this).parent().parent().parent().attr('id');
+	var quantity = $('#' + cartID + ' input').val();
+		
+    $.ajax({
+        type: 'POST',
+        url: 'api/cart/update',
+        data: 'id=' + cartID + '&' + 'quantity=' + quantity + '&' + 'user=' + user,
+        success: handleUpdateCartResult
+    });
+}
 
-//     // $(item1).submit(handleUpate)
-// }
+// Start here
 
 const addToCart = utils.getParameterByName('addToCart');
 var user = null;
@@ -117,3 +134,5 @@ if(addToCart == 'true') {
 } else {
     displayCart();
 }
+
+$('#cartContent').on('click', '.cartItemUpdate', updateCart)

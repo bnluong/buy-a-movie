@@ -21,29 +21,27 @@ import com.buyamovie.usersession.UserSession;
 import com.google.gson.JsonObject;
 
 /**
- * Servlet implementation class CartAddServlet
+ * Servlet implementation class CartUpdateServlet
  */
-@WebServlet(name = "CartAddServlet", urlPatterns = "/api/cart/add")
-public class CartAddServlet extends HttpServlet {
-	private static final long serialVersionUID = 14L;
-
+@WebServlet(name = "CartUpdateServlet", urlPatterns = "/api/cart/update")
+public class CartUpdateServlet extends HttpServlet {
+	private static final long serialVersionUID = 16L;
+	
 	// Create a dataSource which registered in web.xml
 	@Resource(name = "jdbc/moviedb")
 	private DataSource dataSource;
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
-
-		String movieID = request.getParameter("id");
-		String movieTitle = request.getParameter("title");
-		String price = request.getParameter("price");
-		String quantity = request.getParameter("quantity");
+		
 		String userEmail = request.getParameter("user");
-
+		String cartItemID = request.getParameter("id");
+		String quantity = request.getParameter("quantity");
+		
 		HttpSession session = request.getSession();
 		UserSession currentUser = (UserSession) session.getAttribute("user_session");
 		if(!currentUser.getUserEmail().equalsIgnoreCase(userEmail)) {
@@ -59,31 +57,46 @@ public class CartAddServlet extends HttpServlet {
 			out.close();
 			return;
 		}
+		
+		if(Integer.parseInt(quantity) <= 0) {
+			JsonObject resultData = new JsonObject();
 
+			resultData.addProperty("status", "fail");
+			resultData.addProperty("message", "Invalid item quantity");
+
+			// Write JSON string to output
+			out.write(resultData.toString());
+			// Set response status to 200 (OK)
+			response.setStatus(200);
+			out.close();
+			return;
+		}
+		
 		try {
 			// Get a connection from dataSource
 			Connection dbConnection = dataSource.getConnection();
 
 			JsonObject resultData = new JsonObject();
-
+			
 			String cartID = getCartID(dbConnection, userEmail);
 			
-			String query = "INSERT INTO cart_items\n" + 
-					"VALUES (NULL,?,?,?,?)\n" + 
-					"ON DUPLICATE KEY UPDATE\n" + 
-					"	cart_items.quantity = cart_items.quantity + 1";
+			String query = 
+					"UPDATE cart_items\n" + 
+					"SET\n" + 
+					"	quantity = ?\n" + 
+					"WHERE\n" + 
+					"	id = ? AND cart_id = ?";
 			
 			PreparedStatement statement = dbConnection.prepareStatement(query);
-			statement.setString(1, cartID);
-			statement.setString(2, movieID);
-			statement.setInt(3, Integer.parseInt(quantity));
-			statement.setFloat(4, Float.parseFloat(price));
-
+			statement.setInt(1, Integer.parseInt(quantity));
+			statement.setString(2, cartItemID);
+			statement.setString(3, cartID);
+			
 			if (statement.executeUpdate() == 0)
-				throw new SQLException("Failed to add movie to cart");
+				throw new SQLException("Failed to update cart");
 			
 			resultData.addProperty("status", "success");
-			resultData.addProperty("message", movieTitle + " added to cart");
+			resultData.addProperty("message", "Cart updated successfully");
 
 			// Write JSON string to output
 			out.write(resultData.toString());
@@ -104,7 +117,7 @@ public class CartAddServlet extends HttpServlet {
 		}
 		out.close();
 	}
-
+	
 	private String getCartID(Connection dbConnection, String userEmail) throws SQLException {
 		String cartID = "";
 		String query = "SELECT carts.id\n" + 
