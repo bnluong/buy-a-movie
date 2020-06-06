@@ -78,7 +78,7 @@ function handleMovieResult(resultData) {
         $('<p>').append(
             $('<a>', {
                 href: 'cart.html?addToCart=true' + '&movieID=' + movieID + '&movieTitle=' + movieTitle + '&moviePrice=' + moviePrice + '&movieQuantity=1',
-                role: 'butotn'
+                role: 'button'
             }).append('<i class="fa fa-cart-plus fa-3x " aria-hidden="true" style="color: grey;"></i>')
         )
     )
