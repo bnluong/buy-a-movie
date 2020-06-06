@@ -6,6 +6,19 @@ function handleSession(sessionResult) {
         var userSessionHTML = '<a class="nav-link navItem" href="#">Hello, ' + userName + '<br>Logout?</br></a>';
         $('#userSession').html(userSessionHTML);
         
+        $.ajax({
+            type: 'POST',
+            url: 'api/cart/retrieve',
+            data: 'user=' + sessionResult['user_email'],
+            success: function(response) {
+            	var totalItemsInt = 0;
+            	for(let i = 0; i < response.length; i++) {
+            		totalItemsInt += Number(response[i]['movie_quantity']);
+            	}
+                $('#userCart span').text(totalItemsInt)
+            }
+        });
+
         $("#userSession").on("click", function(event) {
         	event.preventDefault();
         	
@@ -19,6 +32,7 @@ function handleSession(sessionResult) {
     } else {
         var userSessionHTML = '<a class="nav-link navItem" href="login.html">Hello<br>Login?</br></a>\n';
         $('#userSession').html(userSessionHTML);
+        $('#userCart span').text('0');
     }
 }
 
@@ -36,6 +50,5 @@ $.ajax({
     dataType: 'json',
     success: handleSession,
 });
-
 
 $('#navBarSearch').submit(handleNavBarSearch);

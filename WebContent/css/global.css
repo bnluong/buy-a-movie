@@ -19,3 +19,13 @@
 .navbar .navbar-collapse .navItem {
 	color: white;
 }
+nav ul li .cart-basket {
+  font-size: .8rem;
+  position: absolute;
+  top: 25px;
+  right: -5px;
+  width: 25px;
+  height: 25px;
+  background-color: DodgerBlue;
+  border-radius: 50%;
+}
