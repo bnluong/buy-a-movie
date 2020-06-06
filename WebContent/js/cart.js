@@ -9,21 +9,28 @@ function displayCart() {
             var subTotalFloat = 0.0;
             var totalItemsInt = 0;
 
+            if(responseData.length == 0) {
+                $('#cartContent').append(
+                    $('<p>').text('Your Shopping Cart is empty. Let\'s buy some movies!'),
+                    $('<hr>', { class: 'my-3' })
+                )
+            }
+
             for(let i = 0; i < responseData.length; i++) {
                 let cartID = responseData[i]['cart_id'];
                 let movieID = responseData[i]['movie_id'];
                 let movieTitle = responseData[i]['movie_title'] + ' (' + responseData[i]['movie_year'] + ')';
                 let movieQuantity = responseData[i]['movie_quantity'];
                 let moviePrice = responseData[i]['movie_price'];
-                
+
                 let moviePoster = responseData[i]['movie_poster'];
                 if(moviePoster == '') {
                     moviePoster = 'img/empty-poster.png';
                 }
-                
+
                 subTotalFloat += Number(moviePrice) * Number(movieQuantity);
                 totalItemsInt += Number(movieQuantity);
-                
+
                 $('#cartContent').append(
                     $('<div>', { class: 'form-row', id: cartID }).append(
                         $('<div>', { class: 'col-sm-3 col-5' }).append(
@@ -50,7 +57,7 @@ function displayCart() {
                     ),
                     $('<hr>', { class: 'my-3' })
                 );
-                
+
                 $('#' + cartID + ' input').val(Number(movieQuantity));
             }
 
@@ -62,6 +69,24 @@ function displayCart() {
     });
 }
 
+function clearCart(event) {
+    event.preventDefault();
+    $.ajax({
+        type: 'POST',
+        url: 'api/cart/clear',
+        data: 'user=' + user,
+        success: function(response) {
+            if(response['status'] == 'success') {
+                alert(response['message'])
+                window.location = 'index.html';
+            } else {
+                alert(response['message'])
+                window.location = 'cart.html';
+            }
+        }
+    });
+}
+
 function getCurrentUser() {
     $.ajax({
         type: 'GET',
@@ -69,20 +94,19 @@ function getCurrentUser() {
         url: 'api/session',
         success: function(responseData) {
             if(responseData['user_name'] == null) {
-            	alert('Please login before accessing to cart');
+                alert('Please login before accessing to cart');
                 window.location.replace("login.html");
-            }
-            else
+            } else
                 user = responseData['user_email'];
         }
     });
 }
 
 function deleteCartItem(event) {
-	event.preventDefault();
-	
-	var cartID = $(this).parent().parent().parent().attr('id');
-	
+    event.preventDefault();
+
+    var cartID = $(this).parent().parent().parent().attr('id');
+
     $.ajax({
         type: 'POST',
         url: 'api/cart/delete',
@@ -100,11 +124,11 @@ function deleteCartItem(event) {
 }
 
 function updateCartItem(event) {
-	event.preventDefault();
-	
-	var cartID = $(this).parent().parent().parent().attr('id');
-	var quantity = $('#' + cartID + ' input').val();
-		
+    event.preventDefault();
+
+    var cartID = $(this).parent().parent().parent().attr('id');
+    var quantity = $('#' + cartID + ' input').val();
+
     $.ajax({
         type: 'POST',
         url: 'api/cart/update',
@@ -154,3 +178,4 @@ if(addToCart == 'true') {
 
 $('#cartContent').on('click', '.cartItemUpdate', updateCartItem)
 $('#cartContent').on('click', '.cartItemRemove', deleteCartItem)
+$('#cartClear').on('click', clearCart)
