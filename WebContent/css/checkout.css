@@ -1,0 +1,17 @@
+#cartContent img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+#cartContent input {
+  width: 65px;
+}
+
+#cartContent hr {
+  clear:both; 
+  visibility: hidden;
+}
+
+.error {
+  color: #C00;
+}

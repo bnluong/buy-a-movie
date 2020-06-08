@@ -12,10 +12,14 @@ function displayCart() {
             if(responseData.length == 0) {
                 $('#cartContent').append(
                     $('<p>').text('Your Shopping Cart is empty. Let\'s buy some movies!'),
+                    $('<a>', {href: 'index.html'}).text('Click here to browse some movies.'),
                     $('<hr>', { class: 'my-3' })
-                )
+                );
+                $('#cartSubTotal').hide();
+                $('#cartClear').hide();
+                $('#cartCheckout').hide();
             }
-
+            
             for(let i = 0; i < responseData.length; i++) {
                 let cartID = responseData[i]['cart_id'];
                 let movieID = responseData[i]['movie_id'];
@@ -64,7 +68,7 @@ function displayCart() {
             let subTotalStr = 'Subtotal ' + '(' + totalItemsInt + ' items): ' + '$' + subTotalFloat;
             $('#cartSubTotal').append(
                 $('<p>', { class: 'h6' }).text(subTotalStr)
-            )
+            );
         }
     });
 }

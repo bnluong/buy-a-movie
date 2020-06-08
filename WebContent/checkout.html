@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- Our Own CSS -->
     <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/checkout.css">
 
     <title>Buy-a-Movie - Checkout</title>
 </head>
@@ -67,9 +68,9 @@
         </div>
 
         <div id="cartContent">
-            <div class="form-row" id="">
+            <!-- <div class="form-row" id="">
                 <div class="col-sm-2 col-3">
-                    <img src="https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SY1000_CR0,0,674,1000_AL_.jpg" alt="" style="width: 100%;">
+                    <img src="https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SY1000_CR0,0,674,1000_AL_.jpg" alt="">
                 </div>
                 <div class="col-6 mx-auto">
                     <div class="row mx-auto">
@@ -79,17 +80,16 @@
                     <div class="form-group my-3">
                         <div class="form-group">
                             <label class="small" for="">Quantity</label>
-                            <input type="number" class="form-control" name="quantity" style="width: 65px;" disabled>
+                            <input type="number" class="form-control" name="quantity" disabled>
                         </div>
                     </div>
-                    <p class="small">Digital Shipping</p>
+                    <p class="small">Free Shipping</p>
                 </div>
             </div>
+            <hr class="my-3"> -->
         </div>
 
-        <hr class="my-3" style="clear:both; visibility: hidden;">
-
-        <!-- <div class="row">
+        <div class="row mt-1">
             <div class="col-12">
                 <p class="h5">Ship to</p>
                 <hr class="my-3">
@@ -97,55 +97,101 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <form>
+                <form id="shippingForm" method="POST">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label>First Name</label>
-                            <input type="text" class="form-control" placeholder="First Name">
+                            <input type="text" class="form-control" name="firstName" placeholder="First Name" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Last Name</label>
-                            <input type="text" class="form-control" placeholder="Last Name">
+                            <input type="text" class="form-control" name="lastName" placeholder="Last Name" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Address</label>
-                        <input type="text" class="form-control" placeholder="1234 Main St">
+                        <input type="text" class="form-control" name="address" placeholder="1234 Main St" required>
                     </div>
                     <div class="form-group">
                         <label>Address 2 (Optional)</label>
-                        <input type="text" class="form-control" placeholder="Apartment, studio, or floor">
+                        <input type="text" class="form-control" name="addressOptional" placeholder="Apartment, studio, or floor">
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label>City</label>
-                            <input type="text" class="form-control" placeholder="City">
+                            <input type="text" class="form-control" name="city" placeholder="City" required>
                         </div>
                         <div class="form-group col-md-2">
                             <label>State</label>
-                            <select id="inputState" class="form-control">
-                                <option selected>Choose...</option>
-                                <option>AL</option>
-                                <option>CA</option>
-                                <option>...</option>
+                            <select name="state" class="form-control" required>
+                                <option value="" selected>Choose...</option>
+                                <option value="AL">AL</option>
+                                <option value="AK">AK</option>
+                                <option value="AR">AR</option>	
+                                <option value="AZ">AZ</option>
+                                <option value="CA">CA</option>
+                                <option value="CO">CO</option>
+                                <option value="CT">CT</option>
+                                <option value="DC">DC</option>
+                                <option value="DE">DE</option>
+                                <option value="FL">FL</option>
+                                <option value="GA">GA</option>
+                                <option value="HI">HI</option>
+                                <option value="IA">IA</option>	
+                                <option value="ID">ID</option>
+                                <option value="IL">IL</option>
+                                <option value="IN">IN</option>
+                                <option value="KS">KS</option>
+                                <option value="KY">KY</option>
+                                <option value="LA">LA</option>
+                                <option value="MA">MA</option>
+                                <option value="MD">MD</option>
+                                <option value="ME">ME</option>
+                                <option value="MI">MI</option>
+                                <option value="MN">MN</option>
+                                <option value="MO">MO</option>	
+                                <option value="MS">MS</option>
+                                <option value="MT">MT</option>
+                                <option value="NC">NC</option>	
+                                <option value="NE">NE</option>
+                                <option value="NH">NH</option>
+                                <option value="NJ">NJ</option>
+                                <option value="NM">NM</option>			
+                                <option value="NV">NV</option>
+                                <option value="NY">NY</option>
+                                <option value="ND">ND</option>
+                                <option value="OH">OH</option>
+                                <option value="OK">OK</option>
+                                <option value="OR">OR</option>
+                                <option value="PA">PA</option>
+                                <option value="RI">RI</option>
+                                <option value="SC">SC</option>
+                                <option value="SD">SD</option>
+                                <option value="TN">TN</option>
+                                <option value="TX">TX</option>
+                                <option value="UT">UT</option>
+                                <option value="VT">VT</option>
+                                <option value="VA">VA</option>
+                                <option value="WA">WA</option>
+                                <option value="WI">WI</option>	
+                                <option value="WV">WV</option>
+                                <option value="WY">WY</option>
                             </select>
                         </div>
                         <div class="form-group col-md-4">
                             <label>Zip</label>
-                            <input type="text" class="form-control" id="inputZip">
+                            <input type="text" class="form-control" name="zipcode" id="inputZip" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Phone Number</label>
-                        <input type="text" class="form-control" placeholder="Phone Number">
+                        <input type="text" class="form-control" name="phoneNumber" placeholder="Phone Number" required>
                     </div>
                 </form>
             </div>
-        </div> -->
+        </div>
 
-        <hr class="my-3" style="clear:both; visibility: hidden;">
-
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-12">
                 <p class="h5">Pay with</p>
                 <hr class="my-3">
@@ -158,59 +204,120 @@
                         <div class="card-header" role="tab" id="section1HeaderId">
                             <a data-toggle="collapse" data-parent="#accordianId" href="#section1ContentId" disabled>
                                 <p class="h6">Credit or Debit Card</p>
-                                <img src="img/credit-cards-logos.png" alt="" style="width: 25%;">
+                                <img src="img/credit-cards-logos.png" alt="">
                             </a>
                         </div>
-                        <div id="section1ContentId" class="collapse in" role="tabpanel" aria-labelledby="section1HeaderId">
+                        <div id="section1ContentId" class="collapse show" role="tabpanel" aria-labelledby="section1HeaderId">
                             <div class="card-body">
-                                <form>
+                                <form id="creditCardForm">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label>Card Number</label>
-                                            <input type="text" class="form-control" placeholder="Card Number">
+                                            <input type="text" class="form-control" name="cardNumber" placeholder="Card Number">
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label>Expiration Date</label>
-                                            <input type="date" class="form-control" placeholder="MM/YY">
+                                            <input type="text" class="form-control" name="expDate" placeholder="MM/YY">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>Security Code</label>
-                                            <input type="text" class="form-control" placeholder="3 Digits">
+                                            <input type="text" class="form-control" name="securityCode" placeholder="3 Digits">
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- <label class="h6 my-3">Billing Address</label>
+                                    
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>First Name</label>
+                                            <input type="text" class="form-control" name="firstName" placeholder="First Name" required>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Last Name</label>
+                                            <input type="text" class="form-control" name="lastName" placeholder="Last Name" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label>Billing Address</label>
-                                        <input type="text" class="form-control" placeholder="1234 Main St">
+                                        <label>Address</label>
+                                        <input type="text" class="form-control" name="address" placeholder="1234 Main St">
                                     </div>
                                     <div class="form-group">
                                         <label>Address 2 (Optional)</label>
-                                        <input type="text" class="form-control" placeholder="Apartment, studio, or floor">
+                                        <input type="text" class="form-control" name="addressOptional" placeholder="Apartment, studio, or floor">
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label>City</label>
-                                            <input type="text" class="form-control" placeholder="City">
+                                            <input type="text" class="form-control" name="city" placeholder="City">
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label>State</label>
-                                            <select id="inputState" class="form-control">
-                                                <option selected>Choose...</option>
-                                                <option>AL</option>
-                                                <option>CA</option>
-                                                <option>...</option>
+                                            <select id="inputState" class="form-control" name="state">
+                                                <option value="" selected>Choose...</option>
+                                                <option value="AL">AL</option>
+                                                <option value="AK">AK</option>
+                                                <option value="AR">AR</option>	
+                                                <option value="AZ">AZ</option>
+                                                <option value="CA">CA</option>
+                                                <option value="CO">CO</option>
+                                                <option value="CT">CT</option>
+                                                <option value="DC">DC</option>
+                                                <option value="DE">DE</option>
+                                                <option value="FL">FL</option>
+                                                <option value="GA">GA</option>
+                                                <option value="HI">HI</option>
+                                                <option value="IA">IA</option>	
+                                                <option value="ID">ID</option>
+                                                <option value="IL">IL</option>
+                                                <option value="IN">IN</option>
+                                                <option value="KS">KS</option>
+                                                <option value="KY">KY</option>
+                                                <option value="LA">LA</option>
+                                                <option value="MA">MA</option>
+                                                <option value="MD">MD</option>
+                                                <option value="ME">ME</option>
+                                                <option value="MI">MI</option>
+                                                <option value="MN">MN</option>
+                                                <option value="MO">MO</option>	
+                                                <option value="MS">MS</option>
+                                                <option value="MT">MT</option>
+                                                <option value="NC">NC</option>	
+                                                <option value="NE">NE</option>
+                                                <option value="NH">NH</option>
+                                                <option value="NJ">NJ</option>
+                                                <option value="NM">NM</option>			
+                                                <option value="NV">NV</option>
+                                                <option value="NY">NY</option>
+                                                <option value="ND">ND</option>
+                                                <option value="OH">OH</option>
+                                                <option value="OK">OK</option>
+                                                <option value="OR">OR</option>
+                                                <option value="PA">PA</option>
+                                                <option value="RI">RI</option>
+                                                <option value="SC">SC</option>
+                                                <option value="SD">SD</option>
+                                                <option value="TN">TN</option>
+                                                <option value="TX">TX</option>
+                                                <option value="UT">UT</option>
+                                                <option value="VT">VT</option>
+                                                <option value="VA">VA</option>
+                                                <option value="WA">WA</option>
+                                                <option value="WI">WI</option>	
+                                                <option value="WV">WV</option>
+                                                <option value="WY">WY</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label>Zip</label>
-                                            <input type="text" class="form-control" id="inputZip">
+                                            <input type="text" class="form-control" name="zipcode">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label>Phone Number</label>
-                                        <input type="text" class="form-control" placeholder="Phone Number">
-                                    </div>
+                                        <input type="text" class="form-control" name="phoneNumber" placeholder="Phone Number">
+                                    </div> -->
                                 </form>
                             </div>
                         </div>
@@ -219,7 +326,7 @@
                         <div class="card-header" role="tab">
                             <a data-toggle="collapse disabled" data-parent="#accordianId" href="#section2ContentId">
                                 <p class="h6">PayPal (Coming Soon)</p>
-                                <img src="img/paypal-logo.png" alt="" style="width: 50px;">
+                                <img src="img/paypal-logo.png" alt="">
                             </a>
                         </div>
                         <div id="section2ContentId" class="collapse in disabled" role="tabpanel" aria-labelledby="section2HeaderId">
@@ -231,9 +338,8 @@
                 </div>
             </div>
         </div>
-        <hr class="my-3" style="clear:both; visibility: hidden;">
 
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-12">
                 <p class="h5">Comfirm and Pay</p>
                 <hr class="my-3">
@@ -241,12 +347,12 @@
         </div>
 
         <div class="row">
-            <div class="col-2 justify-content-left">
+            <div class="col-sm-2 col-3 justify-content-left">
                 <p>Subtotal: </p>
                 <p>Shipping: </p>
                 <p>Tax: </p>
             </div>
-            <div class="col-2 justify-content-right">
+            <div class="col-sm-2 col-3 justify-content-right">
                 <p>$200</p>
                 <p>Free</p>
                 <p>$0</p>
@@ -261,24 +367,25 @@
         </div>
 
         <div class="row">
-            <div class="col-2 justify-content-left">
+            <div class="col-sm-2 justify-content-left">
                 <p class="h5">Total: </p>
             </div>
-            <div class="col-2 justify-content-right">
+            <div class="col-sm-2 justify-content-right">
                 <p class="h5">$200</p>
             </div>
         </div>
 
         <div class="row my-5">
-            <div class="col-4">
-                <a name="" id="" class="btn btn-dark btn-lg" href="#" role="button">Confirm and Pay</a>
+            <div class="col-sm-4">
+                <button class="btn btn-dark btn-lg" type="submit" id="comfirmCheckoutBtn">Confirm and Pay</button>
             </div>
         </div>
     </div>
-    </div>
 
-    <!-- JQuery, Popper, and Bootstrap JS -->
+    <!-- JQuery, JQuery Validation Plugin, Popper, and Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/additional-methods.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
