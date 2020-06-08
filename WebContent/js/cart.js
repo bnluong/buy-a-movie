@@ -87,6 +87,11 @@ function clearCart(event) {
     });
 }
 
+function checkoutCart(event) {
+    event.preventDefault();
+    window.location = "checkout.html"
+}
+
 function getCurrentUser() {
     $.ajax({
         type: 'GET',
@@ -179,3 +184,4 @@ if(addToCart == 'true') {
 $('#cartContent').on('click', '.cartItemUpdate', updateCartItem)
 $('#cartContent').on('click', '.cartItemRemove', deleteCartItem)
 $('#cartClear').on('click', clearCart)
+$('#cartCheckout').on('click', checkoutCart)
