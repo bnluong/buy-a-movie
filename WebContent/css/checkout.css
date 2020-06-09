@@ -15,3 +15,7 @@
 .error {
   color: #C00;
 }
+
+.confirmCheckout {
+  margin-left: -100px;
+}

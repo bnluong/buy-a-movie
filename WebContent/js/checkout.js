@@ -20,7 +20,10 @@ function displayCart() {
         data: 'user=' + user,
         success: function(responseData) {
             var subTotalFloat = 0.0;
-            var totalItemsInt = 0;
+            var estimatedTax = 0.0;
+            var taxRate = 0.10;
+            var total = 0.0;
+            var shippingFee = 0.0;
 
             for(let i = 0; i < responseData.length; i++) {
                 let cartID = responseData[i]['cart_id'];
@@ -35,7 +38,6 @@ function displayCart() {
                 }
 
                 subTotalFloat += Number(moviePrice) * Number(movieQuantity);
-                totalItemsInt += Number(movieQuantity);
 
                 $('#cartContent').append(
                     $('<div>', { class: 'form-row', id: cartID }).append(
@@ -52,96 +54,125 @@ function displayCart() {
                             $('<div>', { class: 'form-group my-3' }).append(
                                 $('<div>', { class: 'form-group' }).append(
                                     $('<label>', { class: 'small' }).text('Quantity'),
-                                    $('<input>', { class: 'form-control cartItemQuantity', type: 'number', name: 'quantity', disabled: ''}).val(movieQuantity)
+                                    $('<input>', { class: 'form-control cartItemQuantity', type: 'number', name: 'quantity', disabled: '' }).val(movieQuantity)
                                 )
                             ),
-                            $('<p>', {class: 'small'}).text('Free Shipping')
+                            $('<p>', { class: 'small' }).text('Digital Download')
                         )
                     ),
                     $('<hr>', { class: 'my-3' })
                 );
             }
 
-            let subTotalStr = 'Subtotal ' + '(' + totalItemsInt + ' items): ' + '$' + subTotalFloat;
+            estimatedTax = subTotalFloat * taxRate;
+            total = subTotalFloat + shippingFee + estimatedTax;
+
+            $('#subtotal').append(
+                $('<p>').text('$' + subTotalFloat.toFixed(2)),
+                $('<p>').text('Free'),
+                $('<p>').text('$' + estimatedTax.toFixed(2))
+            );
+            $('#total').append(
+                $('<p>', { class: 'h5' }).text('$' + total.toFixed(2))
+            );
         }
     });
 }
 
 function handleCheckout(event) {
     event.preventDefault();
-    if($("#shippingForm").valid()) {
-    	var address = $('#shippingForm').serializeArray();
-    	console.log(address)
+
+    if($("#creditCardForm").valid()) {
+        var creditCardForm = $('#creditCardForm').serialize();
+        
+        $.ajax({
+    		method: 'POST',
+    		url: 'api/order/place',
+    		data: 'user=' + user + '&' + creditCardForm,
+    		dataType: 'json',
+    		async: false,
+        	success: function(response) {
+        		if(response['status'] == 'success') {
+        			alert(response['message']);
+        		    $.ajax({
+        		        type: 'POST',
+        		        async: false,
+        		        url: 'api/cart/clear',
+        		        data: 'user=' + user,
+        		        success: function(response) {
+        		            if(response['status'] == 'success') {
+        		                alert(response['message'])
+        		                window.location = 'index.html';
+        		            } else {
+        		                alert(response['message'])
+        		                window.location = 'cart.html';
+        		            }
+        		        }
+        		    });
+        		} else if (response['status'] == 'fail') {
+        			alert(response['message']);
+        			window.location = 'cart.html';
+        		}
+        	}
+        });
     }
-//    if(!$("#shippingForm").valid() || !$("#creditCardForm").valid()) {
-//    	return false;
-//    } else {
-//    	alert("Thank you for your purchase. Your order has been submitted.")
-//    }
-//    console.log($('#shippingForm').serialize());
-//    console.log($('#creditCardForm').serialize());
 }
 
-$("#shippingForm").validate({
-	focusInvalid: true,
+$("#creditCardForm").validate({
+    focusInvalid: true,
     rules: {
-    	firstName: {
-    		required: true
-    	},
-    	lastName: {
-    		required: true
-    	},
-    	address: {
-    		required: true,
-    		minlength: 3
-    	},
-    	city: {
-    		required: true
-    	},
-    	state: {
-    		required: true
-    	},
-    	zipcode: {
-    		required: true,
-    		zipcodeUS: true
-    	},
-    	phoneNumber: {
-    		required: true,
-    		phoneUS: true
-    	},
+        firstName: {
+            required: true
+        },
+        lastName: {
+            required: true
+        },
+        address: {
+            required: true,
+            minlength: 3
+        },
+        city: {
+            required: true
+        },
+        state: {
+            required: true
+        },
+        zipcode: {
+            required: true,
+            zipcodeUS: true
+        },
+        phoneNumber: {
+            required: true,
+            phoneUS: true
+        },
+        cardNumber: {
+            required: true,
+            digits: true,
+            maxlength: 19
+        },
+        expDate: {
+            required: true,
+            date: true
+        },
+        securityCode: {
+            required: true,
+            minlength: 3,
+            maxlength: 3
+        },
     },
     messages: {
-    	address: 'Address is too short.'
+        address: 'Address is too short.'
     }
 });
 
-$("#creditCardForm").validate({
-	focusInvalid: true,
-    rules: {
-    	cardNumber: {
-    		required: true,
-    		digits: true,
-    		maxlength: 19
-    	},
-    	expDate: {
-    		required: true,
-    		ccExpDate: true
-    	},
-    	securityCode: {
-    		required: true,
-    		minlength: 3,
-    		maxlength: 3
-    	},
-    },
-});
-
-$.validator.addMethod("ccExpDate", function( value ) {
-	var date = value.split('/');
-	if(value.length != 5 || date[0].length != 2 || date[1].length != 2)
-		return false;
-	else
-		return true;
-}, "Invalid expiration date." );
+// Not using this for now because of inconsistent database
+$.validator.addMethod("ccExpDate", function(value) {
+    var date = value.split('/');
+    if(value.length != 5 || date[0].length != 2 || date[1].length != 2)
+        return false;
+    else
+        return true;
+}, "Invalid expiration date.");
 
 var user = null;
 getCurrentUser();

@@ -89,6 +89,7 @@
             <hr class="my-3"> -->
         </div>
 
+        <!--
         <div class="row mt-1">
             <div class="col-12">
                 <p class="h5">Ship to</p>
@@ -189,7 +190,8 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div> 
+        -->
 
         <div class="row mt-4">
             <div class="col-12">
@@ -219,16 +221,16 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label>Expiration Date</label>
-                                            <input type="text" class="form-control" name="expDate" placeholder="MM/YY">
+                                            <input type="date" class="form-control" name="expDate" placeholder="YYYY-MM-DD">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>Security Code</label>
                                             <input type="text" class="form-control" name="securityCode" placeholder="3 Digits">
                                         </div>
                                     </div>
-                                    
-                                    <!-- <label class="h6 my-3">Billing Address</label>
-                                    
+
+                                    <label class="h6 my-4">Billing Address</label>
+
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label>First Name</label>
@@ -317,7 +319,7 @@
                                     <div class="form-group">
                                         <label>Phone Number</label>
                                         <input type="text" class="form-control" name="phoneNumber" placeholder="Phone Number">
-                                    </div> -->
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -352,10 +354,10 @@
                 <p>Shipping: </p>
                 <p>Tax: </p>
             </div>
-            <div class="col-sm-2 col-3 justify-content-right">
-                <p>$200</p>
+            <div class="col-sm-2 col-3 justify-content-right" id="subtotal">
+                <!-- <p>$200</p>
                 <p>Free</p>
-                <p>$0</p>
+                <p>$0</p> -->
             </div>
         </div>
 
@@ -370,13 +372,16 @@
             <div class="col-sm-2 justify-content-left">
                 <p class="h5">Total: </p>
             </div>
-            <div class="col-sm-2 justify-content-right">
-                <p class="h5">$200</p>
+            <div class="col-sm-2 justify-content-right" id="total">
+                <!-- <p class="h5">$200</p> -->
             </div>
         </div>
 
         <div class="row my-5">
-            <div class="col-sm-4">
+            <div class="col-sm-3">
+                <a class="btn btn-dark btn-lg" href="cart.html" role="button" id="returnToCartBtn">Return to Cart</a>
+            </div>
+            <div class="col-sm-3 confirmCheckout">
                 <button class="btn btn-dark btn-lg" type="submit" id="comfirmCheckoutBtn">Confirm and Pay</button>
             </div>
         </div>
