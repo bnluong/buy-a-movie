@@ -1,96 +1,77 @@
-# Project Title
+# Buy-a-Movie
 
-Project Description.
+Buy-a-Movie is a mock e-commerce website that sells movies. The website has standard e-commerce features such as searching, browsing, add to cart, checkout, login, create account, and many more.
+
+## Description
+
+This is a full-stack web development project that uses the following technology:
+
+    Front End: HTML5, CSS, JavaScript, Bootstrap, JQuery, JSON, AJAX
+    Backend: Java EE, MySQL, REST
+    Web server: Apache Tomcat
+    Tools: Linux, MySQL Server, Eclipse, VSCode, Maven
+
+The project is a demonstration of my understanding and studying of full-stack web development. It utilizes the micro-services architecture to achieve front-end/back-end separation.
+
+The project has been developed for about 2 months and finally achieved a basic working version with standard e-commerce features.
+
+My plan is to continue learning and developing this project with the uses of frameworks including React for front-end and Spring for back-end.
+
+## Demo
+
+Coming Soon.
 
 ## Getting Started
 
-Instructions on setting up the project.
-
 ### Prerequisites & Dependencies
 
-Lists of items needed to setup/run the project.
-
 ```
-1. Item 1
-2. Item 2
+1. Java EE (Java 8)
+2. Eclipse IDE (for Java EE)
+3. Apache Tomcat 8
+4. Maven
+5. MySQL Server
 ```
 ### Getting the Source Code
 
-Include a link to your github reposistory (you have no idea how people will findy our code), and also a summary of how to clone.
-
-This project is [hosted on GitHub](https://github.com/bnluong/your-repo). You can clone this project directly using this command:
+This project is [hosted on GitHub](https://github.com/bnluong/buy-a-movie). You can clone this project directly using this command:
 
 ```
-git clone git@github.com:bnluong/your-repo.git
+git clone git@github.com:bnluong/buy-a-movie.git
 ```
 
 ### Building the Project
 
-Instructions for how to build the project.
-
 ```
-1. Step 1
-2. Step 2
-```
-
-## Running Tests
-
-Describe how to run unit tests for your project.
-
-```
-Examples
+1. Clone the project
+2. Run the SQL scripts in the database-scripts directory
+3. Create a MySQL user with and grant access access privileges to the databased created from the script
+4. Create a Tomcat web server in Eclipse
+4. Open Eclipse IDE -> File -> Import -> Existing Maven Project -> Choose the directory where the project was cloned
+5. Open WebContent/META-INF/context.xml to configure the data source for MySQL
+    a. Change the username & password to the user created in step 2
+    b. Change the port in the url to the port in which the MySQL server operates (if the port is not 3306)
+6. Run the project from eclipse: Right click on the project -> Run As -> Run on server
+7. The website can now be accessed via localhost: http://localhost:8080/buy-a-movie/
 ```
 
-### Other Tests (Optional)
+## Tests
 
-Explain what these tests test and why.
+There are some utilites in the com.buyamovie.utilites package of the project which utilizes JUnit testing.
 
-```
-Examples
-```
-
-## Installation
-
-Instructions for how to install your project's build artifacts.
+To run the JUnit tests:
 
 ```
-Examples
+Right click on the project -> Run As -> JUnit Tests
 ```
 
 ## Usage
 
-Instructions for using your project. Ways to run the program, how to include it in another project, etc.
+Coming Soon
 
-```
-Examples
-```
-
-If your project provides an API, either provide details for usage in this document or link to the appropriate API reference documents.
-
-## Built With
-
-* [name](url) - Description of the tool
-
-## Versioning
-
-This project uses [Semantic Versioning](http://semver.org/). For a list of available versions, see the [repository tag list](https://github.com/your/project/tags).
-
-## Contributing (Optional)
-
-We encourage public contributions! Please review [CONTRIBUTING](CONTRIBUTING) for details on our code of conduct and development process.
-
-## Further Reading
-
-Provide links to other relevant documentation here.
-
-```
-Examples
-```
 ## Authors
 
 * **Bao Luong** - *Owner* - [bnluong](https://github.com/bnluong)
-
-See also the list of [contributors](https://github.com/your-repo/contributors) who participated in this project.
 
 ## License
 
@@ -98,6 +79,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-Provide proper credits, shoutouts, and honorable mentions here. Also provide links to relevant repositories, blog posts, or contributors worth mentioning.
-
-Give proper credits. This could be a link to any repo which inspired you to build this project, any blogposts or links to people who contributed in this project. If you used external code, link to the original source.
+[Kaggle](https://www.kaggle.com/rounakbanik/the-movies-dataset?select=credits.csv) - For providing the The Movies Dataset needed for the database.
