@@ -13,6 +13,8 @@ This is a full-stack web development project that uses the following technology:
 
 The project is a demonstration of my understanding and studying of full-stack web development. It utilizes the micro-services architecture to achieve front-end/back-end separation.
 
+The website is designed with the responsive approach. It will display and fit various screens from desktop to small smart phones.
+
 The project has been developed for about 2 months and finally achieved a basic working version with standard e-commerce features.
 
 My plan is to continue learning and developing this project with the uses of frameworks including React for front-end and Spring for back-end.
