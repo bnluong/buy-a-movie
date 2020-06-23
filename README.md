@@ -69,7 +69,7 @@ Right click on the project -> Run As -> JUnit Tests
 
 ## Usage
 
-Coming Soon
+Coming Soon.
 
 ## Authors
 
