@@ -89,10 +89,6 @@ To run the JUnit tests:
 Right click on the project -> Run As -> JUnit Tests
 ```
 
-## Usage
-
-Coming Soon.
-
 ## Authors
 
 * **Bao Luong** - *Owner* - [bnluong](https://github.com/bnluong)
