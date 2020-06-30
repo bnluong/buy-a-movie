@@ -19,7 +19,29 @@ My plan is to continue learning and developing this project with the uses of fra
 
 ## Demo
 
-Coming Soon.
+###### Landing Page
+![Homepage](screenshots/homepage.png?raw=true "Homepage")
+
+<details>
+<summary>More Screenshots</summary>
+
+###### Browsing Page
+![Browsing](screenshots/browse.png?raw=true "Browsing")
+###### Searching Page
+![Searching](screenshots/search.png?raw=true "Searching")
+###### Movie Page
+![Movie Info](screenshots/movie-info.png?raw=true "Movie Info")
+###### Star Page
+![Star Info](screenshots/star-info.png?raw=true "Star Info")
+###### Login Page
+![Login](screenshots/login.png?raw=true "Login")
+###### Create Account Page
+![Register](screenshots/register.png?raw=true "Register")
+###### Cart Page
+![Cart](screenshots/cart.png?raw=true "Cart")
+###### Checkout Page
+![Checkout](screenshots/checkout.png?raw=true "Checkout")
+</details>
 
 ## Getting Started
 
