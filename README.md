@@ -11,7 +11,7 @@ This is a full-stack web development project that uses the following technology:
     Web server: Apache Tomcat
     Tools: Linux, MySQL Server, Eclipse, VSCode, Maven
 
-The project is a demonstration of my understanding and studying of full-stack web development. It utilizes the micro-services architecture to achieve front-end/back-end separation.
+The project is a demonstration of my understanding and studying of full-stack web development. It utilizes the microservices architecture to achieve front-end/back-end separation.
 
 The website is designed with the responsive approach. It will display and fit various screens from desktop to small smart phones.
 
@@ -88,10 +88,6 @@ To run the JUnit tests:
 ```
 Right click on the project -> Run As -> JUnit Tests
 ```
-
-## Usage
-
-Coming Soon.
 
 ## Authors
 
