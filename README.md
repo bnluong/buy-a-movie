@@ -19,6 +19,9 @@ The project has been developed for about 2 months and finally achieved a basic w
 
 My plan is to continue learning and developing this project with the uses of frameworks including React for front-end and Spring for back-end.
 
+## Design Interfaces
+![Interfaces](/design_interfaces.png?raw=true "Interfaces")
+
 ## Demo
 
 ###### Landing Page
