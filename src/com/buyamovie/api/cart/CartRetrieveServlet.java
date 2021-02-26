@@ -18,7 +18,6 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import com.buyamovie.usersession.UserSession;
-import com.buyamovie.utilities.IMDBScraper;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -108,8 +107,6 @@ public class CartRetrieveServlet extends HttpServlet {
 			jObject.addProperty("movie_title", rSet.getString(5));
 			jObject.addProperty("movie_year", rSet.getString(6));
 			//jObject.addProperty("movie_poster", rSet.getString(7));
-			//IMDBScraper imdbScraper = new IMDBScraper("https://www.imdb.com/title/" + rSet.getString(2));
-			//jObject.addProperty("movie_poster", imdbScraper.getMoviePoster());
 			jObject.addProperty("movie_poster", "");
 
 			cartContent.add(jObject);

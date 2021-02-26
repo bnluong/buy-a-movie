@@ -87,11 +87,11 @@ public class MovieServlet extends HttpServlet {
 		resultData.add("movie_genres", getMovieGenres(dbConnection, movieID));
 		resultData.add("movie_stars", getMovieStars(dbConnection, movieID));
 
-		IMDBScraper imdbScraper = new IMDBScraper("https://www.imdb.com/title/" + movieID);
-		resultData.addProperty("movie_poster", imdbScraper.getMoviePoster());
+//		IMDBScraper imdbScraper = new IMDBScraper("https://www.imdb.com/title/" + movieID);
+		resultData.addProperty("movie_poster", "");
 		
-		resultData.addProperty("movie_runtime", imdbScraper.getMovieRuntime());		// TODO: Update database
-		resultData.addProperty("movie_overview", imdbScraper.getMovieOverview());	// TODO: Update database
+		resultData.addProperty("movie_runtime", "");		// TODO: Update database
+		resultData.addProperty("movie_overview", "");	// TODO: Update database
 		resultData.addProperty("movie_price", "15.99");								// TODO: Update database
 		
 		rSet.close();
