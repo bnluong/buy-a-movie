@@ -21,8 +21,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.buyamovie.utilities.*;
-
 /**
  * Servlet implementation class IndexServlet
  */
@@ -51,13 +49,6 @@ public class IndexServlet extends HttpServlet {
 			
 			JsonArray listOfGenres = getListOfGenres(dbConnection);
 			JsonArray randomMovies = getRandomMovies(dbConnection, 3);
-			
-//			IMDBScraper posterScraper = new IMDBScraper();
-			for(int i = 0; i <randomMovies.size(); i++) {
-				String movieID = randomMovies.get(i).getAsJsonObject().get("movie_id").getAsString();
-//				String moviePoster = posterScraper.getMoviePoster("https://www.imdb.com/title/" + movieID);
-				randomMovies.get(i).getAsJsonObject().addProperty("movie_poster", "");
-			}
 			
 			resultData.add("randomMovies", randomMovies);
 			resultData.add("listOfGenres", listOfGenres);
@@ -90,7 +81,7 @@ public class IndexServlet extends HttpServlet {
 	
 	private JsonArray getRandomMovies(Connection dbConnection, Integer numMovies) throws SQLException {
 		String query = 
-				"SELECT m1.id, title, year\n" + 
+				"SELECT m1.id, title, year, poster\n" + 
 				"FROM movies AS m1\n" + 
 				"JOIN (SELECT id FROM movies\n" + 
 				"ORDER BY RAND() LIMIT 10) as m2 ON m1.id = m2.id\n" + 
@@ -113,7 +104,7 @@ public class IndexServlet extends HttpServlet {
 			jObject.addProperty("movie_id", rSet.getString("id"));
 			jObject.addProperty("movie_title", rSet.getString("title"));
 			jObject.addProperty("movie_year", rSet.getString("year"));
-			
+			jObject.addProperty("movie_poster", rSet.getString("poster"));
 			jArray.add(jObject);
 		}
 

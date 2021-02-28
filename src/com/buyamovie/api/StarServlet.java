@@ -17,8 +17,6 @@ import javax.sql.DataSource;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import com.buyamovie.utilities.*;
-
 /**
  * Servlet implementation class BrowsingServlet
  */
@@ -80,12 +78,11 @@ public class StarServlet extends HttpServlet {
 
 			starInfo.addProperty("star_id", rSet.getString("id"));
 			starInfo.addProperty("star_name", rSet.getString("name"));
-			starInfo.addProperty("star_portrait", ""); 			// TODO: Update database
-			starInfo.addProperty("star_profession", "");		// TODO: Update database
-			starInfo.addProperty("star_gender", "Placeholder");								// TODO: Update database
+			starInfo.addProperty("star_portrait", rSet.getString("portrait")); 			
+			starInfo.addProperty("star_profession", rSet.getString("profession"));		
 			starInfo.addProperty("star_birthyear", rSet.getString("birth_year"));		
-			starInfo.addProperty("star_bio", "");						// TODO: Update database
-			starInfo.add("star_known_for", getStarKnownFor(starID, dbConnection));			// TODO: Update database
+			starInfo.addProperty("star_bio", rSet.getString("bio"));					
+			starInfo.add("star_known_for", getStarKnownFor(starID, dbConnection));
 			starInfo.add("star_filmography", getStarFilmography(starID, dbConnection));
 		}
 
@@ -118,7 +115,7 @@ public class StarServlet extends HttpServlet {
 
 			jObject.addProperty("movie_id", rSet.getString("id"));
 			jObject.addProperty("movie_title", rSet.getString("title"));
-			jObject.addProperty("movie_poster", "");
+			jObject.addProperty("movie_poster", rSet.getString("poster"));
 
 			knownFor.add(jObject);
 		}
@@ -149,7 +146,6 @@ public class StarServlet extends HttpServlet {
 			jObject.addProperty("movie_id", rSet.getString("id"));
 			jObject.addProperty("movie_title", rSet.getString("title"));
 			jObject.addProperty("movie_year", rSet.getString("year"));
-			jObject.addProperty("movie_star_as", "Placeholder");			// TODO: Update database
 
 			filmography.add(jObject);
 		}

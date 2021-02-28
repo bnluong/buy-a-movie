@@ -5,14 +5,15 @@ function handleStarResult(resultData) {
 
     var starPortrait = resultData['star_portrait'];
     if(starPortrait == '')
-        starPortrait = 'img/empty-portrait.png'
+        starPortrait = 'img/empty-portrait.png';
 
     var starProfession = resultData['star_profession'];
-    var starGender = resultData['star_gender'];
-
+    if(starProfession == '')
+    	starProfession = 'No information';
+    		
     var starBirthYear = resultData['star_birthyear'];
     if(starBirthYear == null)
-        starBirthYear = 'Unknown'
+        starBirthYear = 'No information'
 
     var starBio = resultData['star_bio'];
     if(starBio == '')
@@ -40,12 +41,7 @@ function handleStarResult(resultData) {
             starProfession
         )
     );
-    $('#starGender').append(
-        $('<p>').append(
-            $('<strong>').text('Gender: '),
-            starGender
-        )
-    );
+
     $('#starBirthyear').append(
         $('<p>').append(
             $('<strong>').text('Birthyear: '),
@@ -84,15 +80,13 @@ function handleStarResult(resultData) {
         let movieID = starFilmography[i]['movie_id'];
         let movieTitle = starFilmography[i]['movie_title'];
         let movieYear = starFilmography[i]['movie_year'];
-        let movieStarAs = starFilmography[i]['movie_star_as'];
 
         $('#filmographyTable').append(
             $('<tr>').append(
                 $('<th>', { scope: 'row' }).text(movieYear),
                 $('<td>').append(
                     $('<a>', { href: 'movie.html?id=' + movieID }).text(movieTitle)
-                ),
-                $('<td>').text(movieStarAs)
+                )
             )
         );
     }

@@ -90,7 +90,7 @@ public class CartRetrieveServlet extends HttpServlet {
 	
 	private JsonArray getCartContent(Connection dbConnection, String cartID) throws SQLException {
 		JsonArray cartContent = new JsonArray();
-		String query = "SELECT cart_items.id, cart_items.movie_id, cart_items.quantity, cart_items.price, movies.title, movies.year\n" + 
+		String query = "SELECT cart_items.id, cart_items.movie_id, cart_items.quantity, cart_items.price, movies.title, movies.year, movies.poster\n" + 
 				"FROM cart_items\n" + 
 				"INNER JOIN movies ON movies.id = cart_items.movie_id\n" + 
 				"WHERE cart_items.cart_id = ?";
@@ -106,8 +106,7 @@ public class CartRetrieveServlet extends HttpServlet {
 			jObject.addProperty("movie_price", rSet.getString(4));
 			jObject.addProperty("movie_title", rSet.getString(5));
 			jObject.addProperty("movie_year", rSet.getString(6));
-			//jObject.addProperty("movie_poster", rSet.getString(7));
-			jObject.addProperty("movie_poster", "");
+			jObject.addProperty("movie_poster", rSet.getString(7));
 
 			cartContent.add(jObject);
 		}

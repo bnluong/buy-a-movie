@@ -234,7 +234,7 @@ function handleBrowsingResult(resultData) {
             moviePoster = 'img/empty-poster.png';
         }
 
-        let moviePrice = '15.99';
+        let moviePrice = resultData[i]['movie_price'];
 
         let trHTML = document.createElement('tr');
 
@@ -271,7 +271,7 @@ function handleBrowsingResult(resultData) {
         ).appendTo(trHTML);
 
         $('<td>').append(
-            $('<p>', { class: 'h5' }).text(moviePrice),
+            $('<p>', { class: 'h5' }).text('$'+moviePrice),
             $('<p>').append(
                 $('<a>', { 
                     href: 'cart.html?addToCart=true' + '&movieID=' + movieID + '&movieTitle=' + movieTitle + '&moviePrice=' + moviePrice + '&movieQuantity=1',

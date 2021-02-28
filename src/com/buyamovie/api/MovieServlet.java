@@ -17,8 +17,6 @@ import javax.sql.DataSource;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import com.buyamovie.utilities.*;
-
 /**
  * Servlet implementation class BrowsingServlet
  */
@@ -82,18 +80,15 @@ public class MovieServlet extends HttpServlet {
 			resultData.addProperty("movie_year", rSet.getString("year"));
 			resultData.addProperty("movie_director", rSet.getString("director"));
 			resultData.addProperty("movie_rating", rSet.getString("rating"));
+			resultData.addProperty("movie_poster", rSet.getString("poster"));
+			resultData.addProperty("movie_runtime", rSet.getString("runtime"));		
+			resultData.addProperty("movie_overview", rSet.getString("overview"));	
+			resultData.addProperty("movie_price", rSet.getString("price"));
 		}
 		
 		resultData.add("movie_genres", getMovieGenres(dbConnection, movieID));
 		resultData.add("movie_stars", getMovieStars(dbConnection, movieID));
 
-//		IMDBScraper imdbScraper = new IMDBScraper("https://www.imdb.com/title/" + movieID);
-		resultData.addProperty("movie_poster", "");
-		
-		resultData.addProperty("movie_runtime", "");		// TODO: Update database
-		resultData.addProperty("movie_overview", "");	// TODO: Update database
-		resultData.addProperty("movie_price", "15.99");								// TODO: Update database
-		
 		rSet.close();
 		statement.close();
 		

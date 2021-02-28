@@ -18,8 +18,6 @@ import javax.sql.DataSource;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import com.buyamovie.utilities.*;
-
 /**
  * Servlet implementation class BrowsingServlet
  */
@@ -61,9 +59,6 @@ public class BrowsingServlet extends HttpServlet {
 				JsonArray movieStars = getMovieStars(dbConnection, (String) movieID);
 				resultData.get(i).getAsJsonObject().add("movie_genres", movieGenres);
 				resultData.get(i).getAsJsonObject().add("movie_stars", movieStars);
-				//String moviePoster = imdbScraper.getMoviePoster("https://www.imdb.com/title/"+ movieID);	// TODO: Update the database
-				//resultData.get(i).getAsJsonObject().addProperty("movie_poster", moviePoster);
-				resultData.get(i).getAsJsonObject().addProperty("movie_poster", "");
 			}
 
 			resultData.add(totalMovies);
@@ -220,6 +215,8 @@ public class BrowsingServlet extends HttpServlet {
 			jObject.addProperty("movie_year", rSet.getString("year"));
 			jObject.addProperty("movie_director", rSet.getString("director"));
 			jObject.addProperty("movie_rating", rSet.getString("rating"));
+			jObject.addProperty("movie_poster", rSet.getString("poster"));
+			jObject.addProperty("movie_price", rSet.getString("price"));
 			jArray.add(jObject);
 		}
 
