@@ -1,6 +1,8 @@
 # Buy-a-Movie
 
-Buy-a-Movie is a mock e-commerce website that sells movies. The website has standard e-commerce features such as searching, browsing, add to cart, checkout, login, create account, and many more.
+Buy-a-Movie is a mock e-commerce website that sells movies. The website has
+standard e-commerce features such as searching, browsing, add to cart, checkout,
+login, create account, and many more.
 
 ## Description
 
@@ -11,41 +13,64 @@ This is a full-stack web development project that uses the following technology:
     Web server: Apache Tomcat
     Tools: Linux, MySQL Server, Eclipse, VSCode, Maven
 
-The project is a demonstration of my understanding and studying of full-stack web development. It utilizes the microservices architecture to achieve front-end/back-end separation.
+The project is a demonstration of my understanding and studying of full-stack
+web development. It utilizes the microservices architecture to achieve
+front-end/back-end separation.
 
-The website is designed with the responsive approach. It will display and fit various screens from desktop to small smart phones.
+The website is designed with the responsive approach. It will display and fit
+various screens from desktop to small smart phones.
 
-The project has been developed for about 2 months and finally achieved a basic working version with standard e-commerce features.
+The project has been developed for about 2 months and finally achieved a basic
+working version with standard e-commerce features.
 
-My plan is to continue learning and developing this project with the uses of frameworks including React for front-end and Spring for back-end.
+My plan is to continue learning and developing this project with the uses of
+frameworks including React for front-end and Spring for back-end.
 
 ## Design Interfaces
-![Interfaces](/design_interfaces.png?raw=true "Interfaces")
+
+![Interfaces](/design_interfaces.png?raw=true 'Interfaces')
 
 ## Demo
 
 ###### Landing Page
-![Homepage](screenshots/homepage.png?raw=true "Homepage")
+
+![Homepage](screenshots/homepage.png?raw=true 'Homepage')
 
 <details>
 <summary>More Screenshots</summary>
 
 ###### Browsing Page
-![Browsing](screenshots/browse.png?raw=true "Browsing")
+
+![Browsing](screenshots/browse.png?raw=true 'Browsing')
+
 ###### Searching Page
-![Searching](screenshots/search.png?raw=true "Searching")
+
+![Searching](screenshots/search.png?raw=true 'Searching')
+
 ###### Movie Page
-![Movie Info](screenshots/movie-info.png?raw=true "Movie Info")
+
+![Movie Info](screenshots/movie-info.png?raw=true 'Movie Info')
+
 ###### Star Page
-![Star Info](screenshots/star-info.png?raw=true "Star Info")
+
+![Star Info](screenshots/star-info.png?raw=true 'Star Info')
+
 ###### Login Page
-![Login](screenshots/login.png?raw=true "Login")
+
+![Login](screenshots/login.png?raw=true 'Login')
+
 ###### Create Account Page
-![Register](screenshots/register.png?raw=true "Register")
+
+![Register](screenshots/register.png?raw=true 'Register')
+
 ###### Cart Page
-![Cart](screenshots/cart.png?raw=true "Cart")
+
+![Cart](screenshots/cart.png?raw=true 'Cart')
+
 ###### Checkout Page
-![Checkout](screenshots/checkout.png?raw=true "Checkout")
+
+![Checkout](screenshots/checkout.png?raw=true 'Checkout')
+
 </details>
 
 ## Getting Started
@@ -59,9 +84,11 @@ My plan is to continue learning and developing this project with the uses of fra
 4. Maven
 5. MySQL Server
 ```
+
 ### Getting the Source Code
 
-This project is [hosted on GitHub](https://github.com/bnluong/buy-a-movie). You can clone this project directly using this command:
+This project is [hosted on GitHub](https://github.com/bnluong/buy-a-movie). You
+can clone this project directly using this command:
 
 ```
 git clone git@github.com:bnluong/buy-a-movie.git
@@ -84,22 +111,18 @@ git clone git@github.com:bnluong/buy-a-movie.git
 
 ## Tests
 
-There are some utilites in the com.buyamovie.utilites package of the project which utilizes JUnit testing.
-
-To run the JUnit tests:
-
-```
-Right click on the project -> Run As -> JUnit Tests
-```
+Add tests here.
 
 ## Authors
 
-* **Bao Luong** - *Owner* - [bnluong](https://github.com/bnluong)
+-   **Bao Luong** - _Owner_ - [bnluong](https://github.com/bnluong)
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
+for details.
 
 ## Acknowledgments
 
-[Kaggle](https://www.kaggle.com/rounakbanik/the-movies-dataset?select=credits.csv) - For providing the The Movies Dataset needed for the database.
+[Kaggle](https://www.kaggle.com/rounakbanik/the-movies-dataset?select=credits.csv) -
+For providing the The Movies Dataset needed for the database.
