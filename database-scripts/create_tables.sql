@@ -58,3 +58,18 @@ CREATE TABLE IF NOT EXISTS ratings(
     num_votes INT
 );
 
+CREATE TABLE IF NOT EXISTS carts(
+	id INT AUTO_INCREMENT NOT NULL,
+    user_email VARCHAR(50) UNIQUE NOT NULL,
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS cart_items(
+	id INT AUTO_INCREMENT NOT NULL,
+    cart_id INT NOT NULL,
+    movie_id VARCHAR(10) UNIQUE NOT NULL,
+	quantity INT NOT NULL,
+    price FLOAT NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(cart_id) REFERENCES carts(id)
+);
