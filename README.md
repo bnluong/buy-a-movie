@@ -32,7 +32,7 @@ frameworks including React for front-end and Spring for back-end.
 
 ## Demo
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/idoEeiNtcgw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Buy-a-Movie Demo](http://img.youtube.com/vi/idoEeiNtcgw/0.jpg)](http://www.youtube.com/watch?v=idoEeiNtcgw "Buy-a-Movie Demo")
 
 ###### Landing Page
 
