@@ -32,6 +32,8 @@ frameworks including React for front-end and Spring for back-end.
 
 ## Demo
 
+###### Video Demo
+
 [![Buy-a-Movie Demo](http://img.youtube.com/vi/idoEeiNtcgw/0.jpg)](http://www.youtube.com/watch?v=idoEeiNtcgw "Buy-a-Movie Demo")
 
 ###### Landing Page
